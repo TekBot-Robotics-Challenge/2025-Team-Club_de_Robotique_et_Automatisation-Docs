@@ -17,15 +17,6 @@
 <p align="center">
   <img src="./Images/150.png" alt="Image 1" width="600" />
 </p>
-## 4. Processus de réalisation de la pièce 1
-
-Avant de commencer la conception de la pièce 1, nous avons d’abord effectué une **étude préliminaire** afin de la réaliser en un minimum de temps et en utilisant le moins de fonctions possible.
-
-Avant de vous présenter notre **gamme de réalisation**, nous allons d’abord vous présenter le logiciel que nous avons choisi pour concevoir efficacement cette pièce.
-
-En effet, nous avons utilisé **SolidWorks**, un logiciel de Conception Assistée par Ordinateur (**CAO**) en 3D, largement utilisé pour modéliser des pièces et des assemblages mécaniques.
-
-Son interface se présente comme suit :
 
 
 
