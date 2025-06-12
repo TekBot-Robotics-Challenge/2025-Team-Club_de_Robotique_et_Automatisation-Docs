@@ -65,7 +65,15 @@ L'objectif est de réaliser cette pièce en un **temps record** en utilisant un 
 - Aller dans **Fonctions > Base extrudée**  
 - Définir la **profondeur à 50 mm**
 
----
+---<p align="center">
+  <img src="./Images/110.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/111.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/112.png" alt="Image 1" width="600">
+</p>
 
 #### Étape 3 : Deuxième extrusion (zone grise)
 
@@ -74,8 +82,15 @@ L'objectif est de réaliser cette pièce en un **temps record** en utilisant un 
 - Aller dans **Fonctions > Base extrudée**  
 - Définir la **profondeur à 10 mm**
 
----
-
+<p align="center">
+  <img src="./Images/115.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/116.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/117.png" alt="Image 1" width="600">
+</p>
 #### Étape 4 : Troisième extrusion (cylindre jaune)
 
 - Sélectionner la **face supérieure** comme plan d’esquisse  
