@@ -1,1 +1,440 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentation Projet Robots - Tekbot Challenge 2024</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="page-de-garde">
+        <h1>Documentation Test_1 IT</h1>
+        <h2>Tekbot Robotics Challenge 2025</h2>
+        <p><strong>Langage utilisé :</strong> Python</p>
+        <p><strong>Développé par :</strong> strategy-lab-unstim</p>
+        <p><strong>Date :</strong> 12 Juin 2025</p>
+    </header><nav class="table-matiere">
+    <h2>📘 Table des matières</h2>
+    <ul>
+        <li><a href="#intro">1. Introduction</a></li>
+        <li><a href="#objectif">2. Objectif du projet</a></li>
+        <li><a href="#outils">3. Prérequis et outils nécessaires</a></li>
+        <li><a href="#structure">4. Structure du projet</a></li>
+        <li><a href="#classrobot">5. Détail du fichier ClassRobot.py</a></li>
+        <li><a href="#robot">6. Détail du fichier Robot.py</a></li>
+        <li><a href="#gestion">7. Détail du fichier Gestion.py</a></li>
+        <li><a href="#main">8. Détail du fichier main.py</a></li>
+        <li><a href="#robot">9. Fichiers de types de robots</a>
+            <ul>
+                <li><a href="#menager">9.1 Détail du fichier Menager.py</a></li>
+                <li><a href="#industriel">9.2 Détail du fichier Indistruel.py</a></li>
+                <li><a href="#medical">9.3 Détail du fichier Medical.py</a></li>
+                <li><a href="#explorateur">9.4 Détail du fichier Explorateur.py</a></li>
+                <li><a href="#compagnon">9.5 Détail du fichier Compagnon.py</a></li>
+            </ul>
+        </li>
+        <li><a href="#uml">10. Diagramme UML</a></li>
+        <li><a href="#conclusion">11. Conclusion</a></li>
+    </ul>
+</nav>
+
+<section id="intro">
+    <h2>1. Introduction</h2>
+    <p>Dans un contexte mondial où la robotique devient un pilier fondamental de l’innovation technologique, les compétences en programmation orientée objet (POO) et en conception de systèmes modulaires sont devenues essentielles. Le Tekbot Robotics Challenge 2024, organisé au sein d’un cadre académique dynamique, offre aux étudiants une opportunité concrète de mobiliser ces compétences dans un projet cohérent, pratique et professionnalisant.</p>
+        <p>Ce projet consiste à concevoir une application Python qui permet de simuler la création et la gestion de différents types de robots, chacun ayant des caractéristiques propres, tout en partageant une base commune. L’approche choisie repose sur une architecture modulaire, orientée objet, facilitant l’extensibilité, la réutilisabilité et la maintenabilité du code. Chaque type de robot est défini dans un fichier spécifique, héritant d’une classe mère abstraite, et mettant en œuvre ses propres attributs et comportements.</p>
+        <p>La présente documentation vise à fournir une vue d’ensemble complète et structurée du projet : depuis les objectifs pédagogiques jusqu’à l’implémentation technique détaillée de chaque composant. Elle s’adresse aussi bien aux étudiants débutants en programmation qu’aux développeurs expérimentés désireux d’examiner une architecture propre, segmentée et respectant les bonnes pratiques de développement logiciel. Les explications sont accompagnées de codes commentés pour favoriser l’apprentissage et la compréhension progressive.</p>
+</section>
+
+<section id="objectif">
+    <h2>2. Objectif du projet</h2>
+    <p>L'objectif est de construire une application Python capable de gérer dynamiquement des objets représentant des robots spécialisés. Chaque robot possède des attributs généraux (nom, fabricant, etc.) et spécifiques selon son type (médical, industriel, etc.). Le programme doit :</p>
+    <ul>
+        <li>Permettre à l'utilisateur de créer différents types de robots via un menu interactif.</li>
+        <li>Assurer la validation des données entrées par l'utilisateur.</li>
+        <li>Stocker les robots créés en mémoire et les sauvegarder dans un fichier texte.</li>
+        <li>Implémenter le principe d’héritage, d’abstraction, d’encapsulation et de polymorphisme.</li>
+    </ul>
+</section>
+
+<section id="outils">
+    <h2>3. Prérequis et outils nécessaires</h2>
+    <ul>
+        <li><strong>Langage :</strong> Python 3.8 ou supérieur</li>
+        <li><strong>Bibliothèques standards :</strong> abc, uuid</li>
+        <li><strong>Éditeur conseillé :</strong> VS Code, PyCharm ou Thonny</li>
+        <li><strong>OS compatible :</strong> Windows, Linux, macOS</li>
+        <li><strong>Connaissances requises :</strong> notions de POO, structures conditionnelles, boucles, saisies utilisateur</li>
+    </ul>
+</section>
+
+<!-- Les autres sections restent inchangées, elles sont déjà présentes dans la version précédente -->
+
+<section id="structure">
+    <h2>4. Structure du projet</h2>
+    <p>Le projet est organisé autour de fichiers spécialisés :</p>
+    <ul>
+        <li><code>main.py</code> – Point d’entrée de l’application</li>
+        <li><code>ClassRobot.py</code> – Classe de base abstraite</li>
+        <li><code>Robot.py</code> – Démonstration simplifiée</li>
+        <li><code>Gestion.py</code> – Fonctions de menu, sauvegarde, saisie</li>
+        <li><code>Menager.py</code>, <code>Indistruel.py</code>, etc. – Définissent chaque type de robot</li>
+    </ul>
+</section>
+
+<section id="classrobot">
+    <h2>5. Fichier : ClassRobot.py</h2>
+    <p>Ce fichier définit la classe abstraite <code>Robot</code> qui sert de base à toutes les autres. Il introduit des attributs généraux comme le nom, modèle, fabricant, année de fabrication, batterie, capacité, vitesse, poids et statut. Il utilise <code>uuid</code> pour générer un identifiant unique et impose des méthodes abstraites à implémenter dans les sous-classes.</p>
+    <p><strong>Particularité :</strong> Ce fichier est central, car tous les robots héritent de cette structure.</p>
+</section>
+
+<section id="robot">
+    <h2>6. Fichier : Robot.py</h2>
+    <p>Fichier simplifié pour l’initiation à la POO. Il contient la classe abstraite <code>Robot</code> avec les classes concrètes <code>FlyingRobot</code> et <code>WheeledRobot</code>, illustrant le polymorphisme. Il inclut aussi la classe <code>ClientGestion</code> pour créer plusieurs robots à la volée.</p>
+    <p><strong>Différence :</strong> Ce fichier est plus pédagogique et simplifié par rapport à <code>ClassRobot.py</code>.</p>
+</section>
+
+<section id="gestion">
+    <h2>7. Fichier : Gestion.py</h2>
+    <p>Ce fichier regroupe les fonctions utiles pour l’interaction utilisateur, la validation des entrées et la sauvegarde.</p>
+
+    <h3>Fonction : demander_attributs()</h3>
+    <p>Elle permet de demander à l’utilisateur les attributs généraux et spécifiques d’un robot avec des validations intégrées.</p>
+    <pre><code>def demander_attributs(generaux, specifiques):
+    reponses = []
+    for attr in generaux:
+    if attr == "id_robot":
+        continue
+    # Validation pour certaines valeurs spécifiques
+    ...
+    for attr in specifiques:
+        if attr in ["interaction_voix", "detergent", ...]:
+            val = input(f"{attr} (oui/non): ").lower() == "oui"
+        else:
+            val = input(f"{attr} : ")
+        reponses.append(val)
+    return reponses</code></pre>
+
+        <h3>Fonction : sauvegarder_robots()</h3>
+        <p>Enregistre les informations de tous les robots créés dans un fichier texte.</p>
+        <pre><code>def sauvegarder_robots(robots):
+    with open("robots_crees.txt", "w", encoding="utf-8") as f:
+        for robot in robots:
+            f.write(f"=== {robot.get_type()} ===\n")
+            for cle, val in robot.get_attributs_generaux().items():
+                f.write(f"{cle} : {val}\n")
+            for cle, val in robot.get_attributs_specifiques().items():
+                f.write(f"{cle} : {val}\n")
+            f.write("\n")</code></pre>
+
+        <h3>Fonction : afficher_menu()</h3>
+        <p>Affiche les différents types de robots disponibles à la création :</p>
+        <pre><code>def afficher_menu():
+    print("\n=== Types de robots disponibles ===")
+    print("1. Robot Ménager - Pour les tâches domestiques")
+    print("2. Robot Industriel - Pour les usines")
+    ...
+    print("6. Quitter le programme")</code></pre>
+</section>
+
+<section id="main">
+    <h2>8. Fichier : main.py</h2>
+    <p>Ce fichier est le centre du programme. Il orchestre le menu, appelle les fonctions de gestion, et crée les objets robots.</p>
+
+    <h3>Initialisation</h3>
+    <p>Liste les attributs généraux des robots et un dictionnaire des classes avec leurs attributs spécifiques :</p>
+    <pre><code>generaux = ["nom", "fabricant", "modele", "annee_fabrication",
+        "batterie", "capacite_charge", "vitesse_max", "poids", "statut"]
+
+robot_classes = { "1": ("RobotMenager", RobotMenager, ["type_tache", ...]), "2": ("RobotIndustriel", RobotIndustriel, ["type_usine", ...]), ... }</code></pre>
+
+<h3>Boucle principale</h3>
+    <p>Affiche le menu, récupère le choix utilisateur, valide les données et crée l'objet correspondant :</p>
+    <pre><code>while True:
+afficher_menu()
+choix = input("Choisissez un type de robot : ").strip()
+if choix == "6":
+    sauvegarder_robots(robots_crees)
+    break
+if choix in robot_classes:
+    nom, classe, specifiques = robot_classes[choix]
+    attributs = demander_attributs(generaux, specifiques)
+    robot = classe(*attributs[:9], **dict(zip(specifiques, attributs[9:])))
+    robots_crees.append(robot)
+    robot.move()</code></pre>
+
+    <p><strong>Conclusion :</strong> C’est le cœur fonctionnel du projet. C’est ici que tout converge : saisie, traitement, instanciation, démonstration, sauvegarde.</p>
+    </section>
+
+    <section id="robot">
+        <h2>9. Robot.py – Exemple simplifié de POO</h2>
+        <p>Le fichier <code>Robot.py</code> est une version d’introduction aux principes de la programmation orientée objet. Il ne fait pas directement partie du cœur du projet principal, mais sert de base de démonstration avant d’aborder les classes avancées du fichier <code>ClassRobot.py</code>.</p>
+
+        <h3>Contenu du fichier</h3>
+        <p>Il contient :</p>
+        <ul>
+            <li>Une classe abstraite <code>Robot</code> avec les attributs <code>name</code> et <code>model</code></li>
+            <li>Deux classes filles : <code>FlyingRobot</code> et <code>WheeledRobot</code></li>
+            <li>Une classe <code>ClientGestion</code> pour gérer la création et l’affichage des robots</li>
+        </ul>
+
+        <pre><code>from abc import ABC, abstractmethod
+
+class Robot(ABC):
+    def __init__(self, name, model):
+        self._name = name
+        self._model = model
+
+    def get_name(self):
+        return self._name
+
+    def set_name(self, name):
+        self._name = name
+
+    def get_model(self):
+        return self._model
+
+    def set_model(self, model):
+        self._model = model
+
+    @abstractmethod
+    def move(self):
+        pass
+
+    def __str__(self):
+        return f"Robot {self._name}, modèle {self._model}"
+
+class FlyingRobot(Robot):
+    def move(self):
+        return f"{self._name} vole dans les airs avec agilité."
+
+class WheeledRobot(Robot):
+    def move(self):
+        return f"{self._name} roule rapidement sur le sol."
+
+class ClientGestion:
+    def __init__(self):
+        self.robot_list = []
+
+    def creation_robot(self):
+        print("....... Création du Robot .......")
+        try:
+            response = int(input('Entrer 1 pour FlyingBot ou 2 pour WheeledRobot : '))
+            if response in [1, 2]:
+                nom = input("Entrer le nom : ")
+                model = input("Entrer le modèle : ")
+                robot = FlyingRobot(nom, model) if response == 1 else WheeledRobot(nom, model)
+                self.robot_list.append(robot)
+            else:
+                print("------ Entrée invalide -----")
+        except ValueError:
+            print("------ Entrée invalide -----")
+
+    def count_robot(self):
+        try:
+            number_robot = int(input('Entrez le nombre de robots à créer : '))
+            return number_robot
+        except ValueError:
+            print("------ Entrée invalide -----")
+            return 0
+
+client_gestion = ClientGestion()
+number_of_robots = client_gestion.count_robot()
+for _ in range(number_of_robots):
+    client_gestion.creation_robot()
+
+if client_gestion.robot_list:
+    print("\nListe des robots créés :")
+    for i, robot in enumerate(client_gestion.robot_list, 1):
+        print(f'Robot N° {i}')
+        print(robot)
+        print(robot.move())
+else:
+    print("\nAucun robot valide n'a été créé.")</code></pre>
+
+        <h3>Objectif pédagogique</h3>
+        <p>Ce fichier est utile pour :</p>
+        <ul>
+            <li>Comprendre l’usage d’une classe abstraite et l’obligation d’implémenter <code>move()</code></li>
+            <li>Expliquer le principe du polymorphisme (même méthode <code>move()</code>, comportements différents)</li>
+            <li>Initier à la gestion dynamique d’objets via la classe <code>ClientGestion</code></li>
+        </ul>
+        <p>Bien que simplifié, il prépare à la logique complète du projet principal basé sur <code>ClassRobot.py</code>.</p>
+    </section>
+
+
+    <section id="menager">
+        <h3>9.1 Menager.py</h3>
+        <p>Ce fichier contient la définition de la classe <code>RobotMenager</code>, qui hérite de la classe <code>Robot</code> dans <code>ClassRobot.py</code>. Cette classe est destinée à simuler des robots domestiques : aspirateurs intelligents, laveurs de sol, robots de repassage, etc.</p>
+        <pre><code>class RobotMenager(Robot):
+    def __init__(self, *args, type_tache, reservoir, detergent, autonomie, niveau_bruit):
+        super().__init__(*args)
+        self.type_tache = type_tache
+        self.reservoir = reservoir
+        self.detergent = detergent
+        self.autonomie = autonomie
+        self.niveau_bruit = niveau_bruit
+
+    def move(self):
+        print(f"{self.get_nom()} commence à nettoyer la maison.")
+
+    def get_type(self):
+        return "RobotMénager"
+
+    def get_attributs_specifiques(self):
+        return {
+            "type_tache": self.type_tache,
+            "reservoir": self.reservoir,
+            "detergent": self.detergent,
+            "autonomie": self.autonomie,
+            "niveau_bruit": self.niveau_bruit
+        }</code></pre>
+        <p><strong>Explications :</strong></p>
+        <ul>
+            <li><code>type_tache</code> : détermine la spécialisation du robot (ex : nettoyage, repassage...)</li>
+            <li><code>reservoir</code> : capacité du réservoir d’eau ou de déchets</li>
+            <li><code>detergent</code> : booléen indiquant si le robot peut utiliser des produits nettoyants</li>
+            <li><code>autonomie</code> : durée de fonctionnement en heures</li>
+            <li><code>niveau_bruit</code> : bruit émis en décibels (dB)</li>
+        </ul>
+        <p>Cette classe montre comment enrichir un modèle de base en ajoutant des attributs spécifiques à un contexte d’usage concret, ici l’entretien domestique.</p>
+    </section>
+
+    <section id="industriel">
+        <h3>9.2 Fichier : Indistruel.py</h3>
+        <p>Le fichier <code>Indistruel.py</code> contient la classe <code>RobotIndustriel</code>, conçue pour exécuter des tâches spécifiques dans des environnements industriels. Ces robots sont souvent utilisés sur des chaînes de production, pour du soudage, de l’assemblage ou de la manipulation d’objets lourds. Cette classe hérite de <code>Robot</code> et ajoute des attributs propres à l’usage industriel.</p>
+        <pre><code>class RobotIndustriel(Robot):
+    def __init__(self, *args, type_usine, outil_utilise, resistance_chaleur,
+                 capacite_production, precision):
+        super().__init__(*args)
+        self.type_usine = type_usine
+        self.outil_utilise = outil_utilise
+        self.resistance_chaleur = resistance_chaleur
+        self.capacite_production = capacite_production
+        self.precision = precision
+
+    def move(self):
+        print(f"{self.get_nom()} se déplace sur la chaîne de production.")
+
+    def get_type(self):
+        return "RobotIndustriel"
+
+    def get_attributs_specifiques(self):
+        return {
+            "type_usine": self.type_usine,
+            "outil_utilise": self.outil_utilise,
+            "resistance_chaleur": self.resistance_chaleur,
+            "capacite_production": self.capacite_production,
+            "precision": self.precision
+        }</code></pre>
+        <p>Chaque attribut correspond à une exigence du domaine industriel. Par exemple, <code>precision</code> définit la tolérance en millimètres, tandis que <code>capacite_production</code> indique le nombre d’unités traitées par heure.</p>
+    </section>
+
+    <section id="medical">
+        <h3>9.3 Fichier : Medical.py</h3>
+        <p>Ce fichier définit la classe <code>RobotMedical</code>, conçue pour exécuter des tâches en environnement hospitalier. Il implémente des attributs spécifiques à la précision et à la sécurité des interventions chirurgicales.</p>
+        <pre><code>class RobotMedical(Robot):
+    def __init__(self, *args, type_operation, sterilisable, telecommande,
+                 compatibilite_scan, precision_chirurgicale):
+        super().__init__(*args)
+        self.type_operation = type_operation
+        self.sterilisable = sterilisable
+        self.telecommande = telecommande
+        self.compatibilite_scan = compatibilite_scan
+        self.precision_chirurgicale = precision_chirurgicale
+
+    def move(self):
+        print(f"{self.get_nom()} se positionne pour une intervention chirurgicale.")
+
+    def get_type(self):
+        return "RobotMedical"
+
+    def get_attributs_specifiques(self):
+        return {
+            "type_operation": self.type_operation,
+            "sterilisable": self.sterilisable,
+            "telecommande": self.telecommande,
+            "compatibilite_scan": self.compatibilite_scan,
+            "precision_chirurgicale": self.precision_chirurgicale
+        }</code></pre>
+    </section>
+
+    <section id="explorateur">
+        <h3>9.4 Fichier : Explorateur.py</h3>
+        <p>La classe <code>RobotExplorateur</code> est destinée à modéliser un robot capable d’opérer dans des environnements extrêmes (océan, espace, déserts, etc.).</p>
+        <pre><code>class RobotExplorateur(Robot):
+    def __init__(self, *args, type_exploration, profondeur_max, communication,
+                 resistance, capacite_analyse):
+        super().__init__(*args)
+        self.type_exploration = type_exploration
+        self.profondeur_max = profondeur_max
+        self.communication = communication
+        self.resistance = resistance
+        self.capacite_analyse = capacite_analyse
+
+    def move(self):
+        print(f"{self.get_nom()} avance dans une zone inhospitalière.")
+
+    def get_type(self):
+        return "RobotExplorateur"
+
+    def get_attributs_specifiques(self):
+        return {
+            "type_exploration": self.type_exploration,
+            "profondeur_max": self.profondeur_max,
+            "communication": self.communication,
+            "resistance": self.resistance,
+            "capacite_analyse": self.capacite_analyse
+        }</code></pre>
+    </section>
+
+    <section id="compagnon">
+        <h3>9.5 Fichier : Compagnon.py</h3>
+        <p>Le fichier <code>Compagnon.py</code> définit un robot d’assistance ou de compagnie. Ce type de robot est utilisé dans l’accompagnement des personnes âgées, l’éducation, ou même comme assistants personnels intelligents. Cette classe est axée sur l’interaction humaine et intègre des fonctions liées à la communication et à l’adaptation comportementale.</p>
+        <pre><code>class RobotCompagnon(Robot):
+    def __init__(self, *args, intelligence_sociale, interaction_voix,
+                 apprentissage, reconnaissance_visage, divertissement):
+        super().__init__(*args)
+        self.intelligence_sociale = intelligence_sociale
+        self.interaction_voix = interaction_voix
+        self.apprentissage = apprentissage
+        self.reconnaissance_visage = reconnaissance_visage
+        self.divertissement = divertissement
+
+    def move(self):
+        print(f"{self.get_nom()} suit son utilisateur pour l'assister.")
+
+    def get_type(self):
+        return "RobotCompagnon"
+
+    def get_attributs_specifiques(self):
+        return {
+            "intelligence_sociale": self.intelligence_sociale,
+            "interaction_voix": self.interaction_voix,
+            "apprentissage": self.apprentissage,
+            "reconnaissance_visage": self.reconnaissance_visage,
+            "divertissement": self.divertissement
+        }</code></pre>
+        <p>Cette classe est idéale pour illustrer la programmation orientée vers les interactions intelligentes. Elle pose aussi les bases pour des extensions futures intégrant des modules de traitement du langage naturel ou de reconnaissance faciale avancée.</p>
+    </section>
+</section>
+
+<section id="uml">
+    <h2>10. Diagramme UML</h2>
+    <p>Le diagramme UML ci-dessous montre la hiérarchie des classes, avec <code>Robot</code> comme base et les différents types de robots comme sous-classes :</p>
+    <img src="images/uml-diagram.png" alt="Diagramme UML" style="width: 100%; max-width: 800px;">
+</section>
+
+<section id="conclusion">
+    <h2>11. Conclusion</h2>
+    <p>À travers le Tekbot Robotics Challenge 2024, les étudiants ont eu l’opportunité de s’immerger dans une expérience de développement logiciel complète. Le projet abordé permet d’appliquer concrètement les principes de la programmation orientée objet tout en répondant à un cahier des charges réaliste, centré sur la création, la personnalisation et la gestion de plusieurs types de robots.</p>
+        <p>La qualité du code repose sur une architecture modulaire bien pensée : chaque fichier a une responsabilité claire (single responsibility), les interactions sont maîtrisées et les dépendances limitées. Les validations de données, la séparation entre logique métier et interface utilisateur (console), ainsi que l’usage de méthodes abstraites favorisent un haut niveau de maintenabilité.</p>
+        <p>Cette documentation a été pensée comme un guide pratique, technique et pédagogique. Elle peut servir de support d’apprentissage à ceux qui découvrent la POO, mais aussi de point de départ pour des évolutions plus ambitieuses : ajout d’interface graphique (Tkinter, PyQt), base de données SQLite, déploiement d’API REST avec Flask ou FastAPI, ou encore intégration avec des capteurs et microcontrôleurs dans un contexte réel de robotique embarquée.</p>
+        <p>En somme, ce projet est bien plus qu’un exercice scolaire. Il constitue une base solide pour tout développeur ou ingénieur souhaitant explorer les fondements d’une architecture orientée objet propre, testable et évolutive dans le domaine de la robotique logicielle et des systèmes intelligents.</p>
+    </section>
+
+<footer>
+    <p>&copy; 2025 - strategy-lab-unstim</p>
+</footer>
+
+
+</body>
+</html>
 
