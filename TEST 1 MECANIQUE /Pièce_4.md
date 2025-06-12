@@ -219,6 +219,26 @@ p align="center">
 p align="center">
   <img src="./Images/144.png" alt="Image 1" width="600">
 </p>
+</p>
+p align="center">
+  <img src="./Images/145.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/146.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/147.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/148.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/149.png" alt="Image 1" width="600">
+</p>
 
 #### Étape 7 : Évaluation de la masse
 
