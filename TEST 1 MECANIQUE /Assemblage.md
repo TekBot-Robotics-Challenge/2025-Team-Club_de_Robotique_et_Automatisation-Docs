@@ -86,4 +86,19 @@ Le montage a nécessité plusieurs corrections de contraintes et de positionneme
   - Y = 0.16 mm  
   - Z = 19.86 mm  
 - Utiliser l’outil **Évaluer > Propriétés de masse** pour calculer la masse totale de l’assemblage  
+#### Étape 3 : Évaluation finale
+
+- Vérifier l’assemblage complet dans différentes positions (maximale et minimale)  
+
+- **Position minimale des coordonnées :**  
+  - X = -29.15 mm  
+  - Y = 0.16 mm  
+  - Z = 19.86 mm  
+
+- **Position maximale des coordonnées :**  
+  - X = -25.78 mm  
+  - Y = 0.66 mm  
+  - Z = 19.86 mm  
+
+- Utiliser l’outil **Évaluer > Propriétés de masse** pour calculer la masse totale de l’assemblage  
 
