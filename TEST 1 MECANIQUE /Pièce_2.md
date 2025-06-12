@@ -52,6 +52,26 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 <p align="center">
   <img src="./Images/54.png" alt="Image 1" width="600">
 </p>
+</p>
+<p align="center">
+  <img src="./Images/55.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/56.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/56.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/57.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/58.png" alt="Image 1" width="600">
+</p>
 **Alignement et tangence** :
 
 - Sélectionner les deux centres → **Relation verticale**  
