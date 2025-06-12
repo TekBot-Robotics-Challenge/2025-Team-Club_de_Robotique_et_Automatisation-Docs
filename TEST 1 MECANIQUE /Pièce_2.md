@@ -76,6 +76,31 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 
 - Sélectionner les deux centres → **Relation verticale**  
 - Rendre les arcs **tangents** aux cercles
+  </p>
+<p align="center">
+  <img src="./Images/59.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/60.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/61.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/62.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/63.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/64.png" alt="Image 1" width="600">
+</p>
+
 
 **Extrusion** :
 
@@ -84,8 +109,19 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 - **Direction** : Plan milieu  
 - **Épaisseur** : 10 mm  
 - Valider
+</p>
+<p align="center">
+  <img src="./Images/65.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/66.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/67.png" alt="Image 1" width="600">
+</p>
 
----
 
 #### 2ème Étape : Réalisation de la deuxième extrusion
 
@@ -96,7 +132,24 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 - **Épaisseur** : 30 mm  
 - Valider
 
----
+
+</p>
+<p align="center">
+  <img src="./Images/68.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/69.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/70.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/71.png" alt="Image 1" width="600">
+</p>
+
 
 #### 3ème Étape : Troisième extrusion
 
@@ -106,6 +159,14 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 - Tracer deux cercles concentriques (conversion + décalage)  
   - Convertir le petit cercle de **34 mm**  
   - Le décaler de **4,5 mm**
+</p>
+<p align="center">
+  <img src="./Images/71.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/72.png" alt="Image 1" width="600">
+</p>
 
 **Extrusion** :
 
@@ -113,7 +174,15 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 - **Hauteur d’extrusion** : 15 mm  
 - Valider
 
----
+</p>
+<p align="center">
+  <img src="./Images/76.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/77.png" alt="Image 1" width="600">
+</p>
+
 
 #### 4ème Étape : Enlèvement de matière
 
@@ -122,6 +191,22 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 - Sélectionner la face bleue de la dernière extrusion  
 - Convertir le contour extérieur  
 - Faire un **décalage de 6 mm**
+</p>
+<p align="center">
+  <img src="./Images/79.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/80.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/81.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/82.png" alt="Image 1" width="600">
+</p>
 
 **Application de l’enlèvement de matière** :
 
@@ -130,7 +215,16 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 - **Profondeur** : 5 mm  
 - Valider
 
----
+</p>
+<p align="center">
+  <img src="./Images/83.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/84.png" alt="Image 1" width="600">
+</p>
+
+
 
 #### 5ème Étape : Configuration du matériau et évaluation de la masse
 
