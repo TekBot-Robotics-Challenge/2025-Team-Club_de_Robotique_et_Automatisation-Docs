@@ -205,7 +205,18 @@ Ainsi, la configuration du matériau est faite.
   <img src="./Images/33.png" alt="Image 1" width="600">
 </p>
 #### Ajustement
-
+<p align="center">
+  <img src="./Images/36.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/37.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/38.png" alt="Image 1" width="600">
+</p
+  <p align="center">
+  <img src="./Images/39.png" alt="Image 1" width="600">
+</p>
 - Utiliser la fonction **Ajuster** (fonctionnant comme une gomme) pour supprimer les débordements et obtenir l’ouverture souhaitée.
 
 
