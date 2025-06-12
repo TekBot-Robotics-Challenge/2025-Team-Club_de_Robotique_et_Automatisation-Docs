@@ -119,5 +119,7 @@ L'objectif est de réaliser cette pièce en un **temps record** en utilisant un 
 - Aller dans l’onglet **Évaluer**  
 - Cliquer sur **Propriétés de masse**  
 - La masse est calculée automatiquement par SolidWorks
-297.29g
+- **Résultat** : **297.29g**
+
+
 
