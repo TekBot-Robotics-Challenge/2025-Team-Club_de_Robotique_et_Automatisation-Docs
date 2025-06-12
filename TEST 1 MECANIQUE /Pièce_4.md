@@ -99,7 +99,15 @@ L'objectif est de réaliser cette pièce en un **temps record** en utilisant un 
 - Aller dans **Fonctions > Base extrudée**  
 - Définir la **hauteur à 5 mm**
 
----
+<p align="center">
+  <img src="./Images/118.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/119.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/120.png" alt="Image 1" width="600">
+</p>
 
 #### Étape 5 : Congé
 
