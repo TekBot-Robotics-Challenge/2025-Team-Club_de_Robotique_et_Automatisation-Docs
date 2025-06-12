@@ -276,6 +276,6 @@ Ainsi, la configuration du matériau est faite.
 
 - Aller dans la fonction **Évaluer** dans la barre d’outils.  
 - Cliquer sur **Propriétés de masse**.  
-- La masse obtenue pour la pièce 1 est ****.
+- La masse obtenue pour la pièce 1 est **2850.16**.
 
 
