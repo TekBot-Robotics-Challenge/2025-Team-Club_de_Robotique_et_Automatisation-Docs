@@ -27,11 +27,7 @@ En effet, nous aurons à manipuler **SolidWorks**, un logiciel de conception ass
 </p> 
 
 ## 5. Réalisation de la pièce 1
-Pour la réalisation de la **pièce 1**, après une analyse profonde, nous aurons à utiliser deux fonctions principales :  
-- Faire le bossage de l’esquisse ci-dessous sur une hauteur de 20 mm.  
-- Faire l’enlèvement de matière sur une profondeur de 10 mm.
 
----
 
 ### 1ère Étape : Configuration des paramètres initiaux du dessin (système d’unité et matériau)
 
@@ -42,6 +38,12 @@ Pour la réalisation de la **pièce 1**, après une analyse profonde, nous auron
 - Cliquer dessus → un petit menu apparaît → choisir **MMGS**.  
 
 Ainsi, la configuration du système d’unité est faite.
+<p align="center">
+  <img src="./Images/2.png" alt="Image 1" width="600">
+</p> 
+<p align="center">
+  <img src="./Images/3.png" alt="Image 1" width="600">
+</p> 
 
 #### Mettre le matériau sur acier AISI 1020
 
@@ -55,7 +57,13 @@ Ainsi, la configuration du système d’unité est faite.
 
 Ainsi, la configuration du matériau est faite.
 
----
+<p align="center">
+  <img src="./Images/4.png" alt="Image 1" width="600">
+</p> 
+<p align="center">
+  <img src="./Images/5.png" alt="Image 1" width="600">
+</p> 
+<p align="center">
 
 ### 2ème Étape : Réaliser l’extrusion
 
