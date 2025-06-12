@@ -232,8 +232,18 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 
 - Clic droit sur la pièce > **Éditer le matériau**  
 - Choisir **Aluminium Alliage 1060**
-
-
+- Aller dans le menu **Évaluer** > **Propriétés de masse**  
+- Résultat obtenu : 
+</p>
+<p align="center">
+  <img src="./Images/88.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/89.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/90.png" alt="Image 1" width="600">
+</p>
 **Évaluation de la masse** :
 
 - Aller dans le menu **Évaluer** > **Propriétés de masse**  
