@@ -228,7 +228,10 @@ Ainsi, la configuration du matériau est faite.
 
 - Ajuster l’arc du grand cercle se trouvant entre les deux arcs de raccordement pour pouvoir réaliser l’extrusion en une seule fonction, sans séparer l’esquisse.
 
-
+</p>
+<p align="center">
+  <img src="./Images/40.png" alt="Image 1" width="600">
+</p>
  
 
 ### Extrusion de l’esquisse
@@ -236,9 +239,15 @@ Ainsi, la configuration du matériau est faite.
 - Cliquer sur la fonction **Extrusion** dans la barre d’outils.  
 - Mettre la hauteur d’extrusion à **20 mm** (modifier la valeur par défaut de 10 mm).  
 - Valider pour obtenir la pièce extrudée.
+</p>
+<p align="center">
+  <img src="./Images/41.png" alt="Image 1" width="600">
+</p>
 
----
-
+</p>
+<p align="center">
+  <img src="./Images/42.png" alt="Image 1" width="600">
+</p>
 ### 4ème Étape : Enlèvement de matière
 
 - Sélectionner la face en bleu comme plan (clic droit dessus, puis choisir l’icône correspondante).  
