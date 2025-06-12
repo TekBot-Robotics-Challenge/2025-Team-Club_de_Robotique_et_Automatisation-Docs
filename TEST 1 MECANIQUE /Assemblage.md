@@ -78,5 +78,12 @@ Les vues disponibles sont :
 Le montage a nécessité plusieurs corrections de contraintes et de positionnement afin d’assurer un assemblage fonctionnel et sans interférences.
 
 ---
+#### Étape 3 : Évaluation finale
 
+- Vérifier l’assemblage complet dans différentes positions (maximale et minimale)  
+- **Position minimale des coordonnées :**  
+  - X = -29.15 mm  
+  - Y = 0.16 mm  
+  - Z = 19.86 mm  
+- Utiliser l’outil **Évaluer > Propriétés de masse** pour calculer la masse totale de l’assemblage  
 
