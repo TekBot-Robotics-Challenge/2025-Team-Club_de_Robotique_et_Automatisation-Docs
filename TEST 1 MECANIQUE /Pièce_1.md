@@ -13,9 +13,8 @@
 - **Tolérance** : ± 5% (marge d’erreur)  
 - **Matériau et densité** : acier AISI 1020 ; **Densité** : 0,0079 g/mm³  
 - **Remarque générale** : Tous les trous sont débouchants sauf indication contraire.
-<p align="center">
-  <img src="./Images/1.png" alt="Image 1" width="600" />
-</p>
+## 3. Représentation graphique de la pièce 1
+
 
 
 
