@@ -145,7 +145,15 @@ Ainsi, la configuration du matériau est faite.
 - Cliquer sur le cercle puis sur l’arc.  
 - Dans le menu à gauche, choisir **Tangente**, puis cliquer sur **OK**.
 
----
+<p align="center">
+  <img src="./Images/23.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/24.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/25.png" alt="Image 1" width="600">
+</p>
 
 ### Correction de l’erreur de désalignement
 
@@ -153,8 +161,15 @@ Ainsi, la configuration du matériau est faite.
 - Maintenir **Ctrl** et cliquer sur le second cercle (centre aussi).  
 - Une boîte **Ajouter une relation** apparaît à gauche ou en haut.  
 - Choisir **Horizontal**, puis cliquer sur **OK**.
-
----
+<p align="center">
+  <img src="./Images/26.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/27.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/28.png" alt="Image 1" width="600">
+</p>
 
 ### Symétrie du premier arc
 
@@ -164,7 +179,19 @@ Ainsi, la configuration du matériau est faite.
 - Dans **Entité à symétriser**, sélectionner l’arc créé.  
 - Dans **Symétrie par rapport à**, cliquer sur la ligne de construction suivant l’axe X.
 
----
+<p align="center">
+  <img src="./Images/29.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/30.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/31.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/32.png" alt="Image 1" width="600">
+</p>
+
 
 ### Ouverture sur les deux petits cercles
 
@@ -174,12 +201,14 @@ Ainsi, la configuration du matériau est faite.
 
 - Prendre la fonction **Décalage**.  
 - Décaler de **10 mm** de façon bidirectionnelle (des deux côtés simultanément).
-
+<p align="center">
+  <img src="./Images/33.png" alt="Image 1" width="600">
+</p>
 #### Ajustement
 
 - Utiliser la fonction **Ajuster** (fonctionnant comme une gomme) pour supprimer les débordements et obtenir l’ouverture souhaitée.
 
----
+
 
 ### Symétrie de la partie gauche
 
