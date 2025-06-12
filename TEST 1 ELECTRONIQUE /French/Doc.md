@@ -65,3 +65,53 @@ Cette compréhension des trois axes de rotation est essentielle pour :
 - Interpréter correctement les gestes (**lever**, **baisser**, **tourner la main**).
 - Détecter les directions de mouvement (**haut**, **bas**, **gauche**, **droite**, **avant**, **arrière**).
 - Améliorer la précision des mesures en **filtrant** et **fusionnant** les données des capteurs.
+
+## Choix du matériel pour ce test
+
+Pour réaliser ce projet de détection d’orientation et de mouvement, le choix du matériel est crucial afin d’assurer un fonctionnement fiable, précis et adapté à une intégration finale. Nous avons opté pour des composants permettant à la fois simplicité, compacité et performance.
+
+### Microcontrôleur : ATmega328P seul
+
+Plutôt que d’utiliser une carte Arduino Uno complète, nous avons choisi d’employer le microcontrôleur ATmega328P en version « puce seule ». Cette approche présente plusieurs avantages :
+
+- *Miniaturisation* : Le microcontrôleur seul occupe beaucoup moins de place, facilitant l’intégration dans un boîtier ou un montage personnalisé.
+- *Coût réduit* : Le prix du microcontrôleur nu est nettement inférieur à celui d’une carte Arduino complète.
+- *Personnalisation du circuit* : Cela permet de sélectionner précisément les composants périphériques nécessaires (oscillateur, alimentation, reset) et d’optimiser le montage.
+- *Approche pédagogique* : Cette méthode offre une meilleure compréhension du fonctionnement matériel d’un système embarqué en réalisant soi-même le circuit minimal.
+
+#### Composants nécessaires pour faire fonctionner l’ATmega328P
+
+- Cristal oscillateur 16 MHz avec condensateurs pour fournir une horloge stable.
+- Résistance pull-up sur la broche RESET pour éviter les réinitialisations intempestives.
+- Alimentation 5 V régulée avec condensateurs de découplage.
+- Convertisseur USB-série externe (comme un module FTDI) pour programmer le microcontrôleur via USB.
+- Câblage soigné pour relier le microcontrôleur aux capteurs et à l’écran.
+
+### Capteur inertiel : MPU6050
+
+Le choix du capteur s’est porté sur le module MPU6050, qui combine un accéléromètre 3 axes et un gyroscope 3 axes dans un seul composant.
+
+#### Pourquoi le MPU6050 ?
+
+- *Mesure complète du mouvement* : Il fournit à la fois les accélérations linéaires et les vitesses angulaires, indispensables pour déterminer l’orientation dans l’espace.
+- *Interface I2C* : La communication via un bus I2C standard simplifie le câblage et permet de connecter plusieurs périphériques sur les mêmes lignes SDA et SCL.
+- *Intégration du DMP* : Le MPU6050 intègre un processeur de mouvement numérique (DMP) qui réalise la fusion des données pour fournir des angles d’orientation stables.
+- *Compatibilité avec ATmega328P* : Fonctionne sous une alimentation de 3,3 V à 5 V, compatible avec le microcontrôleur utilisé.
+
+> *NB : Particularités à prendre en compte*
+>
+> - Le module MPU6050 fonctionne généralement sous 3,3 V, mais la plupart des modules GY-521 intègrent un régulateur 3,3 V et des résistances pull-up compatibles 5 V, ce qui facilite l’utilisation avec un ATmega328P alimenté en 5 V.
+> - Il faut veiller à connecter SDA (données) et SCL (horloge) aux broches A4 et A5 du microcontrôleur.
+> - L’adresse I2C par défaut est 0x68, modifiable en connectant la broche AD0 à 3,3 V (adresse 0x69).
+
+### Affichage : écran LCD I2C 16x2
+
+Pour visualiser les résultats en temps réel, un écran LCD 16 colonnes x 2 lignes avec interface I2C a été choisi.
+
+#### Avantages de l’écran LCD I2C
+
+- *Câblage simplifié* : Utilise seulement 4 fils (VCC, GND, SDA, SCL) pour la communication et l’alimentation.
+- *Compatibilité I2C* : Partage le bus I2C avec le MPU6050, réduisant le nombre de connexions nécessaires.
+- *Affichage clair et lisible* : Permet de visualiser directement la direction détectée sans matériel supplémentaire.
+
+---
