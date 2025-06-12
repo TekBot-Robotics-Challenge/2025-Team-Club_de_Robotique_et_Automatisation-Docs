@@ -233,8 +233,16 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 - Clic droit sur la pièce > **Éditer le matériau**  
 - Choisir **Aluminium Alliage 1060**
 
+
 **Évaluation de la masse** :
 
 - Aller dans le menu **Évaluer** > **Propriétés de masse**  
-- Résultat obtenu : **290,80 g**
-
+- Résultat obtenu : 
+</p>
+<p align="center">
+  <img src="./Images/86.png" alt="Image 1" width="600">
+</p>
+</p>
+<p align="center">
+  <img src="./Images/87.png" alt="Image 1" width="600">
+</p>
