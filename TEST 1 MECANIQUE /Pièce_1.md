@@ -45,6 +45,7 @@ Ainsi, la configuration du système d’unité est faite.
   <img src="./Images/3.png" alt="Image 1" width="600">
 </p> 
 
+
 #### Mettre le matériau sur acier AISI 1020
 
 - Se diriger vers la pièce dans l’arbre de création situé à gauche de l’interface.  
@@ -64,7 +65,9 @@ Ainsi, la configuration du matériau est faite.
   <img src="./Images/5.png" alt="Image 1" width="600">
 </p> 
 <p align="center">
-
+<p align="center">
+  <img src="./Images/7.png" alt="Image 1" width="600">
+</p> 
 ### 2ème Étape : Réaliser l’extrusion
 
 #### Réalisation de l’esquisse à extruder
