@@ -36,8 +36,12 @@ Les vues disponibles sont :
 - Déposer le fichier dans la fenêtre d’assemblage SolidWorks  
 - Ajouter les pièces nécessaires via **Assemblage > Insérer des composants**  
 - Cliquer sur **Parcourir** et sélectionner chaque pièce pour les insérer :  
-  - Axe de Biellette  
-  - Axe porte mâchoire  
+  - Axe de Biellette
+    </p>
+  - Axe porte mâchoire
+    <p align="center">
+  <img src="./Images/z3.png" alt="Image 1" width="600">
+</p>
   - Circlips  
   - Biellette  
   - Mâchoire droite  
