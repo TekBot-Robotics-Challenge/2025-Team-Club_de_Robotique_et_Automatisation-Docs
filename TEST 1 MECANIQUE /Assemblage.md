@@ -45,11 +45,19 @@ Les vues disponibles sont :
   - Circlips  
   - Biellette  
   - Mâchoire droite  
+  <p align="center">
+  <img src="./Images/z5.png" alt="Image 1" width="600">
+</p>
   - Mâchoire gauche  
   - Porte mâchoire  
-  - Vis CHC M16*16  
+  - Vis CHC M16*16 
+  <p align="center">
+  <img src="./Images/z10.png" alt="Image 1" width="600">
+</p>
   - Vis CHC M5*25  
-
+<p align="center">
+  <img src="./Images/z11.png" alt="Image 1" width="600">
+</p>
 #### Étape 2 : Contraintes d’assemblage
 
 - Rendre coaxial le trou de la Biellette avec le trou de l’Embout de vérin  
