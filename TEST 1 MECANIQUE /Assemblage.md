@@ -76,7 +76,9 @@ Les vues disponibles sont :
 - Positionner correctement les mâchoires droite et gauche avec leurs portes mâchoires respectifs  
 - Appliquer contraintes de coïncidence et coaxialité sur toutes les pièces et vis CHC  
 - Corriger les positions des pièces et vis pour assurer un montage réaliste et fonctionnel  
-
+<p align="center">
+  <img src="./Images/z12.png" alt="Image 1" width="600">
+</p>
 ---
 
 #### Étape 3 : Évaluation finale
