@@ -79,7 +79,9 @@ Ainsi, la configuration du matériau est faite.
 - Cliquer sur **Plan de face** pour le sélectionner.  
 - Cliquer sur l’icône **Esquisse** dans la barre d’outils (ou clic droit > **Esquisse**).  
 - Le plan bascule automatiquement en vue normale (si ce n’est pas le cas, appuyer sur **Ctrl + 8**).  
-
+<p align="center">
+  <img src="./Images/9.png" alt="Image 1" width="600">
+</p>
 #### Tracer les cercles
 
 - Sélectionner l’outil cercle (dans la barre d’outils d’esquisse, cliquer sur l’icône cercle).  
@@ -89,7 +91,25 @@ Ainsi, la configuration du matériau est faite.
 - Définir la dimension :  
   - Cliquer sur l’outil cote intelligente (icône en forme de cote).  
   - Cliquer sur le cercle pour sélectionner son diamètre.  
-  - Saisir la valeur **100 mm** et valider.  
+  - Saisir la valeur **100 mm** et valider.
+    <p align="center">
+  <img src="./Images/10.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/11.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/12.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/13.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/14.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/15.png" alt="Image 1" width="600">
+</p>
 
 - Tracer un deuxième cercle de diamètre **50 mm**, distant du premier de **150 mm** (coter la distance entre les centres des deux cercles avec la fonction cotation).  
 
