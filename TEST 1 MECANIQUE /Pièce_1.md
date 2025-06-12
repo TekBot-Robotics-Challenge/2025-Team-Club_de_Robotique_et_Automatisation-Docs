@@ -256,13 +256,6 @@ Ainsi, la configuration du matériau est faite.
 - Appliquer la fonction **Enlèvement de matière** sur une profondeur de **10 mm**.  
 - Valider.
 
----
-
-### 5ème Étape : Évaluation de la masse
-
-- Aller dans la fonction **Évaluer** dans la barre d’outils.  
-- Cliquer sur **Propriétés de masse**.  
-- La masse obtenue pour la pièce 1 est ****.
 <p align="center">
   <img src="./Images/44.png" alt="Image 1" width="600">
 </p>
@@ -277,5 +270,12 @@ Ainsi, la configuration du matériau est faite.
   <img src="./Images/47.png" alt="Image 1" width="600">
 </p>
 
+
+
+### 5ème Étape : Évaluation de la masse
+
+- Aller dans la fonction **Évaluer** dans la barre d’outils.  
+- Cliquer sur **Propriétés de masse**.  
+- La masse obtenue pour la pièce 1 est ****.
 
 
