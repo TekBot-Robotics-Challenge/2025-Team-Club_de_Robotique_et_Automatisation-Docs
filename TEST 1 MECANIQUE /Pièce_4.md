@@ -124,7 +124,10 @@ p align="center">
 p align="center">
   <img src="./Images/123.png" alt="Image 1" width="600">
 </p>
----
+</p>
+p align="center">
+  <img src="./Images/124.png" alt="Image 1" width="600">
+</p>
 
 #### Étape 6 : Enlèvement de matière
 
@@ -143,7 +146,55 @@ p align="center">
 - Aller dans **Fonctions > Enlèvement de matière par extrusion**  
 - Définir la **profondeur jusqu’à la surface du congé**
 
----
+</p>
+p align="center">
+  <img src="./Images/125.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/126.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/125.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/126.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/127.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/128.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/129.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/130.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/131.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/132.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/133.png" alt="Image 1" width="600">
+</p>
+</p>
+p align="center">
+  <img src="./Images/134.png" alt="Image 1" width="600">
+</p>
+
 
 #### Étape 7 : Évaluation de la masse
 
