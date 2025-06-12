@@ -14,6 +14,9 @@
 - **Matériau et densité** : acier AISI 1020 ; **Densité** : 0,0079 g/mm³  
 - **Remarque générale** : Tous les trous sont débouchants sauf indication contraire.
 ## 3. Représentation graphique de la pièce 1
+<p align="center">
+  <img src="./Images/150.png" alt="Image 1" width="300" />
+</p>
 
 
 
