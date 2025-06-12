@@ -46,7 +46,12 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 - Coter la distance entre les centres des grands cercles : **75 mm**  
 - Tracer deux arcs reliant les cercles de **64 mm** et **38 mm** de diamètre  
 - Utiliser la fonction **Arc par 3 points**
-
+<p align="center">
+  <img src="./Images/53.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/54.png" alt="Image 1" width="600">
+</p>
 **Alignement et tangence** :
 
 - Sélectionner les deux centres → **Relation verticale**  
