@@ -114,6 +114,6 @@ L'objectif est de réaliser cette pièce **rapidement** avec un **nombre minimal
 **Évaluation de la masse** :
 
 - Aller dans l’onglet **Évaluer** > **Propriétés de masse**  
-- **Résultat** : ****
+- **Résultat** : **1633.25g**
 
 
