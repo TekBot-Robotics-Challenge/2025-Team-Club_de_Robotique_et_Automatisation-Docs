@@ -108,6 +108,11 @@ L'objectif est de réaliser cette pièce en un **temps record** en utilisant un 
 <p align="center">
   <img src="./Images/120.png" alt="Image 1" width="600">
 </p>
+p align="center">
+  <img src="./Images/121.png" alt="Image 1" width="600">
+</p>
+p align="center">
+  <img src="./Images/122.png" alt="Image 1" width="600">
 
 #### Étape 5 : Congé
 
@@ -115,7 +120,10 @@ L'objectif est de réaliser cette pièce en un **temps record** en utilisant un 
 - Sélectionner **l’arête de base du cylindre**  
 - Définir le **rayon à 2 mm**  
 - Appliquer
-
+</p>
+p align="center">
+  <img src="./Images/123.png" alt="Image 1" width="600">
+</p>
 ---
 
 #### Étape 6 : Enlèvement de matière
