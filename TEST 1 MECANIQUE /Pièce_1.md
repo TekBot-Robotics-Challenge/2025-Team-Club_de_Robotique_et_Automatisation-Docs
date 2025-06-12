@@ -211,12 +211,7 @@ Ainsi, la configuration du matériau est faite.
 <p align="center">
   <img src="./Images/37.png" alt="Image 1" width="600">
 </p>
-<p align="center">
-  <img src="./Images/38.png" alt="Image 1" width="600">
-</p
-  <p align="center">
-  <img src="./Images/39.png" alt="Image 1" width="600">
-</p>
+
 - Utiliser la fonction **Ajuster** (fonctionnant comme une gomme) pour supprimer les débordements et obtenir l’ouverture souhaitée.
 
 
@@ -225,13 +220,16 @@ Ainsi, la configuration du matériau est faite.
 
 - Procéder à la symétrie de la partie située du côté gauche des deux grands cercles concentriques (utiliser la fonction **Symétrie** dans l’esquisse).
 
----
+ <p align="center">
+  <img src="./Images/39.png" alt="Image 1" width="600">
+</p>
 
 ### Ajustement final de l’arc du grand cercle
 
 - Ajuster l’arc du grand cercle se trouvant entre les deux arcs de raccordement pour pouvoir réaliser l’extrusion en une seule fonction, sans séparer l’esquisse.
 
----
+
+ 
 
 ### Extrusion de l’esquisse
 
