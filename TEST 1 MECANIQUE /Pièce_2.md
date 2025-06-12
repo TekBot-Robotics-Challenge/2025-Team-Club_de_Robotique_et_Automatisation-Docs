@@ -256,3 +256,4 @@ Avant de commencer cette pièce, une étude approfondie de la gamme de réalisat
 <p align="center">
   <img src="./Images/87.png" alt="Image 1" width="600">
 </p>
+ La masse obtenue pour la pièce 1 est **290.80 g**.
