@@ -110,12 +110,27 @@ Ainsi, la configuration du matériau est faite.
 <p align="center">
   <img src="./Images/15.png" alt="Image 1" width="600">
 </p>
-
+ <p align="center">
+  <img src="./Images/16.png" alt="Image 1" width="600">
+</p>
 - Tracer un deuxième cercle de diamètre **50 mm**, distant du premier de **150 mm** (coter la distance entre les centres des deux cercles avec la fonction cotation).  
 
 - Tracer deux cercles concentriques à chacun des cercles tracés auparavant :  
   - Un cercle de diamètre **150 mm** concentrique au cercle de 100 mm.  
   - Un cercle de diamètre **80 mm** concentrique au cercle de 50 mm.
+   
+<p align="center">
+  <img src="./Images/17.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/18.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/19.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="./Images/20.png" alt="Image 1" width="600">
+</p>
 ### 3ème Étape : Raccordement des cercles par un arc de 3 points
 
 - Dans la barre d’outils, cliquer sur **Esquisse > Arc > Arc de 3 points**.  
