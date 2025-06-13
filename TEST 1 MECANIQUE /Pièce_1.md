@@ -68,8 +68,8 @@ Ainsi, la configuration du matériau est faite.
 <p align="center">
   <img src="./Images/7.png" alt="Image 1" width="600">
 </p> 
-### 2ème Étape : Réaliser l’extrusion
 
+### 2ème Étape : Réaliser l’extrusion
 #### Réalisation de l’esquisse à extruder
 
 - Dans l’arbre de création à gauche, on voit les trois plans standards :  
@@ -276,6 +276,6 @@ Ainsi, la configuration du matériau est faite.
 
 - Aller dans la fonction **Évaluer** dans la barre d’outils.  
 - Cliquer sur **Propriétés de masse**.  
-- La masse obtenue pour la pièce 1 est **2850.16**.
+- La masse obtenue pour la pièce 1 est **2850.16g**.
 
 
