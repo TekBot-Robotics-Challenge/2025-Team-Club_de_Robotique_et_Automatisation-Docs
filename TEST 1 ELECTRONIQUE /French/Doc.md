@@ -115,3 +115,61 @@ Pour visualiser les résultats en temps réel, un écran LCD 16 colonnes x 2 lig
 - *Affichage clair et lisible* : Permet de visualiser directement la direction détectée sans matériel supplémentaire.
 
 ---
+
+## 5. Architecture et principe de fonctionnement
+
+Ce système utilise le capteur **MPU6050** pour détecter comment un objet (comme une main) bouge et s’oriente dans l’espace.  
+Voici comment fonctionnera le système de notre test :
+
+---
+
+###  Acquisition des données
+
+Le **MPU6050** contient deux capteurs importants :
+
+- **Accéléromètre 3 axes** : il mesure les accélérations sur trois directions (**avant/arrière**, **gauche/droite**, **haut/bas**). Cela permet de savoir si la main accélère ou change d’inclinaison.
+- **Gyroscope 3 axes** : il mesure la vitesse à laquelle la main tourne autour de ces trois axes.
+
+Ces deux capteurs travaillent ensemble pour donner une image complète du mouvement.
+
+---
+
+###  Prétraitement des données
+
+Les mesures brutes du capteur peuvent contenir du **bruit** (petites erreurs ou fluctuations). Pour améliorer la qualité :
+
+- On applique un **filtre passe-bas** qui lisse les données de l’accéléromètre, en gardant les tendances importantes et en supprimant les petites perturbations.
+- Le capteur utilise aussi une fonction appelée **DMP** (*Digital Motion Processor*) qui prépare les données et envoie une alerte (**interruption**) quand elles sont prêtes à être lues.  
+  Cela permet au microcontrôleur de récupérer les données au bon moment, **sans perte d’information**.
+
+---
+
+###  Fusion et calcul des orientations
+
+Le **DMP** du MPU6050 combine les données de l’accéléromètre et du gyroscope pour **calculer la position exacte** de la main dans l’espace.  
+Il utilise une méthode mathématique appelée **quaternion** pour représenter l’orientation **sans ambiguïté**.
+
+À partir de ces quaternions, on calcule trois angles simples à comprendre :
+
+- **Roll (roulis)** : inclinaison gauche-droite.
+- **Pitch (tangage)** : inclinaison avant-arrière.
+- **Yaw (lacet)** : rotation sur place à gauche ou à droite.
+
+Le système **corrige aussi l’accélération mesurée** pour enlever l’effet de la gravité, afin de détecter **uniquement les mouvements réels**.
+
+---
+
+###  Détection de la direction
+
+Pour savoir dans **quelle direction la main se déplace**, le système :
+
+- Surveille l’**accélération sur l’axe Z** pour détecter un mouvement vers le **haut** ou le **bas**.
+- Analyse les variations des angles **roll**, **pitch** et **yaw** pour détecter les mouvements **avant/arrière**, **gauche/droite** et les **rotations**.
+- Si **aucun mouvement significatif** n’est détecté, l’état est considéré comme étant **stable**.
+
+---
+
+###  Affichage et retour utilisateur
+
+- La **direction détectée** est affichée en **temps réel** sur un écran **LCD I2C 16×2**, facile à lire et à comprendre.
+- Les données peuvent aussi être envoyées sur un **moniteur série** (ordinateur) pour suivre les mesures, **calibrer le système** et améliorer la précision.
