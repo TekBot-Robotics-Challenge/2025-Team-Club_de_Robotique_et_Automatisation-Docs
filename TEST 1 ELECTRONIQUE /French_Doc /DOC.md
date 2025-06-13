@@ -186,6 +186,10 @@ Plutôt que d’utiliser une carte Arduino Uno complète, nous avons choisi d’
 
 Le choix du capteur s’est porté sur le module MPU6050, qui combine un accéléromètre 3 axes et un gyroscope 3 axes dans un seul composant.
 
+<p align="center">
+  <img src="https://th.bing.com/th/id/OIP.DTgBipgvFa7rrY_VBkpqBgHaGI?w=221&h=183&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Schéma" width="500">
+</p>
+
 #### Pourquoi le MPU6050 ?
 
 - *Mesure complète du mouvement* : Il fournit à la fois les accélérations linéaires et les vitesses angulaires, indispensables pour déterminer l’orientation dans l’espace.
@@ -202,6 +206,11 @@ Le choix du capteur s’est porté sur le module MPU6050, qui combine un accél�
 ### Affichage : écran LCD I2C 16x2
 
 Pour visualiser les résultats en temps réel, un écran LCD 16 colonnes x 2 lignes avec interface I2C a été choisi.
+
+<p align="center">
+  <img src="https://th.bing.com/th/id/OIP.pTanwRr2lLg5OuN96tVoOwAAAA?w=208&h=168&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Schéma" width="500">
+</p>
+
 
 #### Avantages de l’écran LCD I2C
 
