@@ -1,3 +1,39 @@
+## 📚 Table des matières
+
+1. [Objectifs de ce test](#1-objectifs-de-ce-test)
+2. [Comprendre les orientations : roulis, tangage et lacet](#2-comprendre-les-orientations--roulis-tangage-et-lacet)
+   - [a) Le roulis (Roll)](#a-le-roulis-roll)
+   - [b) Le tangage (Pitch)](#b-le-tangage-pitch)
+   - [c) Le lacet (Yaw)](#c-le-lacet-yaw)
+3. [Pourquoi ces angles sont-ils importants dans notre système ?](#3-pourquoi-ces-angles-sont-ils-importants-dans-notre-système)
+4. [Choix du matériel pour ce test](#choix-du-matériel-pour-ce-test)
+   - [Microcontrôleur : ATmega328P seul](#microcontrôleur--atmega328p-seul)
+   - [Composants nécessaires pour faire fonctionner l’ATmega328P](#composants-nécessaires-pour-faire-fonctionner-latmega328p)
+   - [Capteur inertiel : MPU6050](#capteur-inertiel--mpu6050)
+   - [Pourquoi le MPU6050 ?](#pourquoi-le-mpu6050)
+   - [Affichage : écran LCD I2C 16x2](#affichage--écran-lcd-i2c-16x2)
+   - [Avantages de l’écran LCD I2C](#avantages-de-lécran-lcd-i2c)
+5. [Architecture et principe de fonctionnement](#5-architecture-et-principe-de-fonctionnement)
+   - [Acquisition des données](#acquisition-des-données)
+   - [Prétraitement des données](#prétraitement-des-données)
+   - [Fusion et calcul des orientations](#fusion-et-calcul-des-orientations)
+   - [Détection de la direction](#détection-de-la-direction)
+   - [Affichage et retour utilisateur](#affichage-et-retour-utilisateur)
+6. [Liste du matériel](#6-liste-du-matériel)
+7. [Réalisation du circuit](#7-réalisation-du-circuit)
+   - [A. Test du microcontrôleur ATmega328P](#a-test-du-microcontrôleur-atmega328p)
+   - [B. Gravure du bootloader](#b-gravure-du-bootloader)
+   - [C. Conception du schéma sous KiCad](#c-conception-du-schéma-sous-kicad)
+8. [Schéma, composants et assemblage](#8-schéma-composants-et-assemblage)
+   - [Liste et description des composants](#liste-et-description-des-composants)
+   - [Fonctionnement global](#fonctionnement-global)
+   - [Alimentation](#alimentation)
+   - [Protocole de communication utilisé](#protocole-de-communication-utilisé)
+   - [D. Soudure des composants](#d-soudure-des-composants)
+   - [E. Programmation et test du circuit assemblé](#e-programmation-et-test-du-circuit-assemblé)
+
+----
+
 ##  1. Objectifs de ce test
 
 Ce test vise à développer et valider plusieurs compétences techniques et pratiques essentielles dans le domaine des systèmes embarqués et de la détection de mouvement. Plus précisément, il s’agit de :
@@ -173,3 +209,211 @@ Pour savoir dans **quelle direction la main se déplace**, le système :
 
 - La **direction détectée** est affichée en **temps réel** sur un écran **LCD I2C 16×2**, facile à lire et à comprendre.
 - Les données peuvent aussi être envoyées sur un **moniteur série** (ordinateur) pour suivre les mesures, **calibrer le système** et améliorer la précision.
+
+## 6. Liste du matériel
+
+| Composants               | Spécifications principales                              | Rôle dans le test                                                              |
+|--------------------------|----------------------------------------------------------|---------------------------------------------------------------------------------|
+| **ATmega328P**           | Horloge 16 MHz, 32 kB Flash                              | Microcontrôleur principal, traitement des données et contrôle du système       |
+| **MPU6050 (GY-521)**     | Interface I2C, DMP intégré, alimentation 3 V–5 V         | Capteur inertiel combinant accéléromètre et gyroscope MEMS                     |
+| **Écran LCD 16×2 I²C**   | Adresse I2C 0x27 ou 0x3F                                  | Interface utilisateur pour affichage en temps réel des directions détectées     |
+| **Module FTDI**          | Interface USB-TTL, 6 broches                              | Programmation du microcontrôleur et communication série pour debug             |
+| **Veroboard ou PCB**     | 24×16 bandes, format Eurorack                             | Support mécanique pour montage et soudure des composants                        |
+| **Fer à souder + étain** | Pointe fine 0,4 mm                                        | Assemblage des composants électroniques par soudure                            |
+| **Multimètre**           | Mesure de continuité, tension, résistance                | Vérification des connexions et tests électriques                               |
+| **Breadboard + Dupont**  | Montage sans soudure, prototypage rapide                 | Réalisation de prototypes et tests avant soudure définitive                    |
+
+---
+
+###  Microcontrôleur
+
+- **ATmega328P – PU** (version en boîtier DIP28)
+
+---
+
+###  Alimentation
+
+- **Régulateur 5V** (ex : AMS1117 ou module 7805)
+
+  - **Régulateur AMS1117**  
+  - **Régulateur 7805**
+
+- **Source** : 7 à 12V  
+- **Condensateurs de filtrage** :
+  - 1 × 10 μF électrolytique (entre VCC et GND pour l’alimentation générale)
+  - 2 × 100 nF céramique (entre VCC et GND, et AVCC et GND pour le découplage)
+
+---
+
+###  Oscillateur
+
+- **Quartz 16 MHz**  
+- 2 **condensateurs** de 22 pF
+
+---
+
+###  Broche Reset
+
+- Résistance **10 kΩ** (entre RESET et +5V en pull-up)  
+- **Bouton poussoir** pour forcer le RESET à GND
+
+---
+
+###  Connexion pour la programmation
+
+- Une **carte Arduino UNO**  
+- Un **convertisseur USB-TTL**
+
+---
+
+###  Test visuel du programme
+
+- Une **LED** (pour le clignotement du test Blynk)  
+- Une **résistance 220Ω – 330Ω** (en série avec la LED pour sa protection)
+
+## 7. Réalisation du circuit
+
+---
+
+### A. Test du microcontrôleur ATmega328P
+
+Avant d’intégrer l’**ATmega328P** à ton circuit définitif, il est conseillé de le tester sur une **breadboard** (plaque d’essai).
+
+- **Montage minimal** :  
+  Place le microcontrôleur sur la breadboard avec :
+  - une alimentation **5 V**
+  - un **cristal 16 MHz**
+  - **deux condensateurs de 22 pF**
+  - une **résistance de 10 kΩ** entre RESET et Vcc  
+  Relie aussi les broches d’alimentation (**Vcc, GND, AVcc**).
+
+- **Test de fonctionnement** :  
+  Téléverse un code simple (ex. `blink LED`) pour vérifier que la puce fonctionne correctement.
+
+---
+
+### B. Gravure du bootloader
+
+Le **bootloader** permet à l’ATmega328P d’être programmé comme un **Arduino classique**. Si tu utilises une puce neuve, il faut graver ce bootloader :
+
+- Utilise une **carte Arduino** comme programmateur ou un **programmateur externe**.
+- **Branchements** : Connecte les broches **MOSI**, **MISO**, **SCK**, **RESET**, **Vcc** et **GND** de l’Arduino à celles de l’ATmega328P.
+- **Gravure** :
+  - Dans l’**IDE Arduino**, sélectionne :  
+    `Arduino as ISP`, puis `Burn Bootloader`.
+  - Choisis le bon modèle selon ton montage :
+    - `ATmega328 on a breadboard (8 MHz internal clock)` si tu utilises l’**oscillateur interne**
+    - ou `Arduino Uno` si tu utilises un **cristal 16 MHz**
+
+---
+
+### C. Conception du schéma sous KiCad
+
+Ce circuit a pour but de **mesurer les mouvements** à l’aide du capteur **MPU-6050** (accéléromètre et gyroscope).
+
+- Ces mesures sont **traitées et formatées** par le **microcontrôleur ATmega328P**.
+- Elles sont ensuite **affichées sur un écran LCD**.
+- Tous les composants **communiquent via le protocole I2C**, ce qui permet une **réduction du nombre de connexions nécessaires**.
+
+## 8. Schéma, composants et assemblage
+
+Le schéma a été réalisé dans **KiCad**.  
+Les composants ont été choisis depuis la **librairie KiCad officielle**.  
+Les connexions sont nommées de façon explicite pour **faciliter la lecture**.
+
+---
+
+###  LISTE ET DESCRIPTION DES COMPOSANTS
+
+- **ATmega328P**  
+  C’est un microcontrôleur 8 bits (même que celui de l’Arduino Uno).  
+  Il est utilisé ici pour l’acquisition, le traitement et la transmission de données.  
+  Il fonctionne avec un quartz externe pour une meilleure précision d’horloge.
+
+- **MPU-6050**  
+  C’est un capteur inertiel 6 axes (accéléromètre, gyroscope) communiquant en I2C.  
+  Il donne des mesures d’accélérations, de vitesse angulaire et de température.
+
+- **LCD I2C**  
+  Il s’agit d’un écran alphanumérique (2 lignes x 16 caractères).  
+  Il est interfacé via un module I2C et affiche les valeurs acquises par le MPU-6050 pour surveillance en temps réel.
+
+- **Quartz, condensateurs et résistance**  
+  Le quartz génère l’horloge du microcontrôleur.  
+  Les condensateurs C1 et C2 sont typiquement de **22 pF**, et la résistance de **1 kΩ**.
+
+- **Bouton poussoir**  
+  Il permet de **réinitialiser manuellement** le microcontrôleur.
+
+---
+
+###  FONCTIONNEMENT GLOBAL
+
+À la mise sous tension :
+
+- Le microcontrôleur **initialise** le capteur MPU-6050 via le **module I2C**.
+- Il lit en boucle les **valeurs d’accélérations** et de **rotation**.
+- Les données sont **traitées et converties** dans un format lisible.
+- Les résultats sont envoyés à l’**écran LCD I2C** pour affichage.
+
+---
+
+###  ALIMENTATION
+
+- Tous les composants sont alimentés en **+5V (VCC)**.
+- Le MPU-6050 possède une broche **VLOGIC** pour s’adapter aux logiques de 3.3V ou 5V.
+- Il peut être alimenté :
+  - par un **adaptateur**
+  - ou par une **batterie**
+
+---
+
+###  PROTOCOLE DE COMMUNICATION UTILISÉ
+
+Les capteurs d’accélération et de déplacement doivent transmettre des données précises et lisibles.  
+Les broches analogiques de communication I2C assurent cela :
+
+- **SDA** : reçoit, traite et transmet les données des capteurs vers l’écran LCD.
+- **SCL** : génère un signal d’horloge pour synchroniser l’envoi et la réception des données numériques.
+
+---
+
+###  D. Soudure des composants
+
+- **Préparation** :
+  - Préchauffer le fer à souder (300–350 °C)
+  - Nettoyer la panne
+  - Préparer les composants et le veroboard
+
+- **Soudure des composants traversants (THT)** :
+  - Placer chaque composant
+  - Souder une patte, ajuster, puis souder les autres
+  - Couper l’excédent
+
+- **Soudure des composants SMD (si applicable)** :
+  - Utiliser de la pâte à souder et du flux
+  - Fixer un coin, puis souder les autres broches  
+    *(drag soldering ou point par point)*
+
+> **NB** :  
+> Utiliser du fil à souder fin (0,38 mm recommandé),  
+> éviter les ponts de soudure,  
+> vérifier que chaque joint soit **brillant et conique**,  
+> inspecter visuellement et corriger les défauts éventuels.
+
+---
+
+###  E. Programmation et test du circuit assemblé
+
+- **Connexion du convertisseur USB-série** :  
+  Brancher le module FTDI (ou équivalent) aux broches **RX**, **TX**, **Vcc**, **GND**  
+  (et **DTR/RESET** si présent) de l’ATmega328P.
+
+- **Téléversement du code** :  
+  Utiliser l’**IDE Arduino** pour charger un programme de test (ex. `blink` ou lecture capteur).
+
+- **Test fonctionnel** :  
+  Vérifier le bon fonctionnement :
+  - du **microcontrôleur**
+  - de la **communication I2C** (MPU6050 + LCD)
+  - de **l’alimentation**
