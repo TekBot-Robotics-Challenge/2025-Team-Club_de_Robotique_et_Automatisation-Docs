@@ -1,38 +1,72 @@
+# DOCUMENTATION TECHNIQUE DES TESTS EN ELECTRONIQUE
+---
+
 ## 📚 Table des matières
 
-1. [Objectifs de ce test](#1-objectifs-de-ce-test)
-2. [Comprendre les orientations : roulis, tangage et lacet](#2-comprendre-les-orientations--roulis-tangage-et-lacet)
-   - [a) Le roulis (Roll)](#a-le-roulis-roll)
-   - [b) Le tangage (Pitch)](#b-le-tangage-pitch)
-   - [c) Le lacet (Yaw)](#c-le-lacet-yaw)
-3. [Pourquoi ces angles sont-ils importants dans notre système ?](#3-pourquoi-ces-angles-sont-ils-importants-dans-notre-système)
-4. [Choix du matériel pour ce test](#choix-du-matériel-pour-ce-test)
-   - [Microcontrôleur : ATmega328P seul](#microcontrôleur--atmega328p-seul)
-   - [Composants nécessaires pour faire fonctionner l’ATmega328P](#composants-nécessaires-pour-faire-fonctionner-latmega328p)
-   - [Capteur inertiel : MPU6050](#capteur-inertiel--mpu6050)
-   - [Pourquoi le MPU6050 ?](#pourquoi-le-mpu6050)
-   - [Affichage : écran LCD I2C 16x2](#affichage--écran-lcd-i2c-16x2)
-   - [Avantages de l’écran LCD I2C](#avantages-de-lécran-lcd-i2c)
-5. [Architecture et principe de fonctionnement](#5-architecture-et-principe-de-fonctionnement)
-   - [Acquisition des données](#acquisition-des-données)
-   - [Prétraitement des données](#prétraitement-des-données)
-   - [Fusion et calcul des orientations](#fusion-et-calcul-des-orientations)
-   - [Détection de la direction](#détection-de-la-direction)
-   - [Affichage et retour utilisateur](#affichage-et-retour-utilisateur)
-6. [Liste du matériel](#6-liste-du-matériel)
-7. [Réalisation du circuit](#7-réalisation-du-circuit)
-   - [A. Test du microcontrôleur ATmega328P](#a-test-du-microcontrôleur-atmega328p)
-   - [B. Gravure du bootloader](#b-gravure-du-bootloader)
-   - [C. Conception du schéma sous KiCad](#c-conception-du-schéma-sous-kicad)
-8. [Schéma, composants et assemblage](#8-schéma-composants-et-assemblage)
-   - [Liste et description des composants](#liste-et-description-des-composants)
-   - [Fonctionnement global](#fonctionnement-global)
-   - [Alimentation](#alimentation)
-   - [Protocole de communication utilisé](#protocole-de-communication-utilisé)
-   - [D. Soudure des composants](#d-soudure-des-composants)
-   - [E. Programmation et test du circuit assemblé](#e-programmation-et-test-du-circuit-assemblé)
+- [Test 1 : Gyroscope et accéléromètre](#test-1--gyroscope-et-accéléromètre)
+- [En quoi ce test relève d’une importance capitale](#en-quoi-ce-test-relève-dune-importance-capitale)
+- [1. Objectifs de ce test](#1-objectifs-de-ce-test)
+- [2. Comprendre les orientations : roulis, tangage et lacet](#2-comprendre-les-orientations--roulis-tangage-et-lacet)
+  - [a) Le roulis (Roll)](#a-le-roulis-roll)
+  - [b) Le tangage (Pitch)](#b-le-tangage-pitch)
+  - [c) Le lacet (Yaw)](#c-le-lacet-yaw)
+- [3. Pourquoi ces angles sont-ils importants dans notre système ?](#3-pourquoi-ces-angles-sont-ils-importants-dans-notre-système)
+- [Choix du matériel pour ce test](#choix-du-matériel-pour-ce-test)
+  - [Microcontrôleur : ATmega328P seul](#microcontrôleur--atmega328p-seul)
+  - [Composants nécessaires pour faire fonctionner l’ATmega328P](#composants-nécessaires-pour-faire-fonctionner-latmega328p)
+  - [Capteur inertiel : MPU6050](#capteur-inertiel--mpu6050)
+  - [Pourquoi le MPU6050 ?](#pourquoi-le-mpu6050)
+  - [Affichage : écran LCD I2C 16x2](#affichage--écran-lcd-i2c-16x2)
+  - [Avantages de l’écran LCD I2C](#avantages-de-lécran-lcd-i2c)
+- [5. Architecture et principe de fonctionnement](#5-architecture-et-principe-de-fonctionnement)
+  - [Acquisition des données](#acquisition-des-données)
+  - [Prétraitement des données](#prétraitement-des-données)
+  - [Fusion et calcul des orientations](#fusion-et-calcul-des-orientations)
+  - [Détection de la direction](#détection-de-la-direction)
+  - [Affichage et retour utilisateur](#affichage-et-retour-utilisateur)
+- [6. Liste du matériel](#6-liste-du-matériel)
+- [7. Réalisation du circuit](#7-réalisation-du-circuit)
+  - [A. Test du microcontrôleur ATmega328P](#a-test-du-microcontrôleur-atmega328p)
+  - [B. Gravure du bootloader](#b-gravure-du-bootloader)
+  - [C. Conception du schéma sous KiCad](#c-conception-du-schéma-sous-kicad)
+- [8. Schéma, composants et assemblage](#8-schéma-composants-et-assemblage)
+  - [Liste et description des composants](#liste-et-description-des-composants)
+  - [Fonctionnement global](#fonctionnement-global)
+  - [Alimentation](#alimentation)
+  - [Protocole de communication utilisé](#protocole-de-communication-utilisé)
+  - [D. Soudure des composants](#d-soudure-des-composants)
+  - [E. Programmation et test du circuit assemblé](#e-programmation-et-test-du-circuit-assemblé)
 
-----
+
+---
+---
+
+## Test 1 : Gyroscope et accéléromètre
+
+S’orienter dans l’espace, savoir distinguer le haut, le bas, la gauche, la droite, l’avant et l’arrière, est une compétence naturelle chez l’être humain.  
+Mais comment faire pour qu’un robot ou un système automatisé reproduise cette capacité ?
+
+C’est là qu’interviennent les capteurs inertiels : des composants électroniques capables de « sentir » les mouvements et rotations d’un objet dans l’espace.  
+Nous avons choisi d’explorer cette technologie avec un capteur **MPU6050**, un module combinant :
+
+- un **accéléromètre 3 axes**, pour détecter les accélérations (y compris la gravité),
+- un **gyroscope 3 axes**, pour mesurer les vitesses de rotation autour de ces 3 axes.
+
+Ce capteur sera placé dans la paume d’une main et connecté à un microcontrôleur **ATméga328P**.  
+À chaque geste : lever la main, la baisser, la tourner, les informations seront affichées en temps réel sur un **écran LCD**.
+
+### En quoi ce test relève d’une importance capitale
+
+Ce test constitue une immersion concrète dans les systèmes embarqués et la robotique, où les capteurs inertiels comme ceux que l’on retrouve dans les **drones**, **smartphones** ou **robots** sont essentiels pour mesurer la position, la vitesse et la stabilité du système.  
+En combinant un accéléromètre (qui mesure les accélérations linéaires) et un gyroscope (qui mesure la vitesse de rotation), on peut reconstruire en temps réel la trajectoire et l’orientation d’un objet dans l’espace : c’est ce que l’on appelle la **fusion de données**, un processus indispensable dans les applications à 3D.
+
+Grâce à la simplicité du module **MPU6050** (interface I2C standard) et la restitution des résultats sur un écran **LCD**, ce test offre une approche pédagogique efficace :  
+il permet de visualiser directement comment un geste manuel se traduit en direction détectée, sans complexité inutile.
+
+Ce compromis entre technique, accessibilité, et interactivité en fait un excellent point de départ pour quiconque souhaite comprendre la **détection de mouvement**, l’**électronique embarquée** et l’**orientation spatiale**, avant de creuser des solutions plus complexes (filtres avancés, modèles AHRS, etc.).
+
+---
+---
 
 ##  1. Objectifs de ce test
 
@@ -53,7 +87,6 @@ Ce test vise à développer et valider plusieurs compétences techniques et prat
 Pour décrire précisément comment un objet (comme ta main équipée du capteur MPU6050) s’oriente et se déplace dans l’espace, on utilise trois angles fondamentaux appelés **roulis (roll)**, **tangage (pitch)** et **lacet (yaw)**.  
 Ces trois mouvements correspondent à des rotations autour de trois axes perpendiculaires, et permettent de définir la position et l’orientation d’un objet dans un espace à trois dimensions.
 
----
 
 ###  a) Le roulis (Roll)
 
@@ -65,7 +98,6 @@ Imagine que tu tiens ta main devant toi et que tu la fais basculer sur le côté
 **Importance dans notre système :**  
 Le roulis permet de détecter si la main s’incline sur la gauche ou la droite, ce qui est essentiel pour comprendre les mouvements latéraux.
 
----
 
 ###  b) Le tangage (Pitch)
 
@@ -77,7 +109,6 @@ Imagine que tu fais un signe de tête pour dire « oui », en penchant ta main v
 **Importance dans notre système :**  
 Le tangage permet de détecter si la main se penche vers l’avant ou vers l’arrière, ce qui correspond aux mouvements de translation avant/arrière.
 
----
 
 ###  c) Le lacet (Yaw)
 
@@ -101,6 +132,8 @@ Cette compréhension des trois axes de rotation est essentielle pour :
 - Interpréter correctement les gestes (**lever**, **baisser**, **tourner la main**).
 - Détecter les directions de mouvement (**haut**, **bas**, **gauche**, **droite**, **avant**, **arrière**).
 - Améliorer la précision des mesures en **filtrant** et **fusionnant** les données des capteurs.
+
+---
 
 ## Choix du matériel pour ce test
 
@@ -157,7 +190,6 @@ Pour visualiser les résultats en temps réel, un écran LCD 16 colonnes x 2 lig
 Ce système utilise le capteur **MPU6050** pour détecter comment un objet (comme une main) bouge et s’oriente dans l’espace.  
 Voici comment fonctionnera le système de notre test :
 
----
 
 ###  Acquisition des données
 
@@ -168,7 +200,6 @@ Le **MPU6050** contient deux capteurs importants :
 
 Ces deux capteurs travaillent ensemble pour donner une image complète du mouvement.
 
----
 
 ###  Prétraitement des données
 
@@ -178,7 +209,6 @@ Les mesures brutes du capteur peuvent contenir du **bruit** (petites erreurs ou 
 - Le capteur utilise aussi une fonction appelée **DMP** (*Digital Motion Processor*) qui prépare les données et envoie une alerte (**interruption**) quand elles sont prêtes à être lues.  
   Cela permet au microcontrôleur de récupérer les données au bon moment, **sans perte d’information**.
 
----
 
 ###  Fusion et calcul des orientations
 
@@ -193,7 +223,6 @@ Il utilise une méthode mathématique appelée **quaternion** pour représenter 
 
 Le système **corrige aussi l’accélération mesurée** pour enlever l’effet de la gravité, afin de détecter **uniquement les mouvements réels**.
 
----
 
 ###  Détection de la direction
 
@@ -203,7 +232,6 @@ Pour savoir dans **quelle direction la main se déplace**, le système :
 - Analyse les variations des angles **roll**, **pitch** et **yaw** pour détecter les mouvements **avant/arrière**, **gauche/droite** et les **rotations**.
 - Si **aucun mouvement significatif** n’est détecté, l’état est considéré comme étant **stable**.
 
----
 
 ###  Affichage et retour utilisateur
 
@@ -223,13 +251,11 @@ Pour savoir dans **quelle direction la main se déplace**, le système :
 | **Multimètre**           | Mesure de continuité, tension, résistance                | Vérification des connexions et tests électriques                               |
 | **Breadboard + Dupont**  | Montage sans soudure, prototypage rapide                 | Réalisation de prototypes et tests avant soudure définitive                    |
 
----
 
 ###  Microcontrôleur
 
 - **ATmega328P – PU** (version en boîtier DIP28)
 
----
 
 ###  Alimentation
 
@@ -243,37 +269,33 @@ Pour savoir dans **quelle direction la main se déplace**, le système :
   - 1 × 10 μF électrolytique (entre VCC et GND pour l’alimentation générale)
   - 2 × 100 nF céramique (entre VCC et GND, et AVCC et GND pour le découplage)
 
----
 
 ###  Oscillateur
 
 - **Quartz 16 MHz**  
 - 2 **condensateurs** de 22 pF
 
----
 
 ###  Broche Reset
 
 - Résistance **10 kΩ** (entre RESET et +5V en pull-up)  
 - **Bouton poussoir** pour forcer le RESET à GND
 
----
 
 ###  Connexion pour la programmation
 
 - Une **carte Arduino UNO**  
 - Un **convertisseur USB-TTL**
 
----
 
 ###  Test visuel du programme
 
 - Une **LED** (pour le clignotement du test Blynk)  
 - Une **résistance 220Ω – 330Ω** (en série avec la LED pour sa protection)
 
-## 7. Réalisation du circuit
-
 ---
+
+## 7. Réalisation du circuit
 
 ### A. Test du microcontrôleur ATmega328P
 
@@ -290,7 +312,6 @@ Avant d’intégrer l’**ATmega328P** à ton circuit définitif, il est conseil
 - **Test de fonctionnement** :  
   Téléverse un code simple (ex. `blink LED`) pour vérifier que la puce fonctionne correctement.
 
----
 
 ### B. Gravure du bootloader
 
@@ -305,7 +326,6 @@ Le **bootloader** permet à l’ATmega328P d’être programmé comme un **Ardui
     - `ATmega328 on a breadboard (8 MHz internal clock)` si tu utilises l’**oscillateur interne**
     - ou `Arduino Uno` si tu utilises un **cristal 16 MHz**
 
----
 
 ### C. Conception du schéma sous KiCad
 
@@ -315,13 +335,14 @@ Ce circuit a pour but de **mesurer les mouvements** à l’aide du capteur **MPU
 - Elles sont ensuite **affichées sur un écran LCD**.
 - Tous les composants **communiquent via le protocole I2C**, ce qui permet une **réduction du nombre de connexions nécessaires**.
 
+---
+
 ## 8. Schéma, composants et assemblage
 
 Le schéma a été réalisé dans **KiCad**.  
 Les composants ont été choisis depuis la **librairie KiCad officielle**.  
 Les connexions sont nommées de façon explicite pour **faciliter la lecture**.
 
----
 
 ###  LISTE ET DESCRIPTION DES COMPOSANTS
 
@@ -345,7 +366,6 @@ Les connexions sont nommées de façon explicite pour **faciliter la lecture**.
 - **Bouton poussoir**  
   Il permet de **réinitialiser manuellement** le microcontrôleur.
 
----
 
 ###  FONCTIONNEMENT GLOBAL
 
@@ -356,7 +376,6 @@ Les connexions sont nommées de façon explicite pour **faciliter la lecture**.
 - Les données sont **traitées et converties** dans un format lisible.
 - Les résultats sont envoyés à l’**écran LCD I2C** pour affichage.
 
----
 
 ###  ALIMENTATION
 
@@ -366,7 +385,6 @@ Les connexions sont nommées de façon explicite pour **faciliter la lecture**.
   - par un **adaptateur**
   - ou par une **batterie**
 
----
 
 ###  PROTOCOLE DE COMMUNICATION UTILISÉ
 
@@ -376,7 +394,6 @@ Les broches analogiques de communication I2C assurent cela :
 - **SDA** : reçoit, traite et transmet les données des capteurs vers l’écran LCD.
 - **SCL** : génère un signal d’horloge pour synchroniser l’envoi et la réception des données numériques.
 
----
 
 ###  D. Soudure des composants
 
@@ -401,7 +418,6 @@ Les broches analogiques de communication I2C assurent cela :
 > vérifier que chaque joint soit **brillant et conique**,  
 > inspecter visuellement et corriger les défauts éventuels.
 
----
 
 ###  E. Programmation et test du circuit assemblé
 
@@ -418,6 +434,7 @@ Les broches analogiques de communication I2C assurent cela :
   - de la **communication I2C** (MPU6050 + LCD)
   - de **l’alimentation**
 
+---
 ---
 
 ##  Conclusion
