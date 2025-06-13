@@ -160,6 +160,13 @@ Pour réaliser ce projet de détection d’orientation et de mouvement, le choix
 
 ### Microcontrôleur : ATmega328P seul
 
+<p align="center">
+  <img src="https://th.bing.com/th/id/OIP.VML3Sd1b9wHLA4DsfzLHJAHaFL?r=0&rs=1&pid=ImgDetMain" alt="Schéma" width="500">
+</p>
+<p align="center">
+  <img src="https://www.sigmaelectronica.net/wp-content/uploads/2015/06/ATMEGA328.jpg" alt="Schéma" width="500">
+</p>
+
 Plutôt que d’utiliser une carte Arduino Uno complète, nous avons choisi d’employer le microcontrôleur ATmega328P en version « puce seule ». Cette approche présente plusieurs avantages :
 
 - *Miniaturisation* : Le microcontrôleur seul occupe beaucoup moins de place, facilitant l’intégration dans un boîtier ou un montage personnalisé.
@@ -354,11 +361,15 @@ Ce circuit a pour but de **mesurer les mouvements** à l’aide du capteur **MPU
 - Elles sont ensuite **affichées sur un écran LCD**.
 - Tous les composants **communiquent via le protocole I2C**, ce qui permet une **réduction du nombre de connexions nécessaires**.
 
+<p align="center">
+  <img src="../images/3.png" alt="Schéma" width="500">
+</p>
+
 ---
 
 ## 8. Schéma, composants et assemblage
 
-Le schéma a été réalisé dans **KiCad**.  
+Le schéma a été réalisé dans **KiCad**. 
 Les composants ont été choisis depuis la **librairie KiCad officielle**.  
 Les connexions sont nommées de façon explicite pour **faciliter la lecture**.
 
@@ -403,6 +414,10 @@ Les connexions sont nommées de façon explicite pour **faciliter la lecture**.
 - Il peut être alimenté :
   - par un **adaptateur**
   - ou par une **batterie**
+
+<p align="center">
+  <img src="../images/8.jpg" alt="Schéma" width="500">
+</p>
 
 
 ###  PROTOCOLE DE COMMUNICATION UTILISÉ
