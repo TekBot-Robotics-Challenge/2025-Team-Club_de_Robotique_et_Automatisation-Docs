@@ -104,6 +104,9 @@ void loop() {
   float pitch = ypr[1] * 180/M_PI;
   float roll  = ypr[2] * 180/M_PI;
 
+  // Calcul de l'accélération
+  float acc = sqrt(pow(aaReal.x, 2) + pow(aaReal.y, 2) + pow(aaReal.z, 2));
+
   // Accélération linéaire
   mpu.dmpGetAccel(&aa, fifoBuffer);
   mpu.dmpGetLinearAccel(&aaReal, &aa, &gravity);
@@ -117,7 +120,10 @@ void loop() {
   lcd.setCursor(0,0);
   lcd.print("Dir: "); lcd.print(direction);
   Serial.print("  Dir="); Serial.println(direction);
-
+  lcd.setCursor(1,0);
+  lcd.print("a = "); 
+  lcd.print(acc); 
+  lcd.print("m/s^2");
   delay(500);
 }
 
