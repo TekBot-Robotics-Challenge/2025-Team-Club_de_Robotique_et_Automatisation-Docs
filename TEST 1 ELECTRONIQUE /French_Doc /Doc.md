@@ -80,6 +80,12 @@ Ce test vise à développer et valider plusieurs compétences techniques et prat
 -  Comprendre l’importance de la **calibration** et du **filtrage** pour améliorer la précision et la fiabilité des mesures issues du capteur inertiel.  
 -  Acquérir une démarche méthodique de **test et validation**, en vérifiant le bon fonctionnement du système dans des conditions réelles d’utilisation.
 
+
+<p align="center">
+  <img src="../images/7.jpg" alt="Schéma" width="500">
+</p>
+
+
 ---
 
 ##  2. Comprendre les orientations : roulis, tangage et lacet
@@ -98,6 +104,10 @@ Imagine que tu tiens ta main devant toi et que tu la fais basculer sur le côté
 **Importance dans notre système :**  
 Le roulis permet de détecter si la main s’incline sur la gauche ou la droite, ce qui est essentiel pour comprendre les mouvements latéraux.
 
+<p align="center">
+  <img src="../images/4.png" alt="Schéma" width="500">
+</p>
+
 
 ###  b) Le tangage (Pitch)
 
@@ -109,6 +119,10 @@ Imagine que tu fais un signe de tête pour dire « oui », en penchant ta main v
 **Importance dans notre système :**  
 Le tangage permet de détecter si la main se penche vers l’avant ou vers l’arrière, ce qui correspond aux mouvements de translation avant/arrière.
 
+<p align="center">
+  <img src="../images/5.png" alt="Schéma" width="500">
+</p>
+
 
 ###  c) Le lacet (Yaw)
 
@@ -119,6 +133,11 @@ Imagine que tu tournes ta main vers la gauche ou la droite sans la pencher, just
 
 **Importance dans notre système :**  
 Le lacet permet de détecter les rotations horizontales, ce qui est crucial pour comprendre les mouvements de rotation autour de l’axe vertical.
+
+<p align="center">
+  <img src="../images/6.png" alt="Schéma" width="500">
+</p>
+
 
 ---
 
