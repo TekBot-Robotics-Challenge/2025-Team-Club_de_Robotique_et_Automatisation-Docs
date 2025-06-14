@@ -92,7 +92,7 @@ This test aims to develop and validate essential technical skills in embedded sy
 - Establish methodical **testing/validation** procedures
 
 <p align="center">
-  <img src="../../../images/7.jpg" alt="Schéma" width="500">
+  <img src="../images/7.jpg" alt="Schéma" width="500">
 </p>
 
 ---
