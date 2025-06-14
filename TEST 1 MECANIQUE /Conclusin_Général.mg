@@ -1,4 +1,4 @@
-##Introduction
+##Conclusion
 La présente documentation retrace de manière structurée l’ensemble des travaux réalisés dans le cadre de **la partie mécanique du test de présélection du Tekbot Robotics Challenge 2025**.
 Elle met en évidence les compétences mobilisées :
 - en **modélisation 3D**,
