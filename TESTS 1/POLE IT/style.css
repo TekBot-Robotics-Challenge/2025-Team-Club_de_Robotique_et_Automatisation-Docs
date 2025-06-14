@@ -1,0 +1,136 @@
+/* Style principal pour la documentation du projet Tekbot Challenge */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #f0f4f8, #e0f7ff);
+    color: #333;
+    scroll-behavior: smooth;
+}
+
+header.page-de-garde {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 2s ease;
+}
+
+header.page-de-garde h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    animation: slideDown 1s ease-in-out;
+}
+
+header.page-de-garde h2 {
+    font-size: 1.5rem;
+    color: #a6e1fa;
+    margin-top: 0;
+}
+
+nav.table-matiere {
+    background-color: #ffffffcc;
+    padding: 2rem;
+    border-left: 5px solid #007acc;
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 900px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: fadeInUp 1.5s ease;
+}
+
+nav.table-matiere h2 {
+    color: #007acc;
+    margin-top: 0;
+    font-size: 1.6rem;
+}
+
+nav.table-matiere ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+nav.table-matiere ul li {
+    margin: 0.6rem 0;
+}
+
+nav.table-matiere a {
+    text-decoration: none;
+    color: #004a7c;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+nav.table-matiere a:hover {
+    color: #ff6f61;
+    transform: translateX(5px);
+}
+
+section {
+    background: white;
+    margin: 2rem auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 900px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    animation: fadeInUp 1s ease-in-out;
+}
+
+section h2, section h3 {
+    color: #0f4c81;
+}
+
+pre {
+    background: #f5f7fa;
+    border-left: 4px solid #007acc;
+    padding: 1rem;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+footer {
+    background-color: #0f4c81;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 3rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    header.page-de-garde h1 {
+        font-size: 2rem;
+    }
+    nav.table-matiere, section {
+        padding: 1rem;
+    }
+    nav.table-matiere h2 {
+        font-size: 1.3rem;
+    }
+}
+
