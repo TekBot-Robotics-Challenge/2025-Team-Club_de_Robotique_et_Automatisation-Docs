@@ -91,7 +91,7 @@ Ce test vise à développer et valider plusieurs compétences techniques et prat
 
 
 <p align="center">
-  <img src="../images/7.jpg" alt="Schéma" width="500">
+  <img src="./images/7.jpg" alt="Schéma" width="500">
 </p>
 
 
@@ -114,7 +114,7 @@ Imagine que tu tiens ta main devant toi et que tu la fais basculer sur le côté
 Le roulis permet de détecter si la main s’incline sur la gauche ou la droite, ce qui est essentiel pour comprendre les mouvements latéraux.
 
 <p align="center">
-  <img src="../images/4.png" alt="Schéma" width="500">
+  <img src="./images/4.png" alt="Schéma" width="500">
 </p>
 
 
@@ -129,7 +129,7 @@ Imagine que tu fais un signe de tête pour dire « oui », en penchant ta main v
 Le tangage permet de détecter si la main se penche vers l’avant ou vers l’arrière, ce qui correspond aux mouvements de translation avant/arrière.
 
 <p align="center">
-  <img src="../images/5.png" alt="Schéma" width="500">
+  <img src="./images/5.png" alt="Schéma" width="500">
 </p>
 
 
@@ -144,7 +144,7 @@ Imagine que tu tournes ta main vers la gauche ou la droite sans la pencher, just
 Le lacet permet de détecter les rotations horizontales, ce qui est crucial pour comprendre les mouvements de rotation autour de l’axe vertical.
 
 <p align="center">
-  <img src="../images/6.png" alt="Schéma" width="500">
+  <img src="./images/6.png" alt="Schéma" width="500">
 </p>
 
 
@@ -380,7 +380,7 @@ Ce circuit a pour but de **mesurer les mouvements** à l’aide du capteur **MPU
 - Tous les composants **communiquent via le protocole I2C**, ce qui permet une **réduction du nombre de connexions nécessaires**.
 
 <p align="center">
-  <img src="../images/3.png" alt="Schéma" width="500">
+  <img src="./images/3.png" alt="Schéma" width="500">
 </p>
 
 ---
@@ -434,7 +434,7 @@ Les connexions sont nommées de façon explicite pour **faciliter la lecture**.
   - ou par une **batterie**
 
 <p align="center">
-  <img src="../images/8.jpg" alt="Schéma" width="500">
+  <img src="./images/8.jpg" alt="Schéma" width="500">
 </p>
 
 
