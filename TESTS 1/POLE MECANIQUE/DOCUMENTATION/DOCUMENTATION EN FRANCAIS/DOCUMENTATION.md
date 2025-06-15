@@ -1034,6 +1034,10 @@ Le montage a nécessité plusieurs corrections de contraintes et de positionneme
 
 - Utiliser l’outil **Évaluer > Propriétés de masse** pour calculer la masse totale de l’assemblage  
 
+---
+## Video de démonstration
+- https://vimeo.com/1093497038?share=copy
+---
 
 ## Conclusion
 La présente documentation retrace de manière structurée l’ensemble des travaux réalisés dans le cadre de **la partie mécanique du test de présélection du Tekbot Robotics Challenge 2025**.
