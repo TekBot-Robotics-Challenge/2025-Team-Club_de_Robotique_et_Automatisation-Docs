@@ -487,6 +487,8 @@ Les broches analogiques de communication I2C assurent cela :
   - de **l’alimentation**
 
 ---
+## Vidéo de démonstration 
+- https://vimeo.com/1093499371?share=copy
 ---
 
 ##  Conclusion
