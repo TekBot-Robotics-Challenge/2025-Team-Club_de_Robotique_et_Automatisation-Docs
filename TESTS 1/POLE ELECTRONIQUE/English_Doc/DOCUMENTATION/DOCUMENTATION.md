@@ -92,7 +92,7 @@ This test aims to develop and validate essential technical skills in embedded sy
 - Establish methodical **testing/validation** procedures
 
 <p align="center">
-  <img src="../images/7.jpg" alt="Schéma" width="500">
+  <img src="./images/7.jpg" alt="Schéma" width="500">
 </p>
 
 ---
@@ -113,7 +113,7 @@ Tilt your hand sideways as if pouring water from a glass.
 Detects left/right hand tilts for lateral movement recognition.
 
 <p align="center">
-  <img src="../images/4.png" alt="Schéma" width="500">
+  <img src="./images/4.png" alt="Schéma" width="500">
 </p>
 
 ### b) Pitch
@@ -127,7 +127,7 @@ Nod your hand forward/backward like saying "yes".
 Identifies forward/backward hand movements.
 
 <p align="center">
-  <img src="../images/5.png" alt="Schéma" width="500">
+  <img src="./images/5.png" alt="Schéma" width="500">
 </p>
 
 ### c) Yaw
@@ -141,7 +141,7 @@ Rotate your hand left/right horizontally without tilting.
 Detects horizontal rotations around the vertical axis.
 
 <p align="center">
-  <img src="../images/6.png" alt="Schéma" width="500">
+  <img src="./images/6.png" alt="Schéma" width="500">
 </p>
 
 ---
@@ -321,7 +321,7 @@ Required for Arduino-compatible programming:
 ## 8. Schematic, Components, and Assembly
 
 <p align="center">
-  <img src="../images/3.png" alt="Schéma" width="500">
+  <img src="./images/3.png" alt="Schéma" width="500">
 </p>
 
 ### Component List and Description
@@ -340,7 +340,7 @@ Required for Arduino-compatible programming:
 ### Power Supply
 
 <p align="center">
-  <img src="../images/8.jpg" alt="Schéma" width="500">
+  <img src="./images/8.jpg" alt="Schéma" width="500">
 </p>
 
 - All components powered at **+5V (VCC)**
