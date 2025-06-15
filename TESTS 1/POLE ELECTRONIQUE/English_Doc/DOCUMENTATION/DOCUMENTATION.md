@@ -378,6 +378,8 @@ Required for Arduino-compatible programming:
   - Power stability
 
 ---
+## Video
+- https://vimeo.com/1093499371?share=copy
 ---
 
 ## Conclusion
