@@ -1,0 +1,735 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../piece2/">
+      
+      
+        <link rel="next" href="../partie3_ajout_poche/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Partie 2 - Pièce 3 - Documentation Tekbot Challenge Robotique 2025</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#partie-2-piece-3" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href=".." title="Documentation Tekbot Challenge Robotique 2025" class="md-header__button md-logo" aria-label="Documentation Tekbot Challenge Robotique 2025" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentation Tekbot Challenge Robotique 2025
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Partie 2 - Pièce 3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="blue-grey"  aria-label="Passer au mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Documentation Tekbot Challenge Robotique 2025" class="md-nav__button md-logo" aria-label="Documentation Tekbot Challenge Robotique 2025" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentation Tekbot Challenge Robotique 2025
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../objectifs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectifs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../partie1_piece1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Partie 1 - Pièce 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../piece2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pièce 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Partie 2 - Pièce 3
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Partie 2 - Pièce 3
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#partie-2-piece-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      PARTIE 2 PIECE 3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i-presentation-de-la-piece" class="md-nav__link">
+    <span class="md-ellipsis">
+      I. PRESENTATION DE LA PIECE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capture-decran" class="md-nav__link">
+    <span class="md-ellipsis">
+      CAPTURE D'ECRAN
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-gamme-de-realisation-de-la-piece-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      II. GAMME DE RÉALISATION DE LA PIÈCE 3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-realisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      III. REALISATION
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. REALISATION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etape-1-realisation-de-la-premiere-esquisse-enlevement-sur-19-mm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 1 : Réalisation de la première esquisse (enlèvement sur 19 mm)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-2-realisation-de-la-seconde-esquisse-enlevement-sur-24-mm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 2 : Réalisation de la seconde esquisse (enlèvement sur 24 mm)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-3-evaluer-la-masse-de-la-piece-modifiee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 3 : Évaluer la masse de la pièce modifiée
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-5-controle-de-qualite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 5 : Contrôle de qualité.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-6-controle-final-de-qualite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 6 : Contrôle final de qualité.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mise-en-oage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mise en oage.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../partie3_ajout_poche/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Partie 3 - Ajout d'une poche (Pièce 2)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../partie4_assemblage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Partie 4 - Assemblage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conclusion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Partie 2 - Pièce 3</h1>
+
+<h2 id="partie-2-piece-3">PARTIE 2 PIECE 3<a class="headerlink" href="#partie-2-piece-3" title="Permanent link">&para;</a></h2>
+<h2 id="i-presentation-de-la-piece">I. PRESENTATION DE LA PIECE<a class="headerlink" href="#i-presentation-de-la-piece" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Nom de la pièce:</strong> Pièce 2  </li>
+<li><strong>Système d'unité:</strong> MMGS (millimètre, gramme, seconde)  </li>
+<li><strong>Matériau:</strong> Acier AISI 1020  </li>
+<li><strong>Densité:</strong> 0,0079 g/mm³  </li>
+<li><strong>Tolérance:</strong> ± 1 %  </li>
+<li><strong>Décimales:</strong> 2 (toutes les dimensions seront arrondies à 2 décimales)  </li>
+<li><strong>Paramètres géométriques:</strong>  
+  - A = 84.00 mm  
+  - B = 59.00 mm  
+  - C = 45.00 mm  </li>
+</ul>
+<p><strong>Description:</strong>  
+Pour approfondir l’étude de la pièce et analyser l’impact d’une modification géométrique sur la masse, il est maintenant nécessaire d’enlever de la matière en créant une poche sur la seconde version de la pièce. Cette opération consiste donc à réaliser une cavité afin d’en évaluer l’influence sur le volume et le poids de l’ensemble. On aura donc besoin de la dernière pièce de la Partie 1.</p>
+<h2 id="capture-decran">CAPTURE D'ECRAN<a class="headerlink" href="#capture-decran" title="Permanent link">&para;</a></h2>
+<p align="center">
+  <img src="../Images/a14.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="../Images/a15.png" alt="Image 1" width="600">
+</p>
+<h2 id="ii-gamme-de-realisation-de-la-piece-3">II. GAMME DE RÉALISATION DE LA PIÈCE 3<a class="headerlink" href="#ii-gamme-de-realisation-de-la-piece-3" title="Permanent link">&para;</a></h2>
+<p>On aura besoin de <strong>deux fonctions</strong>, une pour le vide de profondeur 19 mm et une seconde pour le vide de 24 mm.  
+Cette opération permettra de générer rapidement la pièce afin d’en évaluer la masse.</p>
+<h2 id="iii-realisation">III. REALISATION<a class="headerlink" href="#iii-realisation" title="Permanent link">&para;</a></h2>
+<h3 id="etape-1-realisation-de-la-premiere-esquisse-enlevement-sur-19-mm">Étape 1 : Réalisation de la première esquisse (enlèvement sur 19 mm)<a class="headerlink" href="#etape-1-realisation-de-la-premiere-esquisse-enlevement-sur-19-mm" title="Permanent link">&para;</a></h3>
+<p><strong>Ligne:</strong>  
+- Ouvrir une nouvelle esquisse sur la face ou le plan choisi.  
+- Cliquer sur <strong>Ligne</strong> dans la barre d’outils Esquisse.  
+- Cliquer une fois pour commencer la ligne, déplacer la souris, puis cliquer à nouveau afin de la terminer.  
+- Répéter jusqu’à ce que le contour soit fermé.</p>
+<p><strong>Cotation intelligente:</strong>  
+- Cliquer sur « Cotation intelligente ».  
+- Cliquer sur une ligne, un cercle ou deux entités.  
+- Positionner la cote, entrer la valeur et valider.</p>
+<p align="center">
+  <img src="../Images/a16.png" alt="Image 1" width="600">
+</p>
+
+<p><strong>Enlèvement de matière:</strong>  
+- Onglet <strong>Fonctions (Features)</strong> → <strong>Enlèvement de matière</strong>.  
+- Laisser SolidWorks sélectionner automatiquement l’esquisse.  
+- Saisir 19 mm de profondeur dans le panneau de gauche.  
+- Valider en cliquant sur la coche verte.  
+- La poche est générée.</p>
+<p align="center">
+  <img src="../Images/a17.png" alt="Image 1" width="600">
+</p>
+
+<h3 id="etape-2-realisation-de-la-seconde-esquisse-enlevement-sur-24-mm">Étape 2 : Réalisation de la seconde esquisse (enlèvement sur 24 mm)<a class="headerlink" href="#etape-2-realisation-de-la-seconde-esquisse-enlevement-sur-24-mm" title="Permanent link">&para;</a></h3>
+<p><strong>Plan d’esquisse:</strong></p>
+<ul>
+<li>Séléctionner la face bleue.  </li>
+<li>Aller dans le menu Esquisse → <strong>Convertir Entités</strong>.  </li>
+<li>La face est projetée en esquisse.</li>
+</ul>
+<p align="center">
+  <img src="../Images/a18.png" alt="Image 1" width="600">
+</p>
+
+<p><strong>Arc:</strong>  </p>
+<ul>
+<li>Choisir « Arc » (arc par 3 points ou arc tangent).  </li>
+<li>Cliquer sur le premier, le deuxième, puis le troisième point afin de former l’arc.</li>
+</ul>
+<p><strong>Cotation intelligente:</strong></p>
+<ul>
+<li>Cliquer sur « Cotation intelligente ».  </li>
+<li>Mettre la cote 52mm en place.  </li>
+<li>Valider chaque cote.</li>
+</ul>
+<p align="center">
+  <img src="../Images/a19.png" alt="Image 1" width="600">
+</p>
+
+<p><strong>Enlèvement de matière:</strong>  </p>
+<ul>
+<li>Onglet <strong>Fonctions (Features)</strong> → <strong>Enlèvement de matière</strong>.  </li>
+<li>Laisser SolidWorks sélectionner l’esquisse automatiquement.  </li>
+<li>Saisir 24 mm de profondeur dans le panneau de gauche.  </li>
+<li>Decaler l'enlèvement de 12mm vers l'interieur.</li>
+<li>Valider en cliquant sur la coche verte.</li>
+</ul>
+<p align="center">
+  <img src="../Images/a20.png" alt="Image 1" width="600">
+</p>
+<p align="center">
+  <img src="../Images/a21.png" alt="Image 1" width="600">
+</p>
+
+<h3 id="etape-3-evaluer-la-masse-de-la-piece-modifiee">Étape 3 : Évaluer la masse de la pièce modifiée<a class="headerlink" href="#etape-3-evaluer-la-masse-de-la-piece-modifiee" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Vérifier que le matériau est appliqué.  </li>
+<li>Aller dans l’onglet <strong>Évaluer</strong> → <strong>Propriétés de masse</strong>.  </li>
+<li>Noter la masse en grammes.  </li>
+</ul>
+<p align="center">
+  <img src="../Images/a22.png" alt="Image 1" width="600">
+</p>
+
+<h3 id="etape-5-controle-de-qualite">Étape 5 : Contrôle de qualité.<a class="headerlink" href="#etape-5-controle-de-qualite" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Effectuer une revue des dimensions sur le modèle 3D.</li>
+</ul>
+<h3 id="etape-6-controle-final-de-qualite">Étape 6 : Contrôle final de qualité.<a class="headerlink" href="#etape-6-controle-final-de-qualite" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Enregistrer la pièce modifiée:</strong>  </li>
+<li><strong>Enregistrer sous</strong> Piece 3 afin de garder une trace des différentes versions.</li>
+<li>
+<h3 id="mise-en-oage">Mise en oage.<a class="headerlink" href="#mise-en-oage" title="Permanent link">&para;</a></h3>
+</li>
+</ul>
+<p align="center">
+  <img src="../Images/a51.png" alt="Image 1" width="600">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "search.highlight", "content.tabs.link", "content.code.annotate"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Technique Pole Electronique </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-microchip"></i>
+                <h1>ROBO<span>STIM</span></h1>
+            </div>
+            <button class="menu-toggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#test" class="active"><i class="fas fa-flask"></i> Présentation</a></li>
+                    <li><a href="#material"><i class="fas fa-microchip"></i> Matériel</a></li>
+                    <li><a href="#architecture"><i class="fas fa-project-diagram"></i> Architecture</a></li>
+                    <li><a href="#code"><i class="fas fa-code"></i> Code</a></li>
+                    <li><a href="#conclusion"><i class="fas fa-flag-checkered"></i> Conclusion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>Documentation technique des tests en Électronique</h2>
+            <p><strong>Test 1 :</strong> Gyroscope et accéléromètre</p>
+            <!-- Dans la section hero, modifier le conteneur des boutons -->
+            <div class="btn-container" style="margin-top: 30px;">
+                <a href="#test" class="btn">Commencer la lecture</a>
+                <a href="https://vimeo.com/1093499371" target="_blank" class="btn btn-outline">
+                    <i class="fas fa-video"></i> Voir la démo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div class="content">
+            <div class="hackathon-badge">
+                <i class="fas fa-trophy"></i> TRC 25
+            </div>
+            
+            <!-- Test Technique Section -->
+            <section id="test">
+                <h2 class="section-title"><i class="fas fa-flask"></i> Test 1 : Gyroscope et Accéléromètre</h2>
+                <p>S'orienter dans l'espace, savoir distinguer le haut, le bas, la gauche, la droite, l'avant et l'arrière, est une compétence naturelle chez l'être humain. Mais comment faire pour qu'un robot ou un système automatisé reproduise cette capacité ?</p>
+                
+                <div class="highlight">
+                    <p>C'est là qu'interviennent les capteurs inertiels : des composants électroniques capables de « sentir » les mouvements et rotations d'un objet dans l'espace.</p>
+                </div>
+                
+                <p>Nous avons choisi d'explorer cette technologie avec un capteur MPU6050, un module combinant :</p>
+                <ul class="component-list">
+                    <li><i class="fas fa-arrows-alt-h"></i> <strong>Accéléromètre 3 axes</strong> - pour détecter les accélérations (y compris la gravité)</li>
+                    <li><i class="fas fa-sync-alt"></i> <strong>Gyroscope 3 axes</strong> - pour mesurer les vitesses de rotation autour de 3 axes</li>
+                </ul> <br>
+                <p>Ce capteur sera placé dans la paume d’une main et connecté à un microcontrôleur ATmega328P. </p>
+                <p>À chaque geste : lever la main, la baisser, la tourner, les informations seront affichées en temps réel sur un écran LCD.</p>
+                
+                <div class="card">
+                    <h3><i class="fas fa-star"></i> Importance du test</h3>
+                    <p>Ce test constitue une immersion concrète dans les systèmes embarqués et la robotique, où les capteurs inertiels comme ceux que l'on retrouve dans les drones, smartphones ou robots sont essentiels pour mesurer la position, la vitesse et la stabilité du système.</p>
+                    <p>En combinant un accéléromètre (qui mesure les accélérations linéaires) et un gyroscope (qui mesure la vitesse de rotation), on peut reconstruire en temps réel la trajectoire et l'orientation d'un objet dans l'espace : c'est ce que l'on appelle la fusion de données.</p>
+                </div>
+                
+                <h3 class="section-subtitle"><i class="fas fa-bullseye"></i> Objectifs du test</h3>
+                <ul class="step-list">
+                    <li>Identifier et comprendre le fonctionnement d'un capteur inertiel combiné (MPU6050) intégrant un accéléromètre et un gyroscope</li>
+                    <li>Mettre en œuvre la communication I2C entre le capteur et le microcontrôleur ATmega328P</li>
+                    <li>Programmer le microcontrôleur pour lire les données brutes du capteur, appliquer un traitement logiciel et calculer les angles d'orientation (yaw, pitch, roll)</li>
+                    <li>Développer une logique de détection de direction capable d'interpréter les variations d'angles et d'accélération</li>
+                    <li>Assurer l'affichage en temps réel des résultats sur un écran LCD I2C</li>
+                    <li>Comprendre l'importance de la calibration et du filtrage pour améliorer la précision et la fiabilité des mesures</li>
+                    <li>Acquérir une démarche méthodique de test et validation</li>
+                </ul>
+                
+                <h3 class="section-subtitle"><i class="fas fa-compass"></i> Comprendre les orientations</h3>
+                
+                    <div class="card"> 
+                        <p>Pour décrire précisément comment un objet (comme ta main équipée du capteur MPU6050) s’oriente et se déplace dans l’espace, on utilise trois
+                            angles fondamentaux appelés roulis (roll), tangage (pitch) et lacet (yaw).  
+                            Ces trois mouvements correspondent à des rotations autour de trois axes 
+                            perpendiculaires, et permettent de définir la position et l’orientation d’un objet dans un 
+                            espace à trois dimensions.</p>
+                            <p align="center">
+                                <img src="images/9.png" alt="" width=500>
+                            </p>
+                    </div>
+                    <div class="card">
+                    <h3><i class="fas fa-undo"></i> Roulis (Roll)</h3>
+                    <p>C'est la rotation autour de l'axe longitudinal, c'est-à-dire un mouvement d'inclinaison latérale, comme si la main penchait vers la droite ou la gauche.</p>
+                    <p align="center">
+                        <img src="images/4.png" alt="" width=500>
+                    </p>
+                    <p><strong>Démonstration :</strong> imagine que tu tiens ta main devant toi et que tu la fais basculer sur le côté, comme si tu voulais verser un verre d'eau. Ce mouvement est un roulis.</p>
+                    <p><strong>Importance :</strong> permet de détecter si la main s'incline sur la gauche ou la droite, essentiel pour comprendre les mouvements latéraux.</p>
+                    
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-arrows-alt-v"></i> Tangage (Pitch)</h3>
+                    <p>C'est la rotation autour de l'axe transversal, correspondant à un mouvement de bascule avant-arrière.</p>
+                    <p align="center">
+                        <img src="images/5.png" alt="" width=500>
+                    </p>
+                    <p><strong>Démonstration :</strong> imagine que tu fais un signe de tête pour dire « oui », en penchant ta main vers l'avant ou l'arrière. Ce mouvement est un tangage.</p>
+                    <p><strong>Importance :</strong> permet de détecter si la main se penche vers l'avant ou vers l'arrière, ce qui correspond aux mouvements de translation avant/arrière.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-compass"></i> Lacet (Yaw)</h3>
+                    <p>C'est la rotation autour de l'axe vertical, c'est-à-dire un mouvement de rotation horizontale, comme si la main tournait sur elle-même à plat.</p>
+                    <p align="center">
+                        <img src="images/6.png" alt="" width=500>
+                    </p>
+                    <p><strong>Démonstration :</strong> imagine que vous tournez ta main vers la gauche ou la droite sans la pencher, juste en la faisant pivoter sur elle-même. Ce mouvement est un lacet.</p>
+                    <p><strong>Importance :</strong> permet de détecter les rotations horizontales, crucial pour comprendre les mouvements de rotation autour de l'axe vertical.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-cogs"></i> Pourquoi ces angles sont-ils importants ?</h3>
+                    <p>Le MPU6050 mesure ces trois rotations grâce à son gyroscope, et les angles correspondants (roll, pitch, yaw) sont calculés pour déterminer précisément l'orientation de la main dans l'espace ainsi que son accélération.</p>
+                    <p>Cette compréhension des trois axes de rotation est essentielle pour :</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-check"></i> Interpréter correctement les gestes (lever, baisser, tourner la main)</li>
+                        <li><i class="fas fa-check"></i> Détecter les directions de mouvement (haut, bas, gauche, droite, avant, arrière)</li>
+                        <li><i class="fas fa-check"></i> Améliorer la précision des mesures en filtrant et fusionnant les données des capteurs</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Material Section -->
+            <section id="material">
+                <h2 class="section-title"><i class="fas fa-microchip"></i> Choix du matériel pour ce test</h2>
+                
+                <div class="card">
+                    <h3><i class="fas fa-microchip"></i> Microcontrôleur : ATmega328P seul</h3>
+                    <p>Plutôt que d'utiliser une carte Arduino UNO complète, nous avons choisi d'employer le microcontrôleur ATmega328P en version « puce seule ». Cette approche présente plusieurs avantages :</p>
+                    <p align="center">
+                        <img src="https://th.bing.com/th/id/OIP.VML3Sd1b9wHLA4DsfzLHJAHaFL?r=0&rs=1&pid=ImgDetMain" alt="Schéma" width="300">
+                    </p>
+                    <p align="center">
+                        <img src="https://www.sigmaelectronica.net/wp-content/uploads/2015/06/ATMEGA328.jpg" alt="Schéma" width="150">
+                    </p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-compress-arrows-alt"></i> <strong>Miniaturisation</strong> - le microcontrôleur seul occupe beaucoup moins de place, facilitant l'intégration dans un boîtier ou un montage personnalisé</li>
+                        <li><i class="fas fa-euro-sign"></i> <strong>Coût réduit</strong> - le prix du microcontrôleur nu est nettement inférieur à celui d'une carte Arduino complète</li>
+                        <li><i class="fas fa-cogs"></i> <strong>Personnalisation du circuit</strong> - permet de sélectionner précisément les composants périphériques nécessaires (oscillateur, alimentation, reset) et d'optimiser le montage</li>
+                        <li><i class="fas fa-graduation-cap"></i> <strong>Approche pédagogique</strong> - offre une meilleure compréhension du fonctionnement matériel d'un système embarqué</li>
+                    </ul>
+                    
+                    <h3 class="section-subtitle" style="margin-top: 20px;"><i class="fas fa-cogs"></i> Composants nécessaires pour ATmega328P</h3>
+                    <ul class="component-list">
+                        <li><i class="fas fa-tools"></i> Cristal oscillateur 16 MHz avec condensateurs pour fournir une horloge stable</li>
+                        <li><i class="fas fa-bolt"></i> Résistance pull-up sur la broche RESET pour éviter les réinitialisations intempestives</li>
+                        <li><i class="fas fa-plug"></i> Alimentation 5 V régulée avec condensateurs de découplage</li>
+                        <li><i class="fas fa-usb"></i> Convertisseur USB-série externe (comme un module FTDI) pour programmer le microcontrôleur via USB</li>
+                        <li><i class="fas fa-wire"></i> Câblage soigné pour relier le microcontrôleur aux capteurs et à l'écran</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-sensor"></i> Capteur inertiel : MPU6050</h3>
+                    <p>Le choix du capteur s'est porté sur le module MPU6050, qui combine un accéléromètre 3 axes et un gyroscope 3 axes dans un seul composant.</p>
+                    <p align="center">
+                        <img src="https://th.bing.com/th/id/OIP.DTgBipgvFa7rrY_VBkpqBgHaGI?w=221&h=183&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Schéma" width="200">
+                    </p>
+                    <div class="highlight">
+                        <p><i class="fas fa-question-circle"></i> Pourquoi le MPU6050 ?</p>
+                        <ul class="component-list">
+                            <li><i class="fas fa-check-circle"></i> <strong>Mesure complète du mouvement</strong> - fournit à la fois les accélérations linéaires et les vitesses angulaires, indispensables pour déterminer l'orientation dans l'espace</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Interface I2C</strong> - communication via un bus I2C standard simplifie le câblage et permet de connecter plusieurs périphériques</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>DMP intégré</strong> - intègre un processeur de mouvement numérique (DMP) qui réalise la fusion des données pour fournir des angles d'orientation stables</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Compatibilité</strong> - fonctionne sous une alimentation de 3.3 V à 5 V, compatible avec le microcontrôleur utilisé</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight" style="margin-top: 20px;">
+                        <p><i class="fas fa-exclamation-circle"></i> Particularités à prendre en compte</p>
+                        <ul class="component-list">
+                            <li><i class="fas fa-info-circle"></i> Le module MPU6050 fonctionne généralement sous 3.3 V, mais la plupart des modules GY-521 intègrent un régulateur 3.3 V et des résistances pull-up compatibles 5 V</li>
+                            <li><i class="fas fa-info-circle"></i> Connecter SDA (données) et SCL (horloge) aux broches A4 et A5 du microcontrôleur</li>
+                            <li><i class="fas fa-info-circle"></i> L'adresse I2C par défaut est 0x68, modifiable en connectant la broche AD0 à 3.3 V (adresse 0x69)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-tv"></i> Affichage : écran LCD I2C 16x2</h3>
+                    <p>Pour visualiser les résultats en temps réel, un écran LCD 16 colonnes x 2 lignes avec interface I2C a été choisi pour ses avantages :</p>
+                    <p align="center">
+                        <img src="https://th.bing.com/th/id/OIP.pTanwRr2lLg5OuN96tVoOwAAAA?w=208&h=168&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Schéma" width="300">
+                    </p>
+
+                    <ul class="component-list">
+                        <li><i class="fas fa-wifi"></i> <strong>Câblage simplifié</strong> - utilise seulement 4 fils (VCC, GND, SDA, SCL) pour la communication et l'alimentation</li>
+                        <li><i class="fas fa-exchange-alt"></i> <strong>Compatibilité I2C</strong> - partage le bus I2C avec le MPU6050, réduisant le nombre de connexions nécessaires</li>
+                        <li><i class="fas fa-eye"></i> <strong>Affichage clair et lisible</strong> - permet de visualiser directement la direction détectée sans matériel supplémentaire</li>
+                    </ul>
+                </div>
+                
+                <h3 class="section-subtitle"><i class="fas fa-list"></i> Liste du matériel</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Composants</th>
+                                <th>Spécifications</th>
+                                <th>Rôle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ATmega328P</td>
+                                <td>Horloge 16 MHz, 32 kB Flash</td>
+                                <td>Microcontrôleur principal, traitement des données et contrôle du système</td>
+                            </tr>
+                            <tr>
+                                <td>MPU6050 (GY-521)</td>
+                                <td>Interface I2C, DMP intégré, alimentation 3 V–5 V</td>
+                                <td>Capteur inertiel combinant accéléromètre et gyroscope MEMS</td>
+                            </tr>
+                            <tr>
+                                <td>Écran LCD 16×2 I²C</td>
+                                <td>Adresse I2C 0x27 ou 0x3F</td>
+                                <td>Interface utilisateur pour affichage en temps réel des directions détectées</td>
+                            </tr>
+                            <tr>
+                                <td>Module FTDI</td>
+                                <td>Interface USB-TTL, 6 broches</td>
+                                <td>Programmation du microcontrôleur et communication série pour debug</td>
+                            </tr>
+                            <tr>
+                                <td>Veroboard ou PCB</td>
+                                <td>24×16 bandes, format Eurorack</td>
+                                <td>Support mécanique pour montage et soudure des composants</td>
+                            </tr>
+                            <tr>
+                                <td>Fer à souder + étain</td>
+                                <td>Pointe fine 0,4 mm</td>
+                                <td>Assemblage des composants électroniques par soudure</td>
+                            </tr>
+                            <tr>
+                                <td>Multimètre</td>
+                                <td>Mesure de continuité, tension, résistance</td>
+                                <td>Vérification des connexions et tests électriques</td>
+                            </tr>
+                            <tr>
+                                <td>Breadboard + Dupont</td>
+                                <td>Montage sans soudure, prototypage rapide</td>
+                                <td>Réalisation de prototypes et tests avant soudure définitive</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Architecture Section -->
+            <section id="architecture">
+                <h2 class="section-title"><i class="fas fa-project-diagram"></i> Architecture et fonctionnement</h2>
+                
+                <div class="card">
+                    <h3><i class="fas fa-cogs"></i> Principe de fonctionnement</h3>
+                    <p>Le système utilise le capteur MPU6050 pour détecter comment un objet (comme une main) bouge et s'oriente dans l'espace. Voici comment fonctionne le système :</p>
+                    <ul class="step-list">
+                        <li><strong>Acquisition des données</strong> - Le MPU6050 contient deux capteurs importants :
+                            <ul class= "step-list" style="margin-top: 10px;">
+                                <li><strong>Accéléromètre 3 axes</strong> - mesure les accélérations sur trois directions (avant/arrière, gauche/droite, haut/bas)</li>
+                                <li><strong>Gyroscope 3 axes</strong> - mesure la vitesse à laquelle la main tourne autour de ces trois axes</li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li><strong>Prétraitement des données</strong> - Les mesures brutes sont filtrées pour améliorer la qualité :
+                            <ul class= "step-list" style="margin-top: 10px;">
+                                <li>Application d'un filtre passe-bas qui lisse les données de l'accéléromètre</li>
+                                <li>Utilisation du DMP (Digital Motion Processor) qui prépare les données et envoie une alerte quand elles sont prêtes</li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li><strong>Fusion et calcul des orientations</strong> - Le DMP combine les données pour calculer la position exacte :
+                            <ul class= "step-list" style="margin-top: 10px;">
+                                <li>Utilisation de quaternions pour représenter l'orientation sans ambiguïté</li>
+                                <li>Calcul des angles Roll (roulis), Pitch (tangage), Yaw (lacet)</li>
+                                <li>Correction de l'accélération mesurée pour enlever l'effet de la gravité</li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li><strong>Détection de direction</strong> - Pour déterminer le mouvement :
+                            <ul class= "step-list" style="margin-top: 10px;">
+                                <li>Surveillance de l'accélération sur l'axe Z pour détecter un mouvement vers le haut ou le bas</li>
+                                <li>Analyse des variations des angles roll, pitch et yaw</li>
+                                <li>Si aucun mouvement significatif n'est détecté, l'état est considéré comme stable</li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li><strong>Affichage</strong> - La direction détectée est affichée en temps réel sur l'écran LCD I2C</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-sitemap"></i> Architecture système</h3>
+                    <p>Le flux de données à travers le système :</p>
+                    <div class="highlight">
+                        <p>Capteur MPU6050 → Microcontrôleur ATmega328P → Écran LCD</p>
+                    </div>
+                    <p>Tous les composants communiquent via le protocole I2C, ce qui permet une réduction du nombre de connexions nécessaires.</p>
+                    
+                    <h3 class="section-subtitle" style="margin-top: 20px;"><i class="fas fa-network-wired"></i> Protocole I2C</h3>
+                    <p>Le protocole I2C (Inter-Integrated Circuit) est une méthode de communication série largement utilisée dans les systèmes embarqués :</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-exchange-alt"></i> Utilise seulement deux fils : SDA (Serial Data Line) et SCL (Serial Clock Line)</li>
+                        <li><i class="fas fa-server"></i> Fonctionnement en mode maître/esclave</li>
+                        <li><i class="fas fa-address-card"></i> Chaque périphérique a une adresse unique</li>
+                        <li><i class="fas fa-sync"></i> Protocole simple et flexible avec acquittements</li>
+                    </ul>
+                </div>
+                
+                <h3 class="section-subtitle"><i class="fas fa-tools"></i> Réalisation du circuit</h3>
+                <div class="card">
+                    <h3><i class="fas fa-check-circle"></i> Test du microcontrôleur</h3>
+                    <p>Avant l'intégration, prière le tester sur breadboard avec un montage minimal :</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-bolt"></i> Alimentation 5V stable</li>
+                        <li><i class="fas fa-clock"></i> Cristal 16MHz avec condensateurs</li>
+                        <li><i class="fas fa-redo"></i> Résistance pull-up sur RESET</li>
+                        <li><i class="fas fa-code"></i> Programme de test (ex: blink LED)</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-microchip"></i> Gravure du bootloader</h3>
+                    <p>Configurer l'ATmega328P pour la programmation :</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-laptop-code"></i> Utilisation d'une carte Arduino comme programmateur ou d'un programmateur externe</li>
+                        <li><i class="fas fa-plug"></i> Branchement des broches (MOSI, MISO, SCK, RESET, Vcc, GND)</li>
+                        <li><i class="fas fa-burn"></i> Gravure via IDE Arduino : "Arduino as ISP" puis "Burn Bootloader"</li>
+                        <li><i class="fas fa-cog"></i> Choix du modèle selon le montage : ATmega328 on a breadboard ou Arduino Uno</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-drafting-compass"></i> Conception sous KiCad</h3>
+                    <p>Le circuit a été conçu dans KiCad avec les composants choisis depuis la librairie officielle :</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-microchip"></i> ATmega328P</li>
+                        <li><i class="fas fa-microchip"></i> MPU-6050</li>
+                        <li><i class="fas fa-tv"></i> LCD I2C</li>
+                        <li><i class="fas fa-tools"></i> Quartz, condensateurs et résistances</li>
+                        <li><i class="fas fa-toggle-on"></i> Bouton poussoir pour réinitialisation manuelle</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-soldering-iron"></i> Soudure des composants</h3>
+                    <p>Procédure de soudure :</p>
+                    <ul class="step-list">
+                        <li><strong>Préparation</strong> - Préchauffer le fer à souder (300-350°C), nettoyer la panne, préparer les composants</li>
+                        <li><strong>Soudure THT</strong> - Placer chaque composant, souder une patte, ajuster, puis souder les autres, couper l'excédent</li>
+                        <!--<li><strong>Soudure SMD</strong> - Utiliser de la pâte à souder et du flux, fixer un coin, puis souder les autres broches</li>-->
+                    </ul>
+                    <div class="highlight" style="margin-top: 15px;">
+                        <p><i class="fas fa-lightbulb"></i> Conseil : Utiliser du fil à souder fin (0,38 mm recommandé), éviter les ponts de soudure, vérifier que chaque joint soit brillant et conique.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-soldering-iron"></i>  Programmation et test du circuit assemblé</h3>
+                    <p>Procédure :</p>
+                    <ul class="step-list">
+                        <li><strong>Connexion du convertisseur USB-série :</strong> brancher le module FTDI (ou 
+                        équivalent) aux broches RX, TX, Vcc, GND (et DTR/RESET si présent) de 
+                        l’ATmega328P. </li>
+                        <li><strong>Téléversement du code :</strong> utiliser l’IDE Arduino pour charger un programme de 
+                            test (ex. blink ou lecture capteur). </li>
+                        <li><strong>Test fonctionnel :</strong> vérifier le bon fonctionnement du microcontrôleur, de la communication I2C (MPU6050 + LCD), de l’alimentation.</li>
+                    </ul>
+                </div>
+
+            </section>
+            
+            <!-- Code Section -->
+            
+        <section id="code">
+            <h2 class="section-title"><i class="fas fa-code"></i> Explication détaillée du code MPU6050 + LCD I2C avec ATmega328P</h2>
+            
+            <div class="card">
+                <h3><i class="fas fa-book"></i> Rappels sur les objectifs du projet</h3>
+                <p>Ce projet a pour but de :</p>
+                <ul class="component-list">
+                    <li><i class="fas fa-check-circle"></i> Lire l'orientation et les mouvements d'un objet à l'aide du capteur MPU6050 (gyroscope et accéléromètre)</li>
+                    <li><i class="fas fa-check-circle"></i> Afficher ces mouvements sur un petit écran LCD relié en I2C</li>
+                    <li><i class="fas fa-check-circle"></i> Utiliser un microcontrôleur ATmega328P (le cœur des cartes Arduino Uno par exemple)</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-book"></i> Bibliothèques utilisées</h3>
+                <p>Avant de pouvoir écrire notre programme, on utilise des bibliothèques qui contiennent des morceaux de code déjà écrits par d'autres personnes, pour simplifier notre travail.</p>
+                
+                <div class="code-block">
+                    <span class="code-keyword">#include</span> &lt;Wire.h&gt;       <span class="code-comment">// Communication I2C</span><br>
+                    <span class="code-keyword">#include</span> &lt;LiquidCrystal_I2C.h&gt; <span class="code-comment">// Gestion écran LCD</span><br>
+                    <span class="code-keyword">#include</span> "I2Cdev.h"<br>
+                    <span class="code-keyword">#include</span> "MPU6050_6Axis_MotionApps20.h" <span class="code-comment">// Pour le DMP</span><br>
+                    <span class="code-keyword">#include</span> &lt;SPI.h&gt;
+                </div>
+                
+                <div class="highlight">
+                    <p><i class="fas fa-question-circle"></i> Pourquoi ces bibliothèques ?</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-exchange-alt"></i> <strong>Wire.h</strong> - permet de communiquer avec des appareils via le protocole I2C (deux fils seulement : SDA et SCL)</li>
+                        <li><i class="fas fa-tv"></i> <strong>LiquidCrystal_I2C.h</strong> - gère l'affichage des messages sur notre écran LCD</li>
+                        <li><i class="fas fa-microchip"></i> <strong>I2Cdev.h et MPU6050_6Axis_MotionApps20.h</strong> - facilitent l'utilisation du capteur MPU6050, notamment de son DMP (Digital Motion Processor) qui calcule lui-même l'orientation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-cube"></i> Création des objets et gestion des interruptions</h3>
+                
+                <h4 class="section-subtitle"><i class="fas fa-cog"></i> Création des objets</h4>
+                <p>Pour utiliser l'écran et le capteur, on crée des objets :</p>
+                <div class="code-block">
+                    LiquidCrystal_I2C lcd(0x27, 16, 2); <span class="code-comment">// 0x27 est l'adresse la plus fréquente pour les écrans LCD I2C</span><br>
+                    MPU6050 mpu; <span class="code-comment">// Objet pour piloter le capteur MPU6050</span>
+                </div>
+                
+                <h4 class="section-subtitle"><i class="fas fa-bell"></i> Gestion des interruptions</h4>
+                <p>Une interruption permet de dire au microcontrôleur : "Attention! Le capteur a des nouvelles données!"</p>
+                <div class="code-block">
+                    <span class="code-keyword">#define</span> INTERRUPT_PIN 2<br>
+                    <span class="code-keyword">volatile bool</span> mpuInterrupt = <span class="code-keyword">false</span>;<br>
+                    <span class="code-keyword">void</span> <span class="code-function">dmpDataReady</span>() {<br>
+                    &nbsp;&nbsp;mpuInterrupt = <span class="code-keyword">true</span>;<br>
+                    }
+                </div>
+                <p><i class="fas fa-info-circle"></i> On utilise la broche 2 de l'ATmega328P pour détecter les nouvelles données du MPU6050.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-database"></i> Variables globales</h3>
+                <p>Pour stocker les données du capteur et gérer le traitement :</p>
+                
+                <div class="code-block">
+                    <span class="code-comment">// Pour décrire l'orientation dans l'espace</span><br>
+                    <span class="code-keyword">Quaternion</span> q; <br>
+                    <span class="code-keyword">float</span> ypr[3]; <span class="code-comment">// Yaw, Pitch, Roll</span><br><br>
+                    
+                    <span class="code-comment">// Accélération mesurée sans l'effet de la gravité</span><br>
+                    <span class="code-keyword">VectorInt16</span> aaReal; <span class="code-comment">// Vraie accélération de l'objet</span><br><br>
+                    
+                    <span class="code-comment">// Pour comparer les mouvements d'une lecture à l'autre</span><br>
+                    <span class="code-keyword">float</span> prevYaw = 0, prevPitch = 0, prevRoll = 0;<br><br>
+                    
+                    <span class="code-comment">// Pour filtrer les données et éviter les fausses détections</span><br>
+                    <span class="code-keyword">const float</span> seuilAngle = 5.0; <span class="code-comment">// Seuil en degrés pour rotations</span><br>
+                    <span class="code-keyword">const int</span> seuilAccZ = 600; <span class="code-comment">// À ajuster après calibration</span><br>
+                    <span class="code-keyword">float</span> accZ_filtered = 0;<br>
+                    <span class="code-keyword">const float</span> alpha = 0.3; <span class="code-comment">// Coefficient filtre passe-bas</span><br>
+                    <span class="code-keyword">String</span> direction = "";<br><br>
+                    
+                    <span class="code-comment">// Variables d'état</span><br>
+                    <span class="code-keyword">bool</span> dmpReady = <span class="code-keyword">false</span>;<br>
+                    <span class="code-keyword">uint8_t</span> mpuInitStatus;<br>
+                    <span class="code-keyword">uint8_t</span> devStatus;<br>
+                    <span class="code-keyword">uint16_t</span> packetSize, fifoCount;<br>
+                    <span class="code-keyword">uint8_t</span> fifoBuffer[64]; <span class="code-comment">// Buffer FIFO</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-play-circle"></i> Fonction setup() - Initialisation</h3>
+                <p>C'est ici qu'on prépare tout au démarrage :</p>
+                
+                <div class="code-block">
+                    <span class="code-keyword">void</span> <span class="code-function">setup</span>() {<br>
+                    &nbsp;&nbsp;<span class="code-comment">// Initialisation de la communication I2C</span><br>
+                    &nbsp;&nbsp;Wire.begin();<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-comment">// Initialisation de l'écran LCD</span><br>
+                    &nbsp;&nbsp;lcd.begin(16, 2);<br>
+                    &nbsp;&nbsp;lcd.init();<br>
+                    &nbsp;&nbsp;lcd.backlight();<br>
+                    &nbsp;&nbsp;lcd.clear();<br>
+                    &nbsp;&nbsp;lcd.setCursor(0,0);<br>
+                    &nbsp;&nbsp;lcd.print("Init MPU6050...");<br>
+                    &nbsp;&nbsp;delay(1000);<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-comment">// Initialisation de la communication série</span><br>
+                    &nbsp;&nbsp;Serial.begin(115200);<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-comment">// Initialisation du capteur MPU6050</span><br>
+                    &nbsp;&nbsp;mpu.initialize();<br>
+                    &nbsp;&nbsp;pinMode(INTERRUPT_PIN, INPUT);<br>
+                </div>
+                
+                <div class="highlight">
+                    <p><i class="fas fa-check-circle"></i> Ce que fait cette partie :</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-exchange-alt"></i> Le bus I2C démarre</li>
+                        <li><i class="fas fa-tv"></i> L'écran LCD s'allume et affiche un message d'initialisation</li>
+                        <li><i class="fas fa-laptop"></i> La communication série (USB vers PC) commence pour afficher des messages de debug</li>
+                        <li><i class="fas fa-microchip"></i> Le capteur MPU6050 est initialisé</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-ruler"></i> Calibrage du capteur</h3>
+                <p>Le capteur doit être calibré pour donner des mesures précises :</p>
+                
+                <div class="code-block">
+                    <span class="code-comment">// Offsets calibrés (à ajuster pour ton module)</span><br>
+                    mpu.setXAccelOffset(874);<br>
+                    mpu.setYAccelOffset(-853);<br>
+                    mpu.setZAccelOffset(-21);<br>
+                    mpu.setXGyroOffset(-59);<br>
+                    mpu.setYGyroOffset(29);<br>
+                    mpu.setZGyroOffset(-57);<br><br>
+                    
+                    <span class="code-comment">// Initialisation du DMP (Digital Motion Processor)</span><br>
+                    devStatus = mpu.dmpInitialize();<br>
+                    <span class="code-keyword">if</span> (devStatus == 0) {<br>
+                    &nbsp;&nbsp;<span class="code-comment">// Calibration des capteurs</span><br>
+                    &nbsp;&nbsp;mpu.CalibrateAccel(6);<br>
+                    &nbsp;&nbsp;mpu.CalibrateGyro(6);<br>
+                    &nbsp;&nbsp;mpu.setDMPEnabled(true);<br>
+                    &nbsp;&nbsp;<span class="code-comment">// Attachement de l'interruption</span><br>
+                    &nbsp;&nbsp;attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), dmpDataReady, RISING);<br>
+                    &nbsp;&nbsp;mpuInitStatus = mpu.getIntStatus();<br>
+                    &nbsp;&nbsp;dmpReady = true;<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-comment">// Taille des paquets FIFO</span><br>
+                    &nbsp;&nbsp;packetSize = mpu.dmpGetFIFOPacketSize();<br>
+                    &nbsp;&nbsp;lcd.clear();<br>
+                    &nbsp;&nbsp;lcd.setCursor(0,0);<br>
+                    &nbsp;&nbsp;lcd.print("MPU6050 pret!");<br>
+                    &nbsp;&nbsp;delay(1000);<br>
+                    } <span class="code-keyword">else</span> {<br>
+                    &nbsp;&nbsp;<span class="code-comment">// Gestion des erreurs</span><br>
+                    &nbsp;&nbsp;lcd.clear();<br>
+                    &nbsp;&nbsp;lcd.setCursor(0,0);<br>
+                    &nbsp;&nbsp;lcd.print("Erreur DMP:");<br>
+                    &nbsp;&nbsp;lcd.print(devStatus);<br>
+                    &nbsp;&nbsp;<span class="code-keyword">while</span> (1); <span class="code-comment">// Boucle infinie en cas d'erreur</span><br>
+                    }<br>
+                    }
+                </div>
+                
+                <div class="highlight">
+                    <p><i class="fas fa-check-circle"></i> Résultat de cette section :</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-check"></i> Si tout fonctionne bien, le DMP est activé</li>
+                        <li><i class="fas fa-bell"></i> L'interruption est attachée : le microcontrôleur sera prévenu à chaque nouveau paquet de données</li>
+                        <li><i class="fas fa-exclamation-triangle"></i> En cas d'erreur, le système affiche un message et se bloque</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-sync-alt"></i> Fonction loop() - Lecture continue des données</h3>
+                <p>Dans Arduino, la fonction loop() est exécutée en boucle infinie. Son rôle principal est :</p>
+                <ul class="component-list">
+                    <li><i class="fas fa-hourglass-half"></i> D'attendre que le capteur fournisse de nouvelles données</li>
+                    <li><i class="fas fa-database"></i> De lire ces données</li>
+                    <li><i class="fas fa-calculator"></i> De calculer l'orientation et les mouvements</li>
+                    <li><i class="fas fa-tv"></i> D'afficher le résultat</li>
+                </ul>
+                
+                <h4 class="section-subtitle"><i class="fas fa-check-circle"></i> 1. Vérification que le DMP est prêt</h4>
+                <div class="code-block">
+                    <span class="code-keyword">void</span> <span class="code-function">loop</span>() {<br>
+                    &nbsp;&nbsp;<span class="code-comment">// Si le DMP n'est pas prêt, on quitte immédiatement</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">if</span> (!dmpReady) <span class="code-keyword">return</span>;<br>
+                </div>
+                <p><i class="fas fa-info-circle"></i> Si le capteur n'a pas terminé son initialisation, on quitte la boucle.</p>
+                
+                <h4 class="section-subtitle"><i class="fas fa-bell"></i> 2. Vérification des nouvelles données</h4>
+                <div class="code-block">
+                    &nbsp;&nbsp;<span class="code-comment">// Vérification s'il y a de nouvelles données</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">if</span> (!mpuInterrupt && fifoCount < packetSize) <span class="code-keyword">return</span>;<br>
+                    &nbsp;&nbsp;mpuInterrupt = <span class="code-keyword">false</span>;<br>
+                </div>
+                <p><i class="fas fa-info-circle"></i> <strong>mpuInterrupt</strong> devient vrai quand une nouvelle donnée est prête. <strong>fifoCount</strong> contient le nombre de paquets disponibles dans la mémoire FIFO.</p>
+                
+                <h4 class="section-subtitle"><i class="fas fa-database"></i> 3. Lecture de la mémoire FIFO</h4>
+                <div class="code-block">
+                    &nbsp;&nbsp;<span class="code-comment">// Récupération du statut et du compteur FIFO</span><br>
+                    &nbsp;&nbsp;mpuIntStatus = mpu.getIntStatus();<br>
+                    &nbsp;&nbsp;fifoCount = mpu.getFIFOCount();<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-comment">// Gestion de l'overflow FIFO</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">if</span> ((mpuIntStatus & 0x10) || fifoCount == 1024) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;mpu.resetFIFO();<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;lcd.clear();<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;lcd.setCursor(0,0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;lcd.print("Overflow FIFO!");<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span>;<br>
+                    &nbsp;&nbsp;}<br>
+                </div>
+                <p><i class="fas fa-exclamation-triangle"></i> Si le FIFO déborde (plein à 1024 bytes), on le réinitialise et on affiche un message d'erreur.</p>
+                
+                <h4 class="section-subtitle"><i class="fas fa-box-open"></i> 4. Extraction du paquet de données</h4>
+                <div class="code-block">
+                    &nbsp;&nbsp;<span class="code-comment">// Lecture du FIFO</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">while</span> (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();<br>
+                    &nbsp;&nbsp;mpu.getFIFOBytes(fifoBuffer, packetSize);<br>
+                    &nbsp;&nbsp;fifoCount -= packetSize;<br>
+                </div>
+                <p><i class="fas fa-info-circle"></i> On lit un paquet complet de données depuis la FIFO et on les stocke dans <strong>fifoBuffer</strong>.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-calculator"></i> Calcul des angles d'orientation</h3>
+                <div class="code-block">
+                    &nbsp;&nbsp;<span class="code-comment">// Calcul des angles avec les quaternions</span><br>
+                    &nbsp;&nbsp;mpu.dmpGetQuaternion(&q, fifoBuffer);<br>
+                    &nbsp;&nbsp;mpu.dmpGetGravity(&gravity, &q);<br>
+                    &nbsp;&nbsp;mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-comment">// Conversion en degrés</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">float</span> yaw = ypr[0] * 180/M_PI;<br>
+                    &nbsp;&nbsp;<span class="code-keyword">float</span> pitch = ypr[1] * 180/M_PI;<br>
+                    &nbsp;&nbsp;<span class="code-keyword">float</span> roll = ypr[2] * 180/M_PI;<br>
+                </div>
+                
+                <div class="highlight">
+                    <p><i class="fas fa-shapes"></i> Explication des concepts :</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-project-diagram"></i> <strong>Quaternions (q)</strong> - Format mathématique pour représenter l'orientation dans l'espace 3D sans ambiguïté</li>
+                        <li><i class="fas fa-weight"></i> <strong>Gravité (gravity)</strong> - Vecteur calculé à partir des quaternions</li>
+                        <li><i class="fas fa-compass"></i> <strong>Yaw-Pitch-Roll (ypr)</strong> - Les trois angles d'orientation :
+                            <ul>
+                                <li><strong>Yaw</strong> : rotation horizontale (lacet)</li>
+                                <li><strong>Pitch</strong> : basculement avant/arrière (tangage)</li>
+                                <li><strong>Roll</strong> : basculement gauche/droite (roulis)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-rocket"></i> Calcul de l'accélération linéaire</h3>
+                <div class="code-block">
+                    &nbsp;&nbsp;<span class="code-comment">// Accélération linéaire réelle (sans gravité)</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">VectorInt16</span> aa; <span class="code-comment">// Accélération brute</span><br>
+                    &nbsp;&nbsp;mpu.dmpGetAccel(&aa, fifoBuffer);<br>
+                    &nbsp;&nbsp;mpu.dmpGetLinearAccel(&aaReal, &aa, &gravity);<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-comment">// Calcul de l'accélération totale</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">float</span> acc = sqrt(pow(aaReal.x, 2) + pow(aaReal.y, 2) + pow(aaReal.z, 2));<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-comment">// Filtrage passe-bas sur l'accélération Z</span><br>
+                    &nbsp;&nbsp;accZ_filtered = alpha * aaReal.z + (1 - alpha) * accZ_filtered;<br>
+                </div>
+                
+                <p><i class="fas fa-filter"></i> Le filtre passe-bas simple (type moyenne pondérée) lisse les valeurs et supprime les variations brusques.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-directions"></i> Détection de la direction du mouvement</h3>
+                <div class="code-block">
+                    &nbsp;&nbsp;<span class="code-comment">// Appel de la fonction de détection</span><br>
+                    &nbsp;&nbsp;detectDirection(yaw, pitch, roll, accZ_filtered);<br>
+                    } <span class="code-comment">// Fin de la fonction loop()</span><br><br>
+                    
+                    <span class="code-keyword">void</span> <span class="code-function">detectDirection</span>(<span class="code-keyword">float</span> yaw, <span class="code-keyword">float</span> pitch, <span class="code-keyword">float</span> roll, <span class="code-keyword">float</span> accZf) {<br>
+                    &nbsp;&nbsp;<span class="code-comment">// Calcul des variations d'angles</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">float</span> dPitch = pitch - prevPitch;<br>
+                    &nbsp;&nbsp;<span class="code-keyword">float</span> dRoll = roll - prevRoll;<br>
+                    &nbsp;&nbsp;<span class="code-keyword">float</span> dYaw = yaw - prevYaw;<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-comment">// Détection basée sur l'accélération Z</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">if</span> (abs(accZf) > seuilAccZ) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;direction = (accZf > 0) ? "Haut" : "Bas";<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="code-comment">// Détection basée sur le tangage (pitch)</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">else if</span> (abs(dPitch) > abs(dRoll) && abs(dPitch) > seuilAngle) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;direction = (dPitch > 0) ? "Avant" : "Arriere";<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="code-comment">// Détection basée sur le roulis (roll)</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">else if</span> (abs(dRoll) > seuilAngle) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;direction = (dRoll > 0) ? "Droite" : "Gauche";<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="code-comment">// Détection basée sur le lacet (yaw)</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">else if</span> (abs(dYaw) > seuilAngle) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;direction = (dYaw > 0) ? "Rot Droite" : "Rot Gauche";<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="code-comment">// Aucun mouvement significatif détecté</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">else</span> {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;direction = "Stable";<br>
+                    &nbsp;&nbsp;}<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-comment">// Mise à jour des valeurs précédentes</span><br>
+                    &nbsp;&nbsp;prevYaw = yaw;<br>
+                    &nbsp;&nbsp;prevPitch = pitch;<br>
+                    &nbsp;&nbsp;prevRoll = roll;<br>
+                    }
+                </div>
+                
+                <div class="highlight">
+                    <p><i class="fas fa-project-diagram"></i> Logique de détection :</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-arrow-up"></i> Si l'accélération sur l'axe Z dépasse le seuil → mouvement Haut/Bas</li>
+                        <li><i class="fas fa-arrows-alt-v"></i> Si variation de tangage (pitch) significative → mouvement Avant/Arrière</li>
+                        <li><i class="fas fa-arrows-alt-h"></i> Si variation de roulis (roll) significative → mouvement Gauche/Droite</li>
+                        <li><i class="fas fa-sync-alt"></i> Si variation de lacet (yaw) significative → rotation Gauche/Droite</li>
+                        <li><i class="fas fa-pause-circle"></i> Sinon → état Stable</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-tv"></i> Affichage des résultats</h3>
+                <div class="code-block">
+                    &nbsp;&nbsp;<span class="code-comment">// Affichage LCD</span><br>
+                    &nbsp;&nbsp;lcd.clear();<br>
+                    &nbsp;&nbsp;lcd.setCursor(0,0);<br>
+                    &nbsp;&nbsp;lcd.print("Dir: ");<br>
+                    &nbsp;&nbsp;lcd.print(direction);<br>
+                    &nbsp;&nbsp;Serial.print("Dir=");<br>
+                    &nbsp;&nbsp;Serial.println(direction);<br>
+                    &nbsp;&nbsp;lcd.setCursor(0,1);<br>
+                    &nbsp;&nbsp;lcd.print("a = ");<br>
+                    &nbsp;&nbsp;lcd.print(acc);<br>
+                    &nbsp;&nbsp;lcd.print("m/s^2");<br>
+                    &nbsp;&nbsp;delay(500);<br>
+                    }
+                </div>
+                <p><i class="fas fa-info-circle"></i> L'utilisateur voit directement la direction détectée en texte simple sur l'écran LCD.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-sitemap"></i> Résumé du cycle loop()</h3>
+                
+                <table class="flow-table">
+                    <thead>
+                        <tr>
+                            <th>Étape</th>
+                            <th>Action</th>
+                            <th>Condition/Remarque</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Vérifie si le DMP est prêt</td>
+                            <td>if (!dmpReady)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Attend des nouvelles données</td>
+                            <td>if (!mpuInterrupt && fifoCount < packetSize)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Vérifie l'absence d'erreur FIFO</td>
+                            <td>if (fifoCount == 1024) → Overflow</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Lit les données FIFO</td>
+                            <td>mpu.getFIFOBytes()</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Calcule Yaw, Pitch, Roll</td>
+                            <td>mpu.dmpGetYawPitchRoll()</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Calcule accélération filtrée</td>
+                            <td>accZ_filtered = ...</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Détecte la direction</td>
+                            <td>detectDirection()</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Affiche le résultat</td>
+                            <td>lcd.print()</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="highlight">
+                    <p><i class="fas fa-sync"></i> En résumé, ce programme :</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-sensor"></i> Utilise un capteur MPU6050 pour détecter les mouvements</li>
+                        <li><i class="fas fa-calculator"></i> Calcule automatiquement les angles grâce au DMP</li>
+                        <li><i class="fas fa-filter"></i> Filtre les données pour éviter les erreurs</li>
+                        <li><i class="fas fa-tv"></i> Affiche le résultat en temps réel sur LCD</li>
+                        <li><i class="fas fa-bolt"></i> Fonctionne efficacement grâce aux interruptions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+            
+            <!-- Conclusion -->
+            <section id="conclusion">
+                <h2 class="section-title"><i class="fas fa-flag-checkered"></i> Conclusion</h2>
+                <div class="highlight">
+                    <p>Ce projet de détection d'orientation et de mouvement à l'aide du capteur MPU6050 et du microcontrôleur ATmega328P constitue une introduction concrète aux systèmes embarqués intelligents. Il montre comment des données brutes issues de capteurs peuvent être filtrées, fusionnées, interprétées, puis affichées en temps réel pour donner un retour visuel clair à l'utilisateur.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-lightbulb"></i> Points Forts du Projet</h3>
+                    <ul class="component-list">
+                        <li><i class="fas fa-check-circle"></i> Architecture simple et accessible (protocole I2C, LCD I2C, filtrage logiciel)</li>
+                        <li><i class="fas fa-check-circle"></i> Détection de gestes en temps réel avec précision</li>
+                        <li><i class="fas fa-check-circle"></i> Approche pédagogique pour comprendre la communication capteur-microcontrôleur</li>
+                        <li><i class="fas fa-check-circle"></i> Traitement des signaux inertiels et visualisation de données embarquées</li>
+                        <li><i class="fas fa-check-circle"></i> Documentation technique complète et structurée</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-rocket"></i> Applications Futures</h3>
+                    <ul class="component-list">
+                        <li><i class="fas fa-gamepad"></i> Interfaces gestuelles pour contrôle de dispositifs</li>
+                        <li><i class="fas fa-watch"></i> Dispositifs portables pour le suivi d'activité</li>
+                        <li><i class="fas fa-robot"></i> Robots autonomes pour la navigation spatiale</li>
+                        <li><i class="fas fa-hands-helping"></i> Systèmes d'assistance pour personnes à mobilité réduite</li>
+                        <li><i class="fas fa-vr-cardboard"></i> Réalité virtuelle et jeux immersifs</li>
+                        <li><i class="fas fa-plane"></i> Boîtes noires industrielles pour l'enregistrement de données</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight">
+                    <p>Cette réalisation met en avant l'importance d'une documentation rigoureuse, d'une approche expérimentale structurée et d'une maîtrise progressive des outils matériels et logiciels du domaine des systèmes embarqués.</p>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3 class="section-subtitle"><i class="fas fa-map-signs"></i> Navigation rapide</h3>
+            <ul class="component-list">
+                <li><a href="#test"><i class="fas fa-flask"></i> Test technique</a></li>
+                <li><a href="#material"><i class="fas fa-microchip"></i> Matériel</a></li>
+                <li><a href="#architecture"><i class="fas fa-project-diagram"></i> Architecture</a></li>
+                <li><a href="#code"><i class="fas fa-code"></i> Explication du Code</a></li>
+                <li><a href="#conclusion"><i class="fas fa-flag-checkered"></i> Conclusion</a></li>
+            </ul>
+            
+            <h3 class="section-subtitle"><i class="fas fa-download"></i> Ressources</h3>
+            <ul class="component-list">
+                <li><a href="doc/DOCUMENTATION TECHNIQUE DES TESTS EN ELECTRONIQUE.pdf"><i class="fas fa-file-pdf"></i> Documentation complète (PDF)</a></li>
+                <li><a href="code/code_source.zip"><i class="fas fa-file-code"></i> Code source complet</a></li>
+                <li><a href="https://vimeo.com/1093499371" target="_blank"><i class="fas fa-video"></i> Vidéo de démonstration</a></li>
+                <li><a href="doc/schemas.zip"><i class="fas fa-drafting-compass"></i> Schémas du circuit</a></li>
+            </ul>
+            
+            <h3 class="section-subtitle"><i class="fas fa-cube"></i> Composants clés</h3>
+            <ul class="component-list">
+                <li><i class="fas fa-microchip"></i> ATmega328P</li>
+                <li><i class="fas fa-compress-arrows-alt"></i> MPU6050</li>
+                <li><i class="fas fa-tv"></i> LCD I2C 16x2</li>
+                <li><i class="fas fa-plug"></i> Module FTDI</li>
+                <li><i class="fas fa-bolt"></i> Alimentation 5V</li>
+                <li><i class="fas fa-tools"></i> Quartz 16 MHz</li>
+            </ul>
+            
+            
+        </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-brand">
+                    <i class="fas fa-microchip footer-icon"></i>
+                    <div>
+                        <h3>ROBO<span>STIM</span></h3>
+                        <p>Documentation technique du test "Acceléromètre et Gyroscope "</p>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens utiles</h3>
+                    <ul class="component-list">
+                        <li><a href="https://github.com/jrowberg/i2cdevlib/tree/master/Arduino/MPU6050" target="_blank"><i class="fas fa-link"></i> Bibliothèque MPU6050</a></li>
+                        <li><a href="https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf" target="_blank"><i class="fas fa-link"></i> Documentation ATmega328P</a></li>
+                        <li><a href="https://i2c.info/" target="_blank"><i class="fas fa-link"></i> Guide I2C</a></li>
+                        <li><a href="https://www.kicad.org/" target="_blank"><i class="fas fa-link"></i> KiCad pour schémas</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <div class="copyright-content">
+                    <p>&copy; 2025 Documentation technique des tests en Électronique de la team ROBOSTIM.</p>
+                    <div class="footer-badge">
+                        <i class="fas fa-trophy"></i> TRC 25
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+</body>
+</html>
