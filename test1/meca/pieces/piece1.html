@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRC25 - Pièce 1</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <h1>TRC25 - Conception Mécanique</h1>
+        </div>
+    </header>
+
+<nav class="sidebar">
+    <ul>
+        <li><a href="../index.html">Introduction</a></li> <li>
+            <span class="nav-category">Pièces Individuelles</span>
+            <ul>
+                <li><a href="piece1.html">Pièce 1</a></li> <li><a href="piece2.html">Pièce 2</a></li>
+                <li><a href="piece3.html">Pièce 3</a></li>
+                <li><a href="piece4.html">Pièce 4</a></li>
+            </ul>
+        </li>
+        <li><a href="../assemblage/assemblage_pince.html">Assemblage de la Pince</a></li> 
+        <li><a href="../telechargements.html">Fichiers SolidWorks</a></li> 
+        <li><a href="#" target="_blank">Dépôt GitHub</a></li>
+    </ul>
+</nav>
+    <main class="content">
+        <section>
+            <h2>I. Première Pièce</h2>
+
+            <h3>1. Présentation générale de la pièce 1</h3>
+            <p><strong>Nom de la pièce :</strong> Pièce 1<br>
+            <strong>Date de création :</strong> 07/06/2025<br>
+            <strong>Échelle :</strong> 1/1</p>
+
+            <h3>2. Caractéristiques techniques de la pièce 1</h3>
+            <ul>
+                <li><strong>Système d'unité :</strong> MMGS (millimètre, gramme, seconde).</li>
+                <li><strong>Décimale :</strong> 2 (toutes les dimensions doivent être exprimées avec deux chiffres après la virgule.)</li>
+                <li><strong>Tolérance :</strong> ± 5% (marge d'erreur).</li>
+                <li><strong>Matériaux et densité :</strong> Acier AISI 1020 ; Densité : 0,0079 g/mm³.</li>
+                <li><strong>Remarque générale :</strong> Tous les trous sont débouchants sauf indication contraire.</li>
+            </ul>
+
+            <h3>3. Représentation graphique de la pièce 1</h3>
+            <div class="image-grid">
+                <div class="image-item">
+                    <p><img src="../images/piece1/1.png" alt=""></p>
+                </div>
+            </div>
+
+            <h3>4. Processus de réalisation de la pièce 1</h3>
+
+            <h4>1ère Étape : Configuration des paramètres initiaux du dessin (système d'unité et matériaux)</h4>
+            <h5>Configuration du système d'unité</h5>
+            <p>Dans SolidWorks, regardez tout en bas à droite de l'interface. Vous verrez une zone qui affiche le système d'unité actuel (MMGS, IPS, etc.).</p>
+            <ul>
+                <li>Choisissez <strong>MMGS</strong>.</li>
+            </ul>
+            <p>La configuration du système d'unité est maintenant définie.</p>
+            <h5>Mise en place du matériau (Acier AISI 1020)</h5>
+            <ol>
+                <li>Naviguez vers la pièce dans l'arbre de création, situé à gauche de l'interface.</li>
+                <li>Faites un clic droit sur la pièce, puis sélectionnez "Matériau".</li>
+                <li>Cliquez sur "Éditer le matériau".</li>
+                <li>Dans la fenêtre qui s'ouvre, parcourez la liste des matériaux prédéfinis.</li>
+                <li>Cliquez sur la flèche à côté de "Acier" pour dérouler la catégorie.</li>
+                <li>Sélectionnez <strong>AISI 1020</strong>.</li>
+                <li>Enfin, cliquez sur "Appliquer", puis sur "Fermer" pour valider le choix.</li>
+            </ol>
+            <p>La configuration du matériau est terminée.</p>
+            <h4>2ème Étape : Réaliser l'extrusion</h4>
+            <h5>Réalisation de l'esquisse à extruder</h5>
+            <ol>
+                <li><strong>Configuration du plan :</strong>
+                    <ul>
+                        <li>Dans l'arbre de création à gauche, sélectionnez le "Plan de face".</li>
+                        <li>Cliquez ensuite sur l'icône "Esquisse" dans la barre d'outils (ou clic droit > "Esquisse").</li>
+                        <li>Le plan bascule automatiquement en vue normale (si ce n'est pas le cas, appuyez sur Ctrl + 8).</li>
+                    </ul>
+                </li>
+                <li><strong>Création des cercles principaux :</strong>
+                    <ul>
+                        <li>Sélectionnez l'outil "Cercle" (icône dans la barre d'outils d'esquisse).</li>
+                        <li>Tracez un premier cercle en cliquant sur l'origine du repère pour définir son centre, puis en cliquant une deuxième fois pour définir son périmètre.</li>
+                        <li>Utilisez l'outil "Cote intelligente" pour définir son diamètre à <strong>100 mm</strong>.</li>
+                        <li>Tracez un deuxième cercle de diamètre <strong>50 mm</strong>, dont le centre est distant de <strong>150 mm</strong> du premier cercle. Utilisez l'outil "Cote intelligente" pour définir la distance entre les centres.</li>
+                        <li>Pour aligner les centres horizontalement, sélectionnez les deux centres (Ctrl + clic), puis choisissez la relation "Horizontal" dans le menu à gauche.</li>
+                    </ul>
+                </li>
+                <li><strong>Ajout de cercles concentriques :</strong>
+                    <ul>
+                        <li>Tracez un premier cercle de diamètre <strong>150 mm</strong> concentrique au cercle de 100 mm de diamètre.</li>
+                        <li>Tracez un deuxième cercle de diamètre <strong>80 mm</strong> concentrique au cercle de 50 mm de diamètre.</li>
+                    </ul>
+                </li>
+                <li><strong>Raccordement des grands cercles par un arc :</strong>
+                    <ul>
+                        <li>Dans la barre d'outils Esquisse, cliquez sur "Arc" > "Arc de 3 points".</li>
+                        <li>Cliquez une première fois pour le point de départ de l'arc, un deuxième clic pour le point d'arrivée, et un troisième clic pour définir la courbure.</li>
+                        <li>Utilisez l'outil "Cote intelligente" pour définir le rayon de l'arc à <strong>75 mm</strong>.</li>
+                        <li>Pour rendre l'arc tangent aux cercles : maintenez la touche Ctrl, cliquez sur le cercle et l'arc. Dans la liste du menu à gauche, choisissez "Tangente", puis cliquez sur OK.</li>
+                    </ul>
+                </li>
+                <li><strong>Création de l'ouverture sur les petits cercles :</strong>
+                    <ul>
+                        <li>Utilisez l'outil "Ligne" pour délimiter les zones d'ouverture.</li>
+                        <li>Appliquez l'outil "Décalage des entités" : décalez de <strong>10 mm</strong> de façon bidirectionnelle à partir des lignes tracées.</li>
+                        <li>Utilisez l'outil "Ajuster les entités" pour supprimer les segments superflus et obtenir la forme finale de l'ouverture.</li>
+                    </ul>
+                </li>
+                <li><strong>Symétrie des entités :</strong>
+                    <ul>
+                        <li>Tracez une ligne de construction pour servir d'axe de symétrie (généralement l'axe X).</li>
+                        <li>Prenez la fonction "Symétrie des entités". Dans la case "Entités à symétriser", sélectionnez l'arc précédemment créé et les lignes de l'ouverture. Dans la case "Symétrie par rapport à", cliquez sur la ligne de construction.</li>
+                        <li>Validez pour créer les entités symétriques.</li>
+                    </ul>
+                    <div class="image-item">
+                        <p><img src="../images/piece1/2.png" alt=""></p>
+                    </div>
+                </li>
+                <li><strong>Ajustement de l'arc pour extrusion unique :</strong>
+                    <p>Après validation, ajustez l'arc du grand cercle situé entre les deux arcs de raccordement. Cette étape est essentielle pour garantir que l'esquisse constitue une géométrie fermée et continue, permettant ainsi une extrusion en une seule opération. Lorsque l'esquisse contient des discontinuités, la fonction d'extrusion exige la sélection manuelle de chaque zone. Pour éviter cela, supprimez les segments superflus ou raccordez correctement les entités afin de former une seule surface exploitable.</p>
+                    <div class="image-item">
+                        <p><img src="../images/piece1/3.png" alt=""></p>
+                    </div>
+                </li>
+
+            </ol>
+            <h5>Extrusion de l'esquisse</h5>
+            <ol>
+                <li>Allez dans l'onglet <strong>Fonction</strong>, puis sélectionnez la commande <strong>"Base/Bossage extrudé"</strong>.</li>
+                <li>Sélectionnez l'esquisse précédemment ajustée.</li>
+                <li>Dans le champ de profondeur, modifiez la valeur par défaut à <strong>20 mm</strong> pour définir la hauteur de l'extrusion.</li>
+                <li>Validez l'opération pour obtenir le volume extrudé.</li>
+            </ol>
+            <div class="image-item">
+                <p><img src="../images/piece1/4.png" alt=""></p>
+            </div>
+            <p>Après la validation, vous obtenez le dessin ci-dessous :</p>
+            <div class="image-item">
+                <p><img src="../images/piece1/5.png" alt=""></p>
+            </div>
+            <h4>3ème Étape : Enlèvement de la matière</h4>
+            <ol>
+                <li>Sélectionnez la face supérieure de la pièce comme plan d'esquisse.</li>
+                <li>Dessinez un cercle sur cette face, concentrique aux grands cercles.</li>
+                <li>Cotez ce cercle avec un diamètre de <strong>135.6 mm</strong>.</li>
+                <li>Allez dans l'onglet <strong>Fonction</strong>, puis sélectionnez la commande <strong>"Enlèvement de matière extrudé"</strong>.</li>
+                <li>Appliquez cette fonction sur une profondeur de <strong>10 mm</strong>.</li>
+            </ol>
+            <div class="image-grid">
+                <div class="image-item">
+                    <p><img src="../images/piece1/6.png" alt=""></p>
+                </div>
+                <div class="image-item">
+                    <p><img src="../images/piece1/7.png" alt=""></p>
+                </div>
+            </div>
+            <p>Après validation, vous obtenez :</p>
+            <div class="image-item">
+                <p><img src="../images/piece1/8.png" alt=""></p>
+            </div>
+            <h4>4ème Étape : Évaluation de la masse</h4>
+            <ol>
+                <li>Allez dans l'onglet <strong>Évaluer</strong> dans la barre d'outils.</li>
+                <li>Appuyez sur <strong>"Propriétés de masse"</strong>.</li>
+            </ol>
+            <p>Enfin, nous avons obtenu la masse de la Pièce 1, qui est de <strong>2850,16 g</strong>.</p>
+            </section>
+    </main>
+
+<footer>
+    <p>&copy; 2025 ROBOSTIM TRC25. Tous droits réservés.</p>
+</footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>

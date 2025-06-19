@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRC25 - Pièce 2</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <h1>TRC25 - Conception Mécanique</h1>
+        </div>
+    </header>
+
+<nav class="sidebar">
+    <ul>
+        <li><a href="../index.html">Introduction</a></li> <li>
+            <span class="nav-category">Pièces Individuelles</span>
+            <ul>
+                <li><a href="piece1.html">Pièce 1</a></li> <li><a href="piece2.html">Pièce 2</a></li>
+                <li><a href="piece3.html">Pièce 3</a></li>
+                <li><a href="piece4.html">Pièce 4</a></li>
+            </ul>
+        </li>
+        <li><a href="../assemblage/assemblage_pince.html">Assemblage de la Pince</a></li> 
+        <li><a href="../telechargements.html">Fichiers SolidWorks</a></li> 
+        <li><a href="#" target="_blank">Dépôt GitHub</a></li>
+    </ul>
+</nav>
+    <main class="content">
+        <section>
+            <h2>II. Deuxième Pièce</h2>
+
+            <h3>1. Présentation générale de la pièce 2</h3>
+            <p><strong>Nom de la pièce :</strong> Pièce 2<br>
+            <strong>Date de création :</strong> 07/06/2025<br>
+            <strong>Échelle :</strong> 1/1</p>
+
+            <h3>2. Caractéristiques techniques de la pièce 2</h3>
+            <ul>
+                <li><strong>Système d'unité :</strong> MMGS (millimètre, gramme, seconde).</li>
+                <li><strong>Décimale :</strong> 2 (toutes les dimensions doivent être exprimées avec deux chiffres après la virgule.)</li>
+                <li><strong>Tolérance :</strong> ± 5% (marge d'erreur).</li>
+                <li><strong>Matériaux et densité :</strong> Aluminium Alliage 1060 ; Densité : 0.0027 g/mm³.</li>
+                <li><strong>Remarque générale :</strong> Tous les trous sont débouchants sauf indication contraire.</li>
+            </ul>
+
+            <h3>3. Représentation graphique de la pièce 2</h3>
+            <p class="image-item"><img src="../images/piece2/1.png" alt=""></p>
+            <h3>4. Processus de réalisation de la pièce 2</h3>
+
+            <h4>1ère Étape : Réalisation de la première extrusion</h4>
+            <h5>Réalisation de l'esquisse à extruder</h5>
+            <ol>
+                <li><strong>Traçage des cercles :</strong>
+                    <ul>
+                        <li>Tracez successivement les cercles de diamètres <strong>20 mm, 38 mm, 34 mm et 64 mm</strong>.</li>
+                        <li>Cotez chaque cercle au fur et à mesure de leur création.</li>
+                    </ul>
+                </li>
+                <li><strong>Cotations et tracé des arcs :</strong>
+                    <ul>
+                        <li>Cotez l'écart de <strong>75 mm</strong> entre les centres des deux cercles principaux (64 mm et 38 mm).</li>
+                        <li>Utilisez la fonction <strong>"Arc par 3 points"</strong> dans l'onglet Esquisse pour tracer les deux arcs reliant ces deux cercles.</li>
+                    </ul>
+                </li>
+                <li><strong>Alignement des centres :</strong>
+                    <ul>
+                        <li>Sélectionnez le premier centre, maintenez la touche Ctrl enfoncée, cliquez sur le deuxième centre, puis relâchez Ctrl.</li>
+                        <li>Une barre d'outils contextuelle apparaît : cliquez sur <strong>"Verticale"</strong> pour aligner les deux centres verticalement.</li>
+                    </ul>
+                </li>
+                <li><strong>Tangence des arcs :</strong>
+                    <ul>
+                        <li>Rendez les deux arcs tangents aux cercles de diamètre 64 mm et 38 mm à l'aide de la contrainte de tangence.</li>
+                    </ul>
+                </li>
+            </ol>
+            <div class="image-item">
+                <p><img src="../images/piece2/2.png" alt=""></p>
+            </div>
+            <h4>Première extrusion (partie supérieure)</h4>
+            <ol>
+                <li>Cliquez sur <strong>Fonction → Extruder</strong>, puis sélectionnez la zone délimitée par les deux arcs.</li>
+                <li>Choisissez la direction <strong>"Plan milieu"</strong> pour faciliter la création symétrique des futures pièces.</li>
+                <li>Donnez une épaisseur d'extrusion de <strong>10 mm</strong>.</li>
+            </ol>
+            <div class="image-item">
+                <p><img src="../images/piece2/3.png" alt=""></p>
+            </div>
+            <h4>2ème Étape : Deuxième extrusion (Cylindres creux)</h4>
+            <ol>
+                <li>Réaffichez l'esquisse utilisée précédemment en la sélectionnant, puis en cliquant sur <strong>"Montrer"</strong>.</li>
+                <li>Maintenez la touche Ctrl enfoncée et sélectionnez les quatre cercles (ceux de 20mm, 38mm, 34mm, 64mm) simultanément.</li>
+                <li>Cliquez sur la fonction <strong>"Extruder"</strong> et appliquez l'extrusion sur les zones sélectionnées.</li>
+                <li>Veillez à conserver la direction <strong>"Plan milieu"</strong> pour maintenir la symétrie du modèle.</li>
+                <li>Définissez une épaisseur de <strong>30 mm</strong> pour cette extrusion.</li>
+            </ol>
+            <div class="image-item">
+                <p><img src="../images/piece2/4.png" alt=""></p>
+            </div>
+            <p>Après avoir mis l'épaisseur, validez pour obtenir le dessin ci-dessous :</p>
+            <div class="image-item">
+                <p><img src="../images/piece2/5.png" alt=""></p>
+            </div>
+            <h4>3ème Étape : Troisième extrusion</h4>
+            <h5>Réalisation de l'esquisse à extruder</h5>
+            <ol>
+                <li>Sélectionnez une face en bleu comme plan d'esquisse.</li>
+                <li>Pour faire la conversion, sélectionnez le contour du petit cercle de diamètre <strong>34 mm</strong> et validez la fonction <strong>"Convertir entités"</strong>.</li>
+                <li>Après cela, décalez le contour converti de <strong>4.5 mm</strong> vers l'extérieur.</li>
+            </ol>
+            <div class="image-grid">
+                <p class="image-item"><img src="../images/piece2/6.png" alt=""></p>
+                <p class="image-item"><img src="../images/piece2/7.png" alt=""></p>
+            </div>
+            <p>Après validation, vous obtenez l'esquisse ci-dessous :</p>
+            <p class="image-item"><img src="../images/piece2/8.png" alt=""></p>
+            <h5>Extrusion de la partie délimitée par les deux cercles</h5>
+            <ol>
+                <li>Allez sur la fonction <strong>"Base/Bossage extrudé"</strong> et faites l'extrusion sur <strong>15 mm</strong>.</li>
+            </ol>
+            <p class="image-item"><img src="../images/piece2/9.png" alt=""></p>
+            <p>Après l'extrusion, on obtient :</p>
+            <p class="image-item"><img src="../images/piece2/15.png" alt=""></p>
+            <h4>4ème Étape : Enlèvement de matière</h4>
+            <h5>Esquisse pour enlèvement de matière</h5>
+            <ol>
+                <li>Sélectionnez la face colorée en bleu comme plan d'esquisse.</li>
+                <li>Dessinez deux cercles destinés à l'enlèvement de matière.</li>
+                <li>Convertissez le contour extérieur de la pièce récemment extrudée à l'aide de la fonction <strong>"Convertir entités"</strong>.</li>
+                <li>Appliquez un décalage de <strong>6 mm</strong> vers l'intérieur à partir de ce contour pour définir la zone à retirer.</li>
+            </ol>
+            <div class="image-grid">   
+                <p class="image-item"><img src="../images/piece2/11.png" alt=""></p>
+                <p class="image-item"><img src="../images/piece2/12.png" alt=""></p>
+                <p class="image-item"><img src="../images/piece2/13.png" alt=""></p>
+            </div>
+            <h5>Enlèvement de la matière</h5>
+            <ol>
+                <li>Allez dans la fonction <strong>"Enlèvement de matière extrudé"</strong> et exécutez la fonction sur les deux cercles que vous avez créés.</li>
+                <li>Définissez la profondeur d'extrusion à <strong>5 mm</strong>.</li>
+            </ol>
+            <div class="image-grid">
+                <p class="image-item"><img src="../images/piece2/14.png" alt=""></p>
+                <p class="image-item"><img src="../images/piece2/10.png" alt=""></p>
+            </div>
+            <p>Après avoir appliqué la fonction, on obtient le dessin ci-dessous :</p>
+            <div class="image-grid">
+                <p class="image-item"><img src="../images/piece2/16.png" alt=""></p>
+            </div>
+            <h4>5ème Étape : Configuration du matériau et évaluation de masse</h4>
+            <h5>Configuration du matériau</h5>
+            <p>Suivez la même procédure que pour la Pièce 1 pour définir le matériau sur <strong>Aluminium Alliage 1060</strong>.</p>
+            <h5>Évaluation de masse</h5>
+            <p>Suivez la même procédure que pour la Pièce 1 pour évaluer la masse. </p>
+            <p>Enfin, nous avons trouvé pour la masse de la Pièce 2 une masse de <strong>297,29 g</strong>.</p>
+        </section>
+    </main>
+
+<footer>
+    <p>&copy; 2025 ROBOSTIM TRC25. Tous droits réservés.</p>
+</footer>    <script src="../js/script.js"></script>
+</body>
+</html>
