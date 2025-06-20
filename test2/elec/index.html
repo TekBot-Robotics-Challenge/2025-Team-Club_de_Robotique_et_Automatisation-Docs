@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Technique - La Boîte Noire | RoboStim</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-microchip"></i>
+                <h1>ROBO<span>STIM</span></h1>
+            </div>
+
+            <!-- Bouton Retour -->
+            <button id="backButton" class="back-button">
+                <i class="fas fa-arrow-left"></i> Retour à la page précédente
+            </button>
+
+            <button class="menu-toggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#test" class="active"><i class="fas fa-flask"></i> Présentation</a></li>
+                    <li><a href="#material"><i class="fas fa-microchip"></i> Matériel</a></li>
+                    <li><a href="#architecture"><i class="fas fa-project-diagram"></i> Architecture</a></li>
+                    <li><a href="#code"><i class="fas fa-code"></i> Code</a></li>
+                    <li><a href="#conclusion"><i class="fas fa-flag-checkered"></i> Conclusion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>Documentation technique des tests en Électronique</h2>
+            <p><strong>Test 2 :</strong> La boîte noire</p>
+            <div class="btn-container" style="margin-top: 30px;">
+                <a href="#test" class="btn">Commencer la lecture</a>
+                <a href="" target="_blank" class="btn btn-outline">
+                    <i class="fas fa-video"></i> Voir la démo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div class="content">
+            <div class="hackathon-badge">
+                <i class="fas fa-trophy"></i> TRC 25
+            </div>
+            
+            <!-- Test Technique Section -->
+            <section id="test">
+                <h2 class="section-title"><i class="fas fa-flask"></i> Test 2 : La boîte noire</h2>
+                <p>Dans de nombreux domaines industriels tels que l'aéronautique, l'automobile ou encore le ferroviaire, il est indispensable de disposer de systèmes capables d'enregistrer en temps réel les paramètres de fonctionnement des engins. Ces systèmes, appelés communément <strong>boîtes noires</strong>, permettent de conserver des informations critiques relatives à l'activité de l'appareil.</p>
+                
+                <div class="highlight">
+                    <p>En cas de dysfonctionnement ou d'accident, les données recueillies servent à analyser les événements ayant précédé l'incident et à comprendre ses causes.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-cogs"></i> Principe des boîtes noires industrielles</h3>
+                    <ul class="component-list">
+                        <li><i class="fas fa-database"></i> Enregistrement de données physiques (vitesse, position, accélérations, etc.)</li>
+                        <li><i class="fas fa-microphone"></i> Stockage des communications des opérateurs ou pilotes</li>
+                        <li><i class="fas fa-shield-alt"></i> Conservation des données même après un arrêt brutal de l'appareil</li>
+                    </ul>
+                </div>
+                
+                <h3 class="section-subtitle"><i class="fas fa-bullseye"></i> Objectifs du test</h3>
+                <p>Dans le cadre de la Tekbot Robotics Challenge, l'objectif de ce test est de concevoir une version simplifiée d'une boîte noire. Ce système devra être capable de :</p>
+                
+                <ul class="step-list">
+                    <li>Mesurer la position et la vitesse de déplacement dans l'espace à l'aide d'un capteur combiné gyroscope et accéléromètre (MPU6050)</li>
+                    <li>Transmettre en temps réel ces données à une station de contrôle par l'intermédiaire d'une communication I2C</li>
+                    <li>Afficher les mesures reçues sur un écran LCD connecté à la station de contrôle</li>
+                </ul>
+                
+                <div class="card">
+                    <h3><i class="fas fa-box"></i> Structure du projet</h3>
+                    <p>Ce projet est divisé en deux parties principales :</p>
+                    <ul class="component-list">
+                        <li><i class="fas fa-cube"></i> <strong>La boîte noire</strong> : une boîte autonome qui collecte les données de mouvement et les transmet</li>
+                        <li><i class="fas fa-desktop"></i> <strong>La station de contrôle</strong> : un récepteur qui reçoit les données et les affiche à l'utilisateur</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Material Section -->
+            <section id="material">
+                <h2 class="section-title"><i class="fas fa-microchip"></i> Choix du matériel</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Composants</th>
+                                <th>Référence / Broches</th>
+                                <th>Rôles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ATmega328P (Maître)</td>
+                                <td>DIP28, SDA (A4), SCL (A5), INT (2)</td>
+                                <td>Lecture MPU6050, maître I2C vers esclave externe</td>
+                            </tr>
+                            <tr>
+                                <td>ATmega328P (Esclave)</td>
+                                <td>DIP28, SDA (A4), SCL (A5)</td>
+                                <td>Réception I2C, pilotage écran LCD</td>
+                            </tr>
+                            <tr>
+                                <td>MPU6050 (GY-521)</td>
+                                <td>I2C, adresse 0x68</td>
+                                <td>Accéléromètre + gyroscope, DMP intégré</td>
+                            </tr>
+                            <tr>
+                                <td>Module MD_MAX72XX avec écran matriciel</td>
+                                <td>SPI (DATA 11, CLK 13, CS 10)</td>
+                                <td>Affichage matrice LED 8×8 (retour visuel de direction)</td>
+                            </tr>
+                            <tr>
+                                <td>Écran LCD 16×2 I2C</td>
+                                <td>SDA, SCL, VCC, GND</td>
+                                <td>Affichage texte de la station de contrôle</td>
+                            </tr>
+                            <tr>
+                                <td>Convertisseur USB-TTL</td>
+                                <td>TX, RX, VCC, GND, DTR</td>
+                                <td>Programmation et debug des ATmega328P</td>
+                            </tr>
+                            <tr>
+                                <td>Quartz 16 MHz + Condensateurs</td>
+                                <td>XTAL1/XTAL2</td>
+                                <td>Horloge stable pour chaque ATmega328P</td>
+                            </tr>
+                            <tr>
+                                <td>Régulateur 5 V (AMS1117)</td>
+                                <td>VIN (7–12 V) → VCC, GND</td>
+                                <td>Alimentation régulée</td>
+                            </tr>
+                            <tr>
+                                <td>LED témoin</td>
+                                <td>Broche 9 (Maître)</td>
+                                <td>Indicateur visuel d'envoi I2C</td>
+                            </tr>
+                            <tr>
+                                <td>Veroboard</td>
+                                <td>—</td>
+                                <td>Montage définitif, soudure des composants</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-bolt"></i> Alimentation du système</h3>
+                    <p>Pour garantir le bon fonctionnement et la fiabilité de notre système, nous avons prévu deux sources d'alimentation distinctes :</p>
+                    
+                    <div class="highlight">
+                        <h4>Alimentation principale : adaptateur secteur</h4>
+                        <ul class="component-list">
+                            <li><i class="fas fa-plug"></i> Alimente l'ensemble du système, y compris la boîte noire</li>
+                            <li><i class="fas fa-bolt"></i> Solution centralisée qui simplifie la gestion énergétique globale</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight">
+                        <h4>Alimentation de secours : batterie interne (7.4V)</h4>
+                        <ul class="component-list">
+                            <li><i class="fas fa-battery-full"></i> Placée directement dans la boîte noire</li>
+                            <li><i class="fas fa-shield-alt"></i> Assure l'autonomie du système en cas de coupure d'alimentation principale</li>
+                        </ul>
+                    </div>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-question-circle"></i> Pourquoi avoir positionné la batterie dans la boîte noire ?</h4>
+                    <ul class="letter-list">
+                        <li><strong>Réduction des pertes par effet Joule</strong> : Évite les pertes énergétiques sur de longues distances de câbles</li>
+                        <li><strong>Sécurité et fiabilité accrues</strong> : Garantit l'alimentation même en cas de choc ou déconnexion secteur</li>
+                        <li><strong>Portabilité et simplicité de maintenance</strong> : Permet de déplacer la boîte sans câblage supplémentaire</li>
+                        <li><strong>Robustesse globale</strong> : Protège la batterie contre les agressions extérieures (poussière, humidité, chocs)</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-tv"></i> Importance de l'écran matriciel</h3>
+                    <p>L'ajout d'un écran matriciel 8x8 dans la boîte noire apporte plusieurs avantages significatifs :</p>
+                    <p align="center">
+                        <img src="https://leantec.es/wp-content/uploads/2018/02/p_1_3_3_5_1335-Matriz-led-8x8-con-MAX7219-Arduino-Matrix-Prototipos-cascada.jpg" alt="Schéma" width="200">
+                    </p>
+                    
+                    <ul class="step-list">
+                        <li><strong>Visualisation instantanée</strong> : Affiche des flèches directionnelles en temps réel</li>
+                        <li><strong>Retour d'information</strong> : Permet de valider rapidement le bon fonctionnement du système</li>
+                        <li><strong>Simplicité d'utilisation</strong> : Rend le système accessible et intuitif</li>
+                        <li><strong>Intégration</strong> : Favorise une conception compacte et efficace</li>
+                        <li><strong>Esthétique</strong> : Améliore l'apparence du projet</li>
+                    </ul>
+                    
+                    <!--<div style="display: flex; justify-content: space-around; margin-top: 20px; flex-wrap: wrap;">
+                        <div style="text-align: center;">
+                            <p>Flèche gauche</p>
+                            <img src="https://via.placeholder.com/100x100/3498db/ffffff?text=←" alt="Flèche gauche" width="100">
+                        </div>
+                        <div style="text-align: center;">
+                            <p>Flèche droite</p>
+                            <img src="https://via.placeholder.com/100x100/3498db/ffffff?text=→" alt="Flèche droite" width="100">
+                        </div>
+                        <div style="text-align: center;">
+                            <p>Flèche haut</p>
+                            <img src="https://via.placeholder.com/100x100/3498db/ffffff?text=↑" alt="Flèche haut" width="100">
+                        </div>
+                        <div style="text-align: center;">
+                            <p>Flèche bas</p>
+                            <img src="https://via.placeholder.com/100x100/3498db/ffffff?text=↓" alt="Flèche bas" width="100">
+                        </div>
+                    </div>-->
+                </div>
+            </section>
+            
+            <!-- Architecture Section -->
+            <section id="architecture">
+                <h2 class="section-title"><i class="fas fa-project-diagram"></i> Architecture et fonctionnement</h2>
+                
+                <div class="card">
+                    <h3><i class="fas fa-bullseye"></i> Objectifs pédagogiques</h3>
+                    <p>L'objectif pédagogique est de permettre aux participants de :</p>
+                    
+                    <ul class="step-list">
+                        <li>Mettre en œuvre des communications entre microcontrôleurs</li>
+                        <li>Utiliser des capteurs inertiels pour mesurer des grandeurs physiques</li>
+                        <li>Organiser un projet de conception électronique complet, du prototype au système fonctionnel</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-exchange-alt"></i> Communication I2C</h3>
+                    <p>Le protocole I2C (Inter-Integrated Circuit) est une méthode de communication série largement utilisée dans les systèmes embarqués pour connecter des microcontrôleurs, capteurs et périphériques sur un même bus, en utilisant seulement deux fils :</p>
+                    
+                    <ul class="component-list">
+                        <li><i class="fas fa-exchange-alt"></i> <strong>SDA (Serial Data Line)</strong> : pour la transmission des données</li>
+                        <li><i class="fas fa-clock"></i> <strong>SCL (Serial Clock Line)</strong> : pour la synchronisation de la transmission</li>
+                    </ul>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-cogs"></i> Fonctionnement du bus I2C</h4>
+                    <ul class="step-list">
+                        <li><strong>Maître et esclaves</strong> : un périphérique maître contrôle la communication et peut interroger un ou plusieurs périphériques esclaves</li>
+                        <li><strong>Adresses uniques</strong> : chaque esclave possède une adresse unique pour une communication individuelle</li>
+                        <li><strong>Protocole de communication</strong> : 
+                            <ul class="letter-list">
+                                <li>Le maître initie la communication par un signal de démarrage (Start)</li>
+                                <li>Il envoie l'adresse de l'esclave ciblé suivie d'un bit de lecture/écriture</li>
+                                <li>L'esclave concerné répond (ACK) et la transmission de données commence</li>
+                                <li>Après chaque octet transmis, le récepteur envoie un acquittement (ACK) ou un refus (NACK)</li>
+                                <li>La communication se termine par un signal d'arrêt (Stop)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <div class="highlight">
+                        <p><i class="fas fa-check-circle"></i> <strong>Simplicité et flexibilité</strong> : Le bus I2C permet de connecter plusieurs composants avec un câblage minimal, ce qui simplifie l'intégration et la maintenance des systèmes embarqués.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-cogs"></i> Fonctionnement global</h3>
+                    <p>Le système fonctionne selon le processus suivant :</p>
+                    
+                    <ul class="step-list">
+                        <li>À la mise sous tension, le microcontrôleur maître initialise le capteur MPU6050 et la communication avec le microcontrôleur esclave</li>
+                        <li>Il lit en continu les valeurs d'accélération et de rotation fournies par le capteur</li>
+                        <li>Ces données sont traitées et converties dans un format compréhensible</li>
+                        <li>L'écran matriciel affiche une direction correspondant à l'orientation détectée</li>
+                        <li>Le maître interroge l'esclave pour vérifier s'il est prêt à recevoir des données</li>
+                        <li>Une fois la confirmation obtenue, le maître envoie les données au second microcontrôleur</li>
+                        <li>L'esclave reçoit ces informations, décode le code directionnel, enregistre les données, puis affiche la direction sur l'écran LCD</li>
+                        <li>Le maître effectue une nouvelle interrogation pour obtenir la confirmation de réception</li>
+                        <li>Une LED clignote à chaque appel du microcontrôleur maître pour visualiser l'activité</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-print"></i> Boîtiers imprimés en 3D</h3>
+                    <p>Dans le cadre de ce test, nous avons réalisé l'impression 3D de trois boîtes destinées à la boîte noire, à la station de contrôle et à l'alimentation.</p>
+                    <div class="image-container">
+                        <img src="images/10.png" alt="Schéma" width="200">
+                        <img src="images/11.png" alt="Schéma" width="200">
+                        <!--<img src="images/12.png" alt="Schéma" width="200">-->
+                        <img src="images/13.png" alt="Schéma" width="200">
+                    </div>
+
+                    <div class="highlight">
+                        <p>Cette approche présente de nombreux avantages tant pratiques qu'esthétiques :</p>
+                        <ul class="component-list">
+                            <li><i class="fas fa-ruler-combined"></i> <strong>Personnalisation et adaptabilité</strong> : Permet de concevoir des boîtes sur mesure pour chaque composant</li>
+                            <li><i class="fas fa-shield-alt"></i> <strong>Protection des composants</strong> : Protège contre les chocs, la poussière et l'humidité</li>
+                            <li><i class="fas fa-paint-brush"></i> <strong>Esthétique et présentation</strong> : Améliore l'apparence générale du projet</li>
+                            <li><i class="fas fa-tools"></i> <strong>Facilité d'accès</strong> : Ouvertures ou panneaux amovibles pour la maintenance</li>
+                            <li><i class="fas fa-plug"></i> <strong>Optimisation du câblage</strong> : Intègre des supports pour le câblage et les connexions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-microchip"></i> Réalisation du circuit</h3>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-check"></i> Test du microcontrôleur ATmega328P</h4>
+                    <p>Avant d'intégrer le microcontrôleur dans le circuit final, il est recommandé de le tester sur une breadboard :</p>
+                    
+                    <ul class="step-list">
+                        <li><strong>Montage minimal</strong> : 
+                            <ul class="letter-list">
+                                <li>Alimentation de 5V</li>
+                                <li>Cristal de 16MHz</li>
+                                <li>Deux condensateurs de 22pF</li>
+                                <li>Résistance de 10kΩ entre la broche RESET et Vcc</li>
+                            </ul>
+                        </li>
+                        <li><strong>Test de fonctionnement</strong> : Téléverser un code simple (ex: clignotement de LED) pour vérifier le bon fonctionnement</li>
+                    </ul>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-code"></i> Gravure du bootloader</h4>
+                    <p>Le bootloader permet à l'ATmega328P d'être programmé comme un Arduino classique :</p>
+                    
+                    <ul class="step-list">
+                        <li>Utiliser une carte Arduino comme programmateur</li>
+                        <li>Brancher les broches MOSI, MISO, SCK, RESET, Vcc et GND</li>
+                        <li>Dans l'IDE Arduino : sélectionner "Arduino as ISP", puis "Burn Bootloader"</li>
+                        <li>Choisir le modèle approprié (ATmega328 sur breadboard ou Arduino Uno)</li>
+                    </ul>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-drafting-compass"></i> Conception du schéma sous KiCad</h4>
+                    <p>Le schéma du circuit a été conçu pour mesurer les mouvements avec le capteur MPU6050 tout en intégrant l'écran matriciel :</p>
+                    
+                    <ul class="step-list">
+                        <li>Les mesures sont traitées par l'ATmega328P</li>
+                        <li>Les résultats sont affichés sur l'écran LCD et l'écran matriciel</li>
+                        <li>Tous les composants communiquent via I2C</li>
+                    </ul>
+                    
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-plug"></i> Soudure des composants</h4>
+                    <p>Étapes de soudure des composants :</p>
+                    
+                    <ul class="step-list">
+                        <li><strong>Préparation</strong> : 
+                            <ul class="letter-list">
+                                <li>Préchauffer le fer à souder (300-350°C)</li>
+                                <li>Nettoyer la panne</li>
+                                <li>Préparer les composants et le veroboard</li>
+                            </ul>
+                        </li>
+                        <li><strong>Soudure THT</strong> : 
+                            <ul class="letter-list">
+                                <li>Placer chaque composant</li>
+                                <li>Souder une patte, ajuster, puis souder les autres</li>
+                                <li>Couper l'excédent</li>
+                            </ul>
+                        </li>
+                        <!--<li><strong>Soudure SMD</strong> : 
+                            <ul class="letter-list">
+                                <li>Utiliser de la pâte à souder et du flux</li>
+                                <li>Fixer un coin, puis souder les autres broches</li>
+                            </ul>
+                        </li>-->
+                    </ul>
+                    
+                    <div class="highlight">
+                        <p><i class="fas fa-info-circle"></i> <strong>Note</strong> : Utiliser un fil à souder fin (0,38 mm recommandé), éviter les ponts de soudure, et vérifier que chaque joint est brillant et conique. Inspecter visuellement et corriger les défauts éventuels.</p>
+                    </div>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-cogs"></i> Programmation et test du circuit assemblé</h4>
+                    <ul class="step-list">
+                        <li>Connexion du convertisseur USB-série aux broches RX, TX, Vcc, GND</li>
+                        <li>Téléversement du code de test (ex: clignotement de LED)</li>
+                        <li>Test fonctionnel : 
+                            <ul class="letter-list">
+                                <li>Microcontrôleur</li>
+                                <li>Communication I2C</li>
+                                <li>Alimentation</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Code Section -->
+            <section id="code">
+                <h2 class="section-title"><i class="fas fa-code"></i> Explication du code</h2>
+                
+                <div class="card">
+                    <h3><i class="fas fa-book"></i> Rappels sur les objectifs du projet</h3>
+                    <p>Ce projet a pour but de :</p>
+                    
+                    <ul class="step-list">
+                        <li>Lire l'orientation via le MPU6050 (accéléromètre + gyroscope)</li>
+                        <li>Afficher des flèches directionnelles sur une matrice LED 8x8 (contrôlée par MAX72xx)</li>
+                        <li>Transmettre les données à un autre microcontrôleur via I2C</li>
+                        <li>Recevoir une confirmation de l'esclave via une LED</li>
+                    </ul>
+                    
+                    <p>Nous rappelons que le test 2 est une suite du test 1. Il y aura certaines lignes sur lesquelles nous ne détaillerons pas l'explication.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-microchip"></i> Code MASTER</h3>
+                    <p>Dans ce système, le MASTER (maître) est le microcontrôleur qui :</p>
+                    
+                    <ul class="component-list">
+                        <li><i class="fas fa-sensor"></i> Lit les données du capteur de mouvement <strong>MPU6050</strong></li>
+                        <li><i class="fas fa-calculator"></i> Détermine la direction et l'accélération</li>
+                        <li><i class="fas fa-exchange-alt"></i> Envoie ces informations à l'esclave via le protocole I2C</li>
+                        <li><i class="fas fa-check-circle"></i> Vérifie si l'esclave est prêt à recevoir ou a bien reçu les données</li>
+                    </ul>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-code"></i> Bibliothèques utilisées</h4>
+                    <div class="code-block">
+                        <span class="code-keyword">#include</span> &lt;Wire.h&gt;<br>
+                        <span class="code-keyword">#include</span> "I2Cdev.h"<br>
+                        <span class="code-keyword">#include</span> "MPU6050_6Axis_MotionApps20.h"<br>
+                        <span class="code-keyword">#include</span> &lt;MD_MAX72xx.h&gt;<br>
+                        <span class="code-keyword">#include</span> &lt;SPI.h&gt;
+                    </div>
+                    
+                    <div class="highlight">
+                        <p><i class="fas fa-info-circle"></i> Fonction des bibliothèques :</p>
+                        <ul class="component-list">
+                            <li><i class="fas fa-exchange-alt"></i> <strong>Wire.h</strong> : gestion de la communication I2C</li>
+                            <li><i class="fas fa-tools"></i> <strong>I2Cdev.h</strong> : simplifie les opérations I2C</li>
+                            <li><i class="fas fa-microchip"></i> <strong>MPU6050_6Axis_MotionApps20.h</strong> : accès aux fonctionnalités avancées du DMP</li>
+                            <li><i class="fas fa-tv"></i> <strong>MD_MAX72xx.h</strong> : contrôle de la matrice LED 8x8</li>
+                            <li><i class="fas fa-exchange-alt"></i> <strong>SPI.h</strong> : nécessaire pour la communication SPI</li>
+                        </ul>
+                    </div>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-cogs"></i> Définition du matériel et des objets</h4>
+                    <div class="code-block">
+                        <span class="code-comment">// Type de matrice : FC16_HM pour modules classiques 8x8</span><br>
+                        <span class="code-keyword">#define</span> HARDWARE_TYPE MD_MAX72XX::FC16_HM<br>
+                        <span class="code-keyword">#define</span> MAX_DEVICES 1 <span class="code-comment">// 1 module de 8x8</span><br>
+                        <span class="code-keyword">#define</span> CLK_PIN 11<br>
+                        <span class="code-keyword">#define</span> DATA_PIN 12<br>
+                        <span class="code-keyword">#define</span> CS_PIN 10<br><br>
+                        
+                        MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);<br>
+                        MPU6050 mpu;<br><br>
+                        
+                        <span class="code-keyword">int</span> send_dir = 0;<br>
+                        <span class="code-keyword">float</span> send_acc = 0;<br>
+                        <span class="code-keyword">const</span> uint8_t addr_slav = 0x08;<br>
+                        <span class="code-keyword">int</span> ledConfirm = 9;<br><br>
+                        
+                        <span class="code-keyword">#define</span> INTERRUPT_PIN 2<br>
+                        <span class="code-keyword">volatile bool</span> mpuInterrupt = false;
+                    </div>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-list"></i> Variables de statut et buffers</h4>
+                    <div class="code-block">
+                        <span class="code-keyword">void</span> dmpDataReady() { mpuInterrupt = true; }<br><br>
+                        
+                        <span class="code-keyword">bool</span> dmpReady = false;<br>
+                        uint8_t mpwInitStatus;<br>
+                        uint8_t devStatus;<br>
+                        uint16_t packetSize, fifoCount;<br>
+                        uint8_t fifoBuffer[64];<br><br>
+                        
+                        Quaternion q;<br>
+                        VectorFloat gravity;<br>
+                        <span class="code-keyword">float</span> ypr[3];<br>
+                        VectorInt16 aa, aaReal;<br><br>
+                        
+                        <span class="code-keyword">float</span> prevYaw = 0, prevPitch = 0, prevRoll = 0;<br>
+                        <span class="code-keyword">const float</span> seuilAngle = 5.0;    <span class="code-comment">// Seuil en degrés pour rotations</span><br>
+                        <span class="code-keyword">const int</span> seuilAccZ = 600;    <span class="code-comment">// À ajuster après calibration</span><br>
+                        <span class="code-keyword">float</span> accZ_filtered = 0;<br>
+                        <span class="code-keyword">const float</span> alpha = 0.3; <span class="code-comment">// coefficient filtre passe-bas</span><br>
+                        String direction = "";
+                    </div>
+                    
+                    <div class="code-explanation">
+                        <p><strong>Explication des variables :</strong></p>
+                        <ul>
+                            <li><code>dmpReady, devStatus</code> : indiquent l'état d'initialisation et de disponibilité du DMP</li>
+                            <li><code>packetSize, fifoCount, fifoBuffer</code> : gèrent la lecture depuis le FIFO du DMP</li>
+                            <li><code>q, gravity, ypr</code> : pour calculer quaternion, vecteur gravité et angles yaw/pitch/roll</li>
+                            <li><code>aa, aaReal</code> : accélérations brutes et linéaires</li>
+                            <li><code>prevYaw/Pitch/Roll</code> : pour calculer les variations et détecter le mouvement</li>
+                            <li><code>seuilAngle, seuilAccZ</code> : seuils de détection</li>
+                            <li><code>accZ_filtered, alpha</code> : filtre passe-bas sur l'accélération verticale</li>
+                            <li><code>direction</code> : chaîne représentant le mouvement détecté</li>
+                        </ul>
+                    </div>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-cog"></i> Fonction setup() - Initialisation</h4>
+                    <div class="code-block">
+                        <span class="code-keyword">void</span> setup() {<br>
+                        &nbsp;&nbsp;<span class="code-comment">// Initialisation des communications</span><br>
+                        &nbsp;&nbsp;Wire.begin();<br>
+                        &nbsp;&nbsp;Serial.begin(115200);<br>
+                        &nbsp;&nbsp;Serial.print("Init MPU6050...");<br>
+                        &nbsp;&nbsp;delay(1000);<br><br>
+                        
+                        &nbsp;&nbsp;<span class="code-comment">// Configuration des broches et du capteur</span><br>
+                        &nbsp;&nbsp;mpu.initialize();<br>
+                        &nbsp;&nbsp;pinMode(INTERRUPT_PIN, INPUT);<br>
+                        &nbsp;&nbsp;pinMode(ledConfirm, OUTPUT);<br><br>
+                        
+                        &nbsp;&nbsp;<span class="code-comment">// Offsets calibrés</span><br>
+                        &nbsp;&nbsp;mpu.setXAccelOffset(874);<br>
+                        &nbsp;&nbsp;mpu.setYAccelOffset(-853);<br>
+                        &nbsp;&nbsp;mpu.setZAccelOffset(-21);<br>
+                        &nbsp;&nbsp;mpu.setXGyroOffset(-59);<br>
+                        &nbsp;&nbsp;mpu.setYGyroOffset(20);<br>
+                        &nbsp;&nbsp;mpu.setZGyroOffset(-57);<br><br>
+                        
+                        &nbsp;&nbsp;devStatus = mpu.dmpInitialize();<br>
+                        &nbsp;&nbsp;<span class="code-keyword">if</span> (devStatus == 0) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;mpu.CalibrateAccel(6);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;mpu.CalibrateGyro(6);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;mpu.setDMPEnabled(true);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), dmpDataReady, RISING);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;mpuIntStatus = mpu.getIntStatus();<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;dmpReady = true;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;packetSize = mpu.dmpGetFIFOPacketSize();<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Serial.print("MPU6050 pret!");<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;delay(1000);<br>
+                        &nbsp;&nbsp;} <span class="code-keyword">else</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Serial.print("Erreur DMP:");<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Serial.print(devStatus);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">while</span> (1);<br>
+                        &nbsp;&nbsp;}<br><br>
+                        
+                        &nbsp;&nbsp;<span class="code-comment">// Initialisation de la matrice LED</span><br>
+                        &nbsp;&nbsp;mx.begin();<br>
+                        &nbsp;&nbsp;mx.control(MD_MAX72XX::INTENSITY, 5);<br>
+                        &nbsp;&nbsp;mx.clear();<br>
+                        }
+                    </div>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-sync-alt"></i> Boucle principale - loop()</h4>
+                    <div class="code-block">
+                        <span class="code-keyword">void</span> loop() {<br>
+                        &nbsp;&nbsp;<span class="code-comment">// Vérifications initiales</span><br>
+                        &nbsp;&nbsp;<span class="code-keyword">if</span> (!dmpReady) <span class="code-keyword">return</span>;<br>
+                        &nbsp;&nbsp;<span class="code-keyword">if</span> (!mpuInterrupt && fifoCount < packetSize) <span class="code-keyword">return</span>;<br>
+                        &nbsp;&nbsp;mpuInterrupt = false;<br><br>
+                        
+                        &nbsp;&nbsp;<span class="code-comment">// Gestion du FIFO</span><br>
+                        &nbsp;&nbsp;mpuIntStatus = mpu.getIntStatus();<br>
+                        &nbsp;&nbsp;fifoCount = mpu.getFIFOCount();<br>
+                        &nbsp;&nbsp;<span class="code-keyword">if</span> ((mpuIntStatus & 0x10) || fifoCount == 1024) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;mpu.resetFIFO();<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Serial.print("Overflow FIFO!");<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span>;<br>
+                        &nbsp;&nbsp;}<br>
+                        &nbsp;&nbsp;<span class="code-keyword">while</span> (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();<br>
+                        &nbsp;&nbsp;mpu.getFIFOBytes(fifoBuffer, packetSize);<br>
+                        &nbsp;&nbsp;fifoCount -= packetSize;<br><br>
+                        
+                        &nbsp;&nbsp;<span class="code-comment">// Acquisition et calcul des données</span><br>
+                        &nbsp;&nbsp;mpu.dmpGetQuaternion(&q, fifoBuffer);<br>
+                        &nbsp;&nbsp;mpu.dmpGetGravity(&gravity, &q);<br>
+                        &nbsp;&nbsp;mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);<br>
+                        &nbsp;&nbsp;<span class="code-keyword">float</span> yaw = ypr[0] * 180/M_PI;<br>
+                        &nbsp;&nbsp;<span class="code-keyword">float</span> pitch = ypr[1] * 180/M_PI;<br>
+                        &nbsp;&nbsp;<span class="code-keyword">float</span> roll = ypr[2] * 180/M_PI;<br><br>
+                        
+                        &nbsp;&nbsp;mpu.dmpGetAccel(&aa, fifoBuffer);<br>
+                        &nbsp;&nbsp;mpu.dmpGetLinearAccel(&aaReal, &aa, &gravity);<br>
+                        &nbsp;&nbsp;<span class="code-keyword">float</span> acc = sqrt(pow(aaReal.x, 2) + pow(aaReal.y, 2) + pow(aaReal.z, 2));<br>
+                        &nbsp;&nbsp;accZ_filtered = alpha * aaReal.z + (1 - alpha) * accZ_filtered;<br><br>
+                        
+                        &nbsp;&nbsp;<span class="code-comment">// Détection de la direction et affichage</span><br>
+                        &nbsp;&nbsp;detectDirection(yaw, pitch, roll, accZ_filtered);<br>
+                        &nbsp;&nbsp;<span class="code-keyword">if</span> (direction == "Haut") {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;send_dir = 0;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;displayArrowUp();<br>
+                        &nbsp;&nbsp;} <span class="code-keyword">else if</span> (direction == "Bas") {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;send_dir = 1;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;displayArrowDown();<br>
+                        &nbsp;&nbsp;} <span class="code-keyword">else if</span> (direction == "Droite" || direction == "Rot Droite") {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;send_dir = 2;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;displayArrowRight();<br>
+                        &nbsp;&nbsp;} <span class="code-keyword">else if</span> (direction == "Gauche" || direction == "Rot Gauche") {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;send_dir = 3;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;displayArrowLeft();<br>
+                        &nbsp;&nbsp;} <span class="code-keyword">else if</span> (direction == "Avant") {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;send_dir = 4;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;displayCenterDot();<br>
+                        &nbsp;&nbsp;} <span class="code-keyword">else if</span> (direction == "Arriere") {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;send_dir = 5;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;displayCenterDot();<br>
+                        &nbsp;&nbsp;}<br><br>
+                        
+                        &nbsp;&nbsp;<span class="code-comment">// Transmission I2C vers l'esclave</span><br>
+                        &nbsp;&nbsp;<span class="code-keyword">if</span>(slaveConfirm()) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;clignotLed();<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Wire.beginTransmission(addr_slav);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Wire.write((uint8_t*)&send_dir, sizeof(send_dir));<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Wire.write((uint8_t*)&acc, sizeof(acc));<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Wire.endTransmission();<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span>(slaveConfirm()) <span class="code-keyword">return</span>;<br>
+                        &nbsp;&nbsp;} <span class="code-keyword">else</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;digitalWrite(ledConfirm, LOW);<br>
+                        &nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-functions"></i> Fonctions utilitaires</h4>
+                    
+                    <div class="function-list">
+                        <div class="function-title">Détection de direction</div>
+                        <div class="function-description">
+                            <p>Cette fonction compare les variations d'angles et le seuil d'accélération pour définir la direction.</p>
+                            <div class="function-code">
+                                <span class="code-keyword">void</span> detectDirection(<span class="code-keyword">float</span> yaw, <span class="code-keyword">float</span> pitch, <span class="code-keyword">float</span> roll, <span class="code-keyword">float</span> accZf) {<br>
+                                &nbsp;&nbsp;<span class="code-keyword">float</span> dPitch = pitch - prevPitch;<br>
+                                &nbsp;&nbsp;<span class="code-keyword">float</span> dRoll = roll - prevRoll;<br>
+                                &nbsp;&nbsp;<span class="code-keyword">float</span> dYaw = yaw - prevYaw;<br><br>
+                                
+                                &nbsp;&nbsp;<span class="code-keyword">if</span> (abs(accZf) > seuilAccZ) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;direction = (accZf > 0) ? "Haut" : "Bas";<br>
+                                &nbsp;&nbsp;} <span class="code-keyword">else if</span> (abs(dPitch) > abs(dRoll) && abs(dPitch) > seuilAngle) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;direction = (dPitch > 0) ? "Avant" : "Arriere";<br>
+                                &nbsp;&nbsp;} <span class="code-keyword">else if</span> (abs(dRoll) > seuilAngle) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;direction = (dRoll > 0) ? "Droite" : "Gauche";<br>
+                                &nbsp;&nbsp;} <span class="code-keyword">else if</span> (abs(dYaw) > seuilAngle) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;direction = (dYaw > 0) ? "Rot Droite" : "Rot Gauche";<br>
+                                &nbsp;&nbsp;} <span class="code-keyword">else</span> {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;direction = "Stable";<br>
+                                &nbsp;&nbsp;}<br>
+                                &nbsp;&nbsp;prevYaw = yaw;<br>
+                                &nbsp;&nbsp;prevPitch = pitch;<br>
+                                &nbsp;&nbsp;prevRoll = roll;<br>
+                                }
+                            </div>
+                        </div>
+                        
+                        <div class="function-title">Affichage de l'écran matriciel</div>
+                        <div class="function-description">
+                            <p>Fonctions pour afficher les flèches directionnelles sur l'écran matriciel.</p>
+                            <div class="function-code">
+                                <span class="code-comment">// Point central</span><br>
+                                <span class="code-keyword">void</span> displayCenterDot() {<br>
+                                &nbsp;&nbsp;mx.clear();<br>
+                                &nbsp;&nbsp;mx.setPoint(3, 3, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(3, 4, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(4, 3, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(4, 4, true);<br>
+                                }<br><br>
+                                
+                                <span class="code-comment">// Flèche gauche</span><br>
+                                <span class="code-keyword">void</span> displayArrowLeft() {<br>
+                                &nbsp;&nbsp;mx.clear();<br>
+                                &nbsp;&nbsp;mx.setPoint(3, 3, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(4, 3, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(3, 2, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(4, 2, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(2, 1, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(5, 1, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(3, 0, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(4, 0, true);<br>
+                                }<br><br>
+                                
+                                <span class="code-comment">// Flèche droite</span><br>
+                                <span class="code-keyword">void</span> displayArrowRight() {<br>
+                                &nbsp;&nbsp;mx.clear();<br>
+                                &nbsp;&nbsp;mx.setPoint(3, 4, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(4, 4, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(3, 5, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(4, 5, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(2, 6, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(5, 6, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(3, 7, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(4, 7, true);<br>
+                                }<br><br>
+                                
+                                <span class="code-comment">// Flèche haut</span><br>
+                                <span class="code-keyword">void</span> displayArrowUp() {<br>
+                                &nbsp;&nbsp;mx.clear();<br>
+                                &nbsp;&nbsp;mx.setPoint(3, 3, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(3, 4, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(2, 3, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(2, 4, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(1, 2, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(1, 5, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(0, 3, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(0, 4, true);<br>
+                                }<br><br>
+                                
+                                <span class="code-comment">// Flèche bas</span><br>
+                                <span class="code-keyword">void</span> displayArrowDown() {<br>
+                                &nbsp;&nbsp;mx.clear();<br>
+                                &nbsp;&nbsp;mx.setPoint(4, 3, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(4, 4, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(5, 3, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(5, 4, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(6, 2, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(6, 5, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(7, 3, true);<br>
+                                &nbsp;&nbsp;mx.setPoint(7, 4, true);<br>
+                                }
+                            </div>
+                        </div>
+                        
+                        <div class="function-title">Clignotement LED</div>
+                        <div class="function-description">
+                            <p>Cette fonction indique visuellement l'envoi de données.</p>
+                            <div class="function-code">
+                                <span class="code-keyword">void</span> clignotLed() {<br>
+                                &nbsp;&nbsp;<span class="code-keyword">for</span> (<span class="code-keyword">int</span> i = 0; i < 4; i++) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;digitalWrite(ledConfirm, HIGH);<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;delay(500);<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;digitalWrite(ledConfirm, LOW);<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;delay(500);<br>
+                                &nbsp;&nbsp;}<br>
+                                }
+                            </div>
+                        </div>
+                        
+                        <div class="function-title">Confirmation esclave</div>
+                        <div class="function-description">
+                            <p>Vérifie si l'esclave est prêt ou si la donnée a été reçue.</p>
+                            <div class="function-code">
+                                <span class="code-keyword">bool</span> slaveConfirm() {<br>
+                                &nbsp;&nbsp;Wire.requestFrom(addr_slav, 1);<br>
+                                &nbsp;&nbsp;<span class="code-keyword">if</span> (Wire.available()) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;uint8_t status = Wire.read();<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> status == 1;<br>
+                                &nbsp;&nbsp;}<br>
+                                &nbsp;&nbsp;<span class="code-keyword">return</span> false;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-microchip"></i> Code SLAVE</h3>
+                    <p>Dans ce système, le SLAVE (esclave) est un microcontrôleur qui :</p>
+                    
+                    <ul class="component-list">
+                        <li><i class="fas fa-download"></i> Attend les données envoyées par le MASTER</li>
+                        <li><i class="fas fa-tv"></i> Affiche les données reçues sur un écran LCD</li>
+                        <li><i class="fas fa-check-circle"></i> Confirme au MASTER s'il est prêt à recevoir ou s'il a bien traité les données</li>
+                    </ul>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-code"></i> Bibliothèques utilisées</h4>
+                    <div class="code-block">
+                        <span class="code-keyword">#include</span> &lt;Wire.h&gt;<br>
+                        <span class="code-keyword">#include</span> &lt;LiquidCrystal_I2C.h&gt;
+                    </div>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-list"></i> Variables globales</h4>
+                    <div class="code-block">
+                        LiquidCrystal_I2C LCD(0x27, 16, 2);<br><br>
+                        
+                        <span class="code-keyword">const</span> uint8_t addr_slav = 0x08;<br>
+                        <span class="code-keyword">int</span> rec_dir = 0;<br>
+                        <span class="code-keyword">float</span> rec_acc = 0;<br><br>
+                        
+                        <span class="code-keyword">volatile bool</span> dataReceived = false;<br>
+                        <span class="code-keyword">bool</span> readyToReceive = true;<br>
+                        <span class="code-keyword">bool</span> receivedOK = false;<br><br>
+                        
+                        String direction = "";
+                    </div>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-cog"></i> Fonction setup() - Initialisation</h4>
+                    <div class="code-block">
+                        <span class="code-keyword">void</span> setup() {<br>
+                        &nbsp;&nbsp;Wire.begin(addr_slav);<br>
+                        &nbsp;&nbsp;Wire.onReceive(receiveData);<br>
+                        &nbsp;&nbsp;Wire.onRequest(confirm);<br>
+                        &nbsp;&nbsp;LCD.begin(16, 2);<br>
+                        &nbsp;&nbsp;LCD.backlight();<br>
+                        &nbsp;&nbsp;LCD.clear();<br>
+                        &nbsp;&nbsp;LCD.setCursor(0, 0);<br>
+                        &nbsp;&nbsp;LCD.print("Station active! ...");<br>
+                        }
+                    </div>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-sync-alt"></i> Boucle principale - loop()</h4>
+                    <div class="code-block">
+                        <span class="code-keyword">void</span> loop() {<br>
+                        &nbsp;&nbsp;<span class="code-keyword">if</span> (dataReceived && !receivedOK) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;direction = getDirection(rec_dir);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;LCD.clear();<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;LCD.setCursor(0, 0);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;LCD.print("Dir: ");<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;LCD.print(direction);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;LCD.setCursor(0, 1);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;LCD.print("a = ");<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;LCD.print(rec_acc, 2);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;delay(50);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;receivedOK = true;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;readyToReceive = true;<br>
+                        &nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    
+                    <h4 class="section-subtitle"><i class="fas fa-functions"></i> Fonctions utilitaires</h4>
+                    
+                    <div class="function-list">
+                        <div class="function-title">Réception des données I2C</div>
+                        <div class="function-description">
+                            <p>Cette fonction est appelée automatiquement quand le maître envoie des données.</p>
+                            <div class="function-code">
+                                <span class="code-keyword">void</span> receiveData(<span class="code-keyword">int</span> taille) {<br>
+                                &nbsp;&nbsp;<span class="code-keyword">if</span> (taille == sizeof(int) + sizeof(float)) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;Wire.readBytes((<span class="code-keyword">char</span>*)&rec_dir, sizeof(rec_dir));<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;Wire.readBytes((<span class="code-keyword">char</span>*)&rec_acc, sizeof(rec_acc));<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;dataReceived = true;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;readyToReceive = false;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;receivedOK = false;<br>
+                                &nbsp;&nbsp;}<br>
+                                }
+                            </div>
+                        </div>
+                        
+                        <div class="function-title">Conversion du code en texte</div>
+                        <div class="function-description">
+                            <p>Transforme le code entier reçu en un texte lisible à afficher sur le LCD.</p>
+                            <div class="function-code">
+                                String getDirection(<span class="code-keyword">int</span> dir) {<br>
+                                &nbsp;&nbsp;<span class="code-keyword">switch</span> (dir) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">case</span> 0: <span class="code-keyword">return</span> "Haut";<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">case</span> 1: <span class="code-keyword">return</span> "Bas";<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">case</span> 2: <span class="code-keyword">return</span> "Droite";<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">case</span> 3: <span class="code-keyword">return</span> "Gauche";<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">case</span> 4: <span class="code-keyword">return</span> "Avant";<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">case</span> 5: <span class="code-keyword">return</span> "Arriere";<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">default</span>: <span class="code-keyword">return</span> "Stable";<br>
+                                &nbsp;&nbsp;}<br>
+                                }
+                            </div>
+                        </div>
+                        
+                        <div class="function-title">Confirmation au maître</div>
+                        <div class="function-description">
+                            <p>Quand le maître interroge l'esclave, cette fonction répond avec l'état actuel.</p>
+                            <div class="function-code">
+                                <span class="code-keyword">void</span> confirm() {<br>
+                                &nbsp;&nbsp;Wire.write(readyToReceive ? 1 : 0);<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Conclusion -->
+            <section id="conclusion">
+                <h2 class="section-title"><i class="fas fa-flag-checkered"></i> Conclusion</h2>
+                <div class="highlight">
+                    <p>Le test 2 de la boîte noire illustre l'application concrète des systèmes de collecte de données en temps réel, essentiels pour la sécurité et l'analyse post-incident dans divers secteurs industriels.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-lightbulb"></i> Compétences acquises</h3>
+                    <p>En concevant un prototype simplifié intégrant le capteur MPU6050, la communication I2C, des écrans LCD et matriciel, les participants ont acquis des :</p>
+                    
+                    <ul class="step-list">
+                        <li>Compétences pratiques en électronique embarquée</li>
+                        <li>Capacités en lecture de capteurs</li>
+                        <li>Connaissances en développement d'interfaces utilisateur</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-rocket"></i> Perspectives d'innovation</h3>
+                    <p>Ce projet démontre ainsi la synergie entre matériel et logiciel, tout en ouvrant des perspectives d'innovation pour la collecte et l'analyse de données critiques dans les domaines suivants :</p>
+                    
+                    <ul class="component-list">
+                        <li><i class="fas fa-plane"></i> Aéronautique</li>
+                        <li><i class="fas fa-car"></i> Automobile</li>
+                        <li><i class="fas fa-train"></i> Ferroviaire</li>
+                        <li><i class="fas fa-industry"></i> Industrie manufacturière</li>
+                        <li><i class="fas fa-robot"></i> Robotique avancée</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight">
+                    <p>L'intégration d'une alimentation autonome et de boîtiers imprimés en 3D renforce la robustesse et la portabilité du système, ouvrant la voie à des applications industrielles réelles.</p>
+                </div>
+            </section>
+            
+            <!-- Video Section -->
+            <!--<section id="video">
+                <h2 class="section-title"><i class="fas fa-video"></i> Vidéo de démonstration</h2>
+                
+                <div class="card">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
+                        <img src="https://via.placeholder.com/800x450/2c3e50/ffffff?text=Démonstration+vidéo" alt="Vidéo de démonstration" style="width: 100%; height: auto; border-radius: 10px;">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            <i class="fas fa-play-circle" style="font-size: 5rem; color: #e74c3c; opacity: 0.8;"></i>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; font-style: italic;">Cliquez pour voir la démonstration du système de boîte noire en action</p>
+                </div>
+            </section> -->
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3 class="section-subtitle"><i class="fas fa-map-signs"></i> Navigation rapide</h3>
+            <ul class="component-list">
+                <li><a href="#test"><i class="fas fa-flask"></i> Présentation</a></li>
+                <li><a href="#material"><i class="fas fa-microchip"></i> Matériel</a></li>
+                <li><a href="#architecture"><i class="fas fa-project-diagram"></i> Architecture</a></li>
+                <li><a href="#code"><i class="fas fa-code"></i> Code</a></li>
+                <li><a href="#conclusion"><i class="fas fa-flag-checkered"></i> Conclusion</a></li>
+                <li><a href="files/images.zip" ><i class="fas fa-video"></i> Vidéos et images </a></li>
+            </ul>
+            
+            <h3 class="section-subtitle"><i class="fas fa-download"></i> Ressources</h3>
+            <ul class="component-list">
+                <li><a href="doc/DOCUMENTATION TECHNIQUE DES TESTS EN ELECTRONIQUE.pdf"><i class="fas fa-file-pdf"></i>Documentation complète</a></li>
+                <li><a href="code/code_source.zip"><i class="fas fa-file-code"></i>Code source</a></li>
+                <li><a href="files/kicadFiles.zip"><i class="fas fa-drafting-compass"></i> Schémas électroniques (Fichiers téléchargeables)</a></li>
+                <li><a href="files/solidworks_files.zip"><i class="fas fa-cube"></i>Modèles 3D (Fichiers téléchargeables)</a></li>
+            </ul>
+            
+
+            <h3 class="section-subtitle"><i class="fas fa-cube"></i> Composants clés</h3>
+            <ul class="component-list">
+                <li><i class="fas fa-microchip"></i> ATmega328P (x2)</li>
+                <li><i class="fas fa-sensor"></i> MPU6050</li>
+                <li><i class="fas fa-tv"></i> Écran LCD I2C</li>
+                <li><i class="fas fa-border-all"></i> Écran matriciel 8x8</li>
+                <li><i class="fas fa-battery-full"></i> Batterie 7.4V</li>
+                <li><i class="fas fa-plug"></i> Alimentation secteur</li>
+            </ul>
+            
+            
+            <div class="card" style="margin-top: 20px; background: linear-gradient(135deg, #3498db, #2c3e50); color: white;">
+                <h3 style="color: white;"><i class="fas fa-info-circle"></i> À propos du projet</h3>
+                <p>Ce projet a été réalisé dans le cadre de la Tekbot Robotics Challenge (TRC) par l'équipe RoboStim.</p>
+                <p>Objectif : Concevoir un système de boîte noire simplifié pour l'enregistrement de données de mouvement.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-microchip footer-icon"></i>
+                        <div>
+                            <h3>ROBO<span>STIM</span></h3>
+                            <p>Documentation technique du test "La boîte noire"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h3>Liens utiles</h3>
+                        <ul class="component-list">
+                            <li><a href="https://github.com/jrowberg/i2cdevlib/tree/master/Arduino/MPU6050" target="_blank"><i class="fas fa-link"></i> Bibliothèque MPU6050</a></li>
+                            <li><a href="https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf" target="_blank"><i class="fas fa-link"></i> Documentation ATmega328P</a></li>
+                            <li><a href="https://i2c.info/" target="_blank"><i class="fas fa-link"></i> Guide I2C</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <div class="copyright-content">
+                        <p>&copy; 2025 Documentation technique des tests en Électronique de la team ROBOSTIM.</p>
+                        <div class="footer-badge">
+                            <i class="fas fa-trophy"></i> TRC 25
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRC25 - Assemblage de la Pince</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <h1>TRC25 - Conception Mécanique</h1>
+        </div>
+    </header>
+
+<nav class="sidebar">
+    <ul>
+        <li><a href="../index.html">Introduction</a></li>
+        <li>
+            <span class="nav-category">Pièces Individuelles</span>
+            <ul>
+                <li><a href="../pieces/piece1.html">Pièce 1</a></li>
+                <li><a href="../pieces/piece2.html">Pièce 2</a></li>
+                <li><a href="../pieces/piece3.html">Pièce 3</a></li>
+                <li><a href="../pieces/piece4.html">Pièce 4</a></li>
+            </ul>
+        </li>
+        <li><a href="assemblage_pince.html">Assemblage de la Pince</a></li>
+        <li><a href="../telechargements.html">Fichiers SolidWorks</a></li>
+        <li><a href="#" target="_blank">Dépôt GitHub</a></li>
+    </ul>
+</nav>
+    <main class="content">
+        <section>
+            <h2>V. Assemblage</h2>
+
+            <h3>1. Présentation générale de l'assemblage</h3>
+            <p><strong>Nom de l'assemblage :</strong> Pince<br>
+            <strong>Date de création :</strong> 07/06/2025<br>
+            <strong>Échelle :</strong> 1/1</p>
+
+            <h3>2. Caractéristiques techniques</h3>
+            <ul>
+                <li><strong>Système d'unité :</strong> MMGS (millimètre, gramme, seconde).</li>
+                <li><strong>Décimale :</strong> 2 (toutes les dimensions doivent être exprimées avec deux chiffres après la virgule.)</li>
+            </ul>
+
+            <h3>3. Représentation graphique</h3>
+            <div class="image-grid">
+                <p class="image-item"><img src="../images/assemblage/1.png" alt=""></p>
+                <p class="image-item"><img src="../images/assemblage/2.png" alt=""></p>
+
+            </div>
+            <p>Ces mises en page montrent clairement chacune des pièces qui constituent l'assemblage, avec une nomenclature indiquant le nombre de pièces de l'ensemble. Vous trouverez également les vues de l'assemblage (Vue de Face, Droite, Dessus, quelques coupes, ainsi que la vue isométrique).</p>
+
+            <h3>4. Processus de réalisation</h3>
+            <h4>Étape 1 : Importation des fichiers dans l'environnement d'assemblage</h4>
+            <ol>
+                <li><strong>Ouverture de l'environnement d'assemblage :</strong>
+                    <ul>
+                        <li>Ouvrez un nouveau document d'assemblage dans SolidWorks.</li>
+                        <li>Faites un clic pour déposer la première pièce (généralement la pièce fixe, comme le corps principal) dès que l'interface d'assemblage s'ouvre.</li>
+                    </ul>
+                </li>
+                <li><strong>Ajout des pièces complémentaires :</strong>
+                    <ul>
+                        <li>Cliquez sur l'onglet <strong>"Assemblage"</strong> dans la barre d'outils, puis sur <strong>"Insérer des composants"</strong>.</li>
+                        <li>Dans la fenêtre qui s'ouvre, cliquez sur <strong>"Parcourir"</strong> pour accéder à vos fichiers.</li>
+                        <li>Sélectionnez uniquement les pièces nécessaires à l'assemblage final et insérez-les une par une dans l'environnement.</li>
+                    </ul>
+                </li>
+                <li><strong>Liste des pièces à ajouter à l'assemblage :</strong>
+                    <ul>
+                        <li>Axe de biellette</li>
+                        <li>Axe de porte-mâchoire</li>
+                        <li>Circlips</li>
+                        <li>Biellette</li>
+                        <li>Mâchoire droite</li>
+                        <li>Mâchoire gauche</li>
+                        <li>Porte-mâchoire</li>
+                        <li>Vis CHC M16x16</li>
+                        <li>Vis CHC M5x25</li>
+                    </ul>
+                </li>
+            </ol>
+            <p class="image-item"><img src="../images/assemblage/3.png" alt=""></p>
+            <h4>Étape 2 : Assemblage des composants (Contraintes de base)</h4>
+            <ol>
+                <li><strong>Assemblage de la biellette et de l'embout de vérin :</strong>
+                    <ul>
+                        <li>Rendre coaxial le trou de la Biellette avec celui de l'Embout de vérin.</li>
+                        <li>Rendre coïncidente la face supérieure de la Biellette avec la face inférieure de l'Embout de vérin.</li>
+                        <li>Répétez ces deux contraintes pour la seconde Biellette (coaxialité + coïncidence inversée).</li>
+                    </ul>
+                </li>
+                <li><strong>Assemblage de l'axe de biellette :</strong>
+                    <ul>
+                        <li>Rendre coaxial l'axe de Biellette avec le trou de la Biellette.</li>
+                        <li>Rendre coïncidente la face supérieure de la Biellette avec la surface d'appui de l'axe.</li>
+                        <li>Répétez ces contraintes pour le deuxième axe de Biellette.</li>
+                    </ul>
+                </li>
+                <li><strong>Montage du circlips sur l'axe :</strong>
+                    <ul>
+                        <li>Rendre coaxial le circlips avec l'axe de Biellette.</li>
+                        <li>Rendre coïncidente la face supérieure du circlips avec la face de la gorge de l'axe.</li>
+                    </ul>
+                </li>
+                <li><strong>Correction d'une erreur (si nécessaire) :</strong>
+                    <ul>
+                        <li>En cas d'erreur (par exemple, avoir utilisé l'axe de porte-mâchoire à la place de l'axe de biellette), supprimez les contraintes associées à cette pièce et recommencez correctement.</li>
+                    </ul>
+                </li>
+                <li><strong>Duplication des composants :</strong>
+                    <ul>
+                        <li>Maintenez Ctrl et faites glisser l'axe de Biellette pour en créer une copie.</li>
+                        <li>Refaites les contraintes de coaxialité et de coïncidence entre les pièces dupliquées.</li>
+                    </ul>
+                </li>
+                <li><strong>Vis et symétrie :</strong>
+                    <ul>
+                        <li>Rendre coaxiale la surface supérieure de la Biellette avec la surface d'appui de la vis.</li>
+                        <li>Dupliquez le circlips pour le second axe de Biellette, puis appliquez :
+                            <ul>
+                                <li>Coaxialité entre le circlips et l'axe,</li>
+                                <li>Coïncidence entre la surface du circlips et la gorge.</li>
+                            </ul>
+                        </li>
+                        <li>Réalisez une symétrie de l'ensemble (axe de Biellette, Circlips, Biellette) par rapport au plan de dessus.</li>
+                    </ul>
+                </li>
+            </ol>
+            <h4>Étape 3 : Assemblage du porte-mâchoire</h4>
+            <ol>
+                <li>Rendre coaxial le trou du porte-mâchoire avec l'axe de Biellette.</li>
+                <li>Rendre coaxial le trou de l'axe du porte-mâchoire avec le trou sur le corps.</li>
+                <li>Rendre coïncidente la face inférieure du porte-mâchoire avec la face supérieure de la Biellette.</li>
+                <li>Retournez le deuxième porte-mâchoire si nécessaire dans le sens normal.</li>
+                <li>Répétez les contraintes de coaxialité et coïncidence pour le second porte-mâchoire.</li>
+            </ol>
+            <h4>Étape 4 : Assemblage des mâchoires</h4>
+            <ol>
+                <li>Tournez la mâchoire droite pour qu'elle soit orientée correctement.</li>
+                <li>Rendre coaxial le trou de la mâchoire gauche avec celui du porte-mâchoire.</li>
+                <li>Rendre coïncidente la face de la mâchoire avec celle du porte-mâchoire.</li>
+                <li>Répétez ces contraintes pour les autres trous et faces.</li>
+            </ol>
+            <h4>Étape 5 : Finalisation avec axes, vis et circlips</h4>
+            <ol>
+                <li>Rendre coaxial le trou du porte-mâchoire avec l'axe,</li>
+                <li>Rendre coïncidente la surface du porte-mâchoire avec la surface d'appui de l'axe de Biellette.</li>
+                <li>Rendre coaxial l'axe du porte-mâchoire avec le trou correspondant.</li>
+                <li>Rendre coïncidente la surface supérieure du porte-mâchoire gauche avec la surface d'appui de l'axe.</li>
+                <li>Dupliquez le circlips pour le deuxième axe de porte-mâchoire.
+                    <ul>
+                        <li>Rendre coaxial le circlips et l'axe,</li>
+                        <li>Rendre coïncidente la surface du circlips avec la gorge.</li>
+                    </ul>
+                </li>
+                <li>Rendre coaxiale la vis CHC M5×16 mm avec le trou de la mâchoire.</li>
+                <li>Rendre coïncidente la surface de la mâchoire avec la surface d'appui de l'axe.</li>
+                <li>Rendre coaxiale la vis CHC M5×25 mm avec le trou correspondant.</li>
+                <li>Rendre coïncidente la face d'appui de l'axe du porte-mâchoire avec la surface du lamage de l'embout de vérin.</li>
+            </ol>
+            <p>Enfin, nous avons obtenu l'assemblage au complet.</p>
+            <p class="image-item"><img src="../images/assemblage/6.png" alt=""></p>
+            <h4>Évaluation des coordonnées du centre de gravité</h4>
+            <p>Procédons maintenant des coordonnées du centre de gravité.</p>
+            <h5>Position Maximale :</h5><span>X = -25.78 mm | Y = 0.06 mm | Z = 19.86 mm </span>
+            <h5>Position Minimale :</h5><span>X = -29.15 mm | Y = 0.16 mm | Z = 19.86 mm</span>
+            </section>
+
+        <section class="conclusion-section">
+            <h2>Conclusion Générale</h2>
+            <p>La présente documentation a permis de retracer de manière structurée l'ensemble des travaux réalisés dans le cadre de la partie mécanique du test de présélection du Tekbot Robotics Challenge 2025. Elle met en évidence les compétences mobilisées en modélisation 3D, en assemblage de pièces mécaniques, ainsi qu'en vérification des propriétés physiques à travers l'utilisation du logiciel SolidWorks.</p>
+            <p>La maîtrise des outils de CAO, la compréhension des contraintes géométriques et matérielles, ainsi que la capacité à respecter les tolérances imposées ont été essentielles pour valider les différentes étapes du test. L'assemblage final, centré sur une pince mécanique, a également permis d'aborder des notions importantes telles que l'application de contraintes d'assemblage et le calcul du centre de gravité.</p>
+            <p>Ce travail marque une étape préparatoire essentielle à la suite du projet, qui consistera à concevoir un robot complet destiné à la collecte des déchets en milieu urbain. Il constitue non seulement une preuve de compétence technique, mais aussi une base solide pour le développement futur de solutions robotiques innovantes.</p>
+        </section>
+    </main>
+
+<footer>
+    <p>&copy; 2025 ROBOSTIM TRC25. Tous droits réservés.</p>
+</footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>
