@@ -1,0 +1,319 @@
+/* @import "tailwindcss"; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+  .custom-radius-bottom-corner {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+  }
+
+  .custom-radius-left-bottom-corner {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 50px;
+  }
+}
+
+
+/* FOR THE FIXING BOX of THE BODY  */
+body {
+  @apply m-0 p-0 box-border;
+}
+html, body {
+  overflow-x: hidden;
+}
+
+
+
+/*  FOR THE SCROLLBAR  */
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #DFE9EB;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  background-color: #454142;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #84919A;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #84919A;
+}
+
+
+
+
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  /* Normal */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-Italic.ttf') format('truetype');
+  font-weight: 400;
+  /* Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  /* Bold Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  /* Light */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  /* SemiBold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-Thin.ttf') format('truetype');
+  font-weight: 100;
+  /* Thin */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  /* ExtraLight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  /* ExtraBold */
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  /* Medium Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  /* SemiBold Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  /* Light Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans';
+  src: url('../font/UbuntuSans/UbuntuSans-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  /* Thin Italic */
+  font-style: italic;
+}
+
+/* Variantes Condensées */
+@font-face {
+  font-family: 'Ubuntu Sans Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_Condensed-Regular.ttf') format('truetype');
+  font-weight: 400;
+  /* Normal */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_Condensed-Bold.ttf') format('truetype');
+  font-weight: 700;
+  /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_Condensed-Italic.ttf') format('truetype');
+  font-weight: 400;
+  /* Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_Condensed-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  /* Bold Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_Condensed-Light.ttf') format('truetype');
+  font-weight: 300;
+  /* Light */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_Condensed-Medium.ttf') format('truetype');
+  font-weight: 500;
+  /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_Condensed-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  /* SemiBold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_Condensed-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  /* ExtraBold */
+  font-style: normal;
+}
+
+/* Variantes Semi-Condensées */
+@font-face {
+  font-family: 'Ubuntu Sans Semi-Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_SemiCondensed-Regular.ttf') format('truetype');
+  font-weight: 400;
+  /* Normal */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Semi-Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_SemiCondensed-Bold.ttf') format('truetype');
+  font-weight: 700;
+  /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Semi-Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_SemiCondensed-Italic.ttf') format('truetype');
+  font-weight: 400;
+  /* Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Semi-Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_SemiCondensed-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  /* Bold Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Semi-Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_SemiCondensed-Light.ttf') format('truetype');
+  font-weight: 300;
+  /* Light */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Semi-Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_SemiCondensed-Medium.ttf') format('truetype');
+  font-weight: 500;
+  /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Semi-Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_SemiCondensed-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  /* SemiBold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Semi-Condensed';
+  src: url('../font/UbuntuSans/UbuntuSans_SemiCondensed-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  /* ExtraBold */
+  font-style: normal;
+}
+
+
+
+/* .custom-radius-bottom-corner {
+  border-radius: 0px 0px 50px 50px;
+} */

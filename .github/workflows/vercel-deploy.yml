@@ -1,0 +1,23 @@
+name: Deploy Static Site to Vercel
+
+on:
+  push:
+    branches:
+      - main  # ou remplace par ta branche de travail actuelle si différente
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: BZgDxYrxbCuYEoLEbaQMt6Fx
+          vercel-org-id: team_qX3kKzOJ1N9lvE494k0eiUJz
+          vercel-project-id: prj_d0edDWNMYTrMxzvUijeAe29wVxYm
+          working-directory: .
+          vercel-args: '--prod'
