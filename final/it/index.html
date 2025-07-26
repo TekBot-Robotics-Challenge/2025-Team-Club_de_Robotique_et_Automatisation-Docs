@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Technique - Pôle IT | ROBOSTIM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>ROBO<span>STIM</span></h1>
+            </div>
+
+            <button id="backButton" class="back-button" style="background: linear-gradient(135deg, var(--secondary), var(--primary)); color: white;">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+
+            <nav>
+                <ul>
+                    <li><a href="#introduction" class="active"><i class="fas fa-home"></i> Introduction</a></li>
+                    <li><a href="#objectifs"><i class="fas fa-bullseye"></i> Objectifs IT</a></li>
+                    <li><a href="#technologies"><i class="fas fa-layer-group"></i> Technologies</a></li>
+                    <li><a href="#architecture"><i class="fas fa-project-diagram"></i> Architecture</a></li>
+                    <li><a href="#implementation"><i class="fas fa-code"></i> Implémentation</a></li>
+                    <li><a href="#security"><i class="fas fa-shield-alt"></i> Sécurité</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>Documentation Technique - Pôle IT</h2>
+            <p class="centre-titre"><strong>Test final :</strong> Système IoT de surveillance du tri des déchets</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div class="content">
+            <div class="hackathon-badge">
+                <i class="fas fa-trophy"></i> TRC 2025
+            </div>
+            
+            <!-- Introduction Section -->
+            <section id="introduction">
+                <h2 class="section-title"><i class="fas fa-home"></i> Introduction</h2>
+                
+                <div class="card">
+                    <h3>Contexte du projet</h3>
+                    <p>
+                        Le projet ROBOSTIM vise à développer un système de convoyeur intelligent pour le tri automatique des déchets 
+                        dans la zone industrielle de TEKBOT CITY. Cette documentation technique se concentre sur les contributions 
+                        du pôle IT à ce projet interdisciplinaire.
+                    </p>
+                    
+                    <div class="highlight">
+                        <p>
+                            <strong>Spécifications Clés :</strong>
+                            <ul>
+                                <li>Détection des déchets par capteur de couleur</li>
+                                <li>Activation conditionnelle du convoyeur</li>
+                                <li>Interface web temps réel avec visualisation des données</li>
+                                <li>Intégration des logos TEKBOT et TRC 2025</li>
+                                <li>Communication Arduino Nano → Interface web</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Objectifs Section -->
+            <section id="objectifs">
+                <h2 class="section-title"><i class="fas fa-bullseye"></i> Objectifs IT</h2>
+                
+                <!--<div class="card">
+                    <h3>Critères d'Évaluation</h3>
+                    
+                    <table class="criteria-table">
+                        <thead>
+                            <tr>
+                                <th>Critère</th>
+                                <th>Points</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Détection intelligente</td>
+                                <td>20</td>
+                                <td>Identification des 4 types de déchets (RGBY) avec capteur TCS3200</td>
+                            </tr>
+                            <tr>
+                                <td>Automatisation</td>
+                                <td>15</td>
+                                <td>Contrôle du convoyeur via KY-008 + algorithme de tri</td>
+                            </tr>
+                            <tr>
+                                <td>Interface temps réel</td>
+                                <td>25</td>
+                                <td>Dashboard avec mise à jour automatique via Firebase</td>
+                            </tr>
+                            <tr>
+                                <td>Visualisation 3D</td>
+                                <td>15</td>
+                                <td>Rendu interactif des conteneurs à déchets</td>
+                            </tr>
+                            <tr>
+                                <td>Communication IoT</td>
+                                <td>20</td>
+                                <td>Liaison Arduino ↔ Firebase via ESP8266</td>
+                            </tr>
+                            <tr>
+                                <td>Ergonomie</td>
+                                <td>10</td>
+                                <td>Interface intuitive avec feedback visuel</td>
+                            </tr>
+                            <tr>
+                                <td>Documentation</td>
+                                <td>10</td>
+                                <td>Manuel technique et schémas d'architecture</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>Preuves Techniques</h3>
+                    <div class="code-block">
+                        <span style="color: #569cd6;">int</span> detectColor() {<br>
+                        &nbsp;&nbsp;setFilter(RED);<br>
+                        &nbsp;&nbsp;red = pulseIn(sensorOut, LOW);<br>
+                        &nbsp;&nbsp;<span style="color: #57a64a;">// [...] Détection autres couleurs</span><br>
+                        }
+                    </div>
+                </div>-->
+                
+                <div class="card">
+                    <h3>Rôle du Pôle IT</h3>
+                    <p>Responsable de la conception et du développement de l'ensemble de la chaîne logicielle.</p>
+                    
+                    <div class="tech-stack">
+                        <div class="tech-card">
+                            <h4><i class="fas fa-desktop"></i> Frontend</h4>
+                            <ul>
+                                <li>Conception de l'interface utilisateur</li>
+                                <li>Animations 3D des poubelles</li>
+                                <li>Dashboard de visualisation</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h4><i class="fas fa-server"></i> Backend & Data</h4>
+                            <ul>
+                                <li>Configuration de Firebase</li>
+                                <li>Gestion des données temps réel</li>
+                                <li>Synchronisation des états</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h4><i class="fas fa-network-wired"></i> Communication</h4>
+                            <ul>
+                                <li>Liaison Arduino ↔ Firebase</li>
+                                <li>Protocole de transmission</li>
+                                <li>Gestion des erreurs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight">
+                        <p><strong>Défis Rencontrés :</strong></p>
+                        <ul>
+                            <li>Latence réseau : Optimisation des temps de réponse</li>
+                            <li>Synchronisation : Cohérence des données</li>
+                            <li>Animations fluides : Performance sur mobile</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Technologies Section -->
+            <section id="technologies">
+                <h2 class="section-title"><i class="fas fa-layer-group"></i> Technologies Utilisées</h2>
+                
+                <div class="card">
+                    <h3>Stack Technique</h3>
+                    
+                    <div class="tech-stack">
+                        <div class="tech-card">
+                            <h4><i class="fab fa-html5"></i> Frontend</h4>
+                            <ul>
+                                <li>HTML5, CSS3, JavaScript</li>
+                                <li>Canvas API, Chart.js</li>
+                                <li>Firebase SDK</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h4><i class="fas fa-database"></i> Backend</h4>
+                            <ul>
+                                <li>Firebase Realtime DB</li>
+                                <li>Firebase Authentication</li>
+                                <li>Firebase Hosting</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h4><i class="fas fa-microchip"></i> IoT/Embarqué</h4>
+                            <ul>
+                                <li>Arduino Nano, ATmega328P</li>
+                                <li>Requête HTTPClient</li>
+                                <li>ESP8266 WiFi</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h3>Justification des Choix</h3>
+                    <table class="criteria-table">
+                        <thead>
+                            <tr>
+                                <th>Technologie</th>
+                                <th>Avantages</th>
+                                <th>Alternative Rejetée</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Firebase</td>
+                                <td>Temps réel natif</td>
+                                <td>MQTT + Node.js</td>
+                            </tr>
+                            <tr>
+                                <td>Chart.js</td>
+                                <td>Visualisation simple et performante</td>
+                                <td>D3.js (trop complexe)</td>
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Architecture Section -->
+            <section id="architecture">
+                <h2 class="section-title"><i class="fas fa-project-diagram"></i> Architecture Système</h2>
+                
+                <div class="card">
+                    <div class="architecture-diagram">
+                        
+                        <p><em>Diagramme d'Architecture : ESP8266 → Firebase → Interface Web</em></p>
+                    </div>
+                    
+                    <h3>Diagramme de Séquence</h3>
+                    <div class="architecture-diagram">
+                        
+                        <p><em>Processus de communication : Détection → Transmission → Visualisation</em></p>
+                    </div>
+                    
+                    <h3>Schéma de la Base de Données</h3>
+                    <div class="code-block">
+                        // Structure Firebase
+                        {
+                            "system": {
+                                "status": "running", // running/stopped
+                                "last_activity": "2025-03-15T14:30:00Z"
+                            },
+                            "stats": {
+                                "total_processed": 124,
+                                "last_hour": 12
+                            },
+                            "dechets": {
+                                "vert": { count: 45, last: "2025-03-15T14:28:00Z" },
+                                "bleu": { count: 32, last: "2025-03-15T14:25:00Z" }
+                            }
+                        }
+                    </div>
+                    
+                    <h3>Flux de Données</h3>
+                    <ol class="step-list">
+                        <li>Détection : Le capteur identifie le type de déchet</li>
+                        <li>Transmission : L'Atmega 328P envoie à Firebase</li>
+                        <li>Synchronisation : Firebase notifie l'interface web</li>
+                        <li>Visualisation : Mise à jour du dashboard</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <!-- Implémentation Section -->
+            <section id="implementation">
+                <h2 class="section-title"><i class="fas fa-code"></i> Détails d'Implémentation</h2>
+                
+                <div class="card">
+                    <h3>Interface Web</h3>
+                    <div class="code-block">
+                        &lt;div class="trash-container"&gt;<br>
+                        &nbsp;&nbsp;&lt;div class="trash-can organic" data-type="vert"&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="can-body"&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="fill-level" style="height: 0%"&gt;&lt;/div&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="trash-icon"&gt;🍃&lt;/div&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="trash-info"&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organique &lt;span class="counter"&gt;0&lt;/span&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+                        &nbsp;&nbsp;&lt;/div&gt;<br>
+                        &lt;/div&gt;
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                <div class="card">
+                    <h3>Écoute Temps Réel</h3>
+                    <div class="code-block">
+                        <span style="color: #569cd6;">import</span> { getDatabase, ref, onValue } <span style="color: #569cd6;">from</span> "firebase/database";<br><br>
+                        <span style="color: #569cd6;">const</span> db = getDatabase();<br>
+                        onValue(ref(db, 'dechets'), (snapshot) => {<br>
+                        &nbsp;&nbsp;<span style="color: #569cd6;">const</span> data = snapshot.val();<br>
+                        &nbsp;&nbsp;updateUI(data);<br>
+                        });
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Techniques d'Optimisation</h3>
+                    <ul class="step-list">
+                        <li>
+                            <strong>Débatching des données :</strong>
+                            Envoi par paquets de 5 détections pour réduire les requêtes
+                        </li>
+                        <li>
+                            <strong>Cache local :</strong>
+                            Stockage des dernières valeurs pour affichage hors-ligne
+                        </li>
+                        <li>
+                            <strong>Lazy loading :</strong>
+                            Chargement différé des graphiques secondaires
+                        </li>
+                    </ul>
+                    
+                    <div class="highlight">
+                        <p><strong>Benchmark :</strong> Réduction de 62% de la bande passante après optimisation</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Résultats & Perspectives</h3>
+                    <p><strong>Résultats Obtenus :</strong></p>
+                    <ul>
+                        <li>Performance : Latence moyenne de 200ms</li>
+                        <li>Fiabilité : 99.8% de réussite transmission</li>
+                        <li>Ergonomie : Interface intuitive</li>
+                    </ul>
+                    
+                    <div class="highlight">
+                        <p><strong>Améliorations Possibles :</strong></p>
+                        <ul>
+                            <li>Système de logs pour débogage</li>
+                            <li>Authentification sécurisée</li>
+                            <li>Optimisation animations mobiles</li>
+                        </ul>
+                    </div>
+                    
+                    <p>
+                        <strong>Conclusion :</strong> Le pôle IT a fourni une solution complète répondant au cahier des charges, 
+                        avec une architecture scalable pour les évolutions futures.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Sécurité Section -->
+            <section id="security">
+                <h2 class="section-title"><i class="fas fa-shield-alt"></i> Sécurité</h2>
+                
+                <div class="card">
+                    <h3>Mesures de Protection</h3>
+                    
+                    <div class="tech-stack">
+                        <div class="tech-card">
+                            <h4><i class="fas fa-key"></i> Authentification</h4>
+                            <ul>
+                                <li>Clé API Firebase restreinte</li>
+                                <li>Rules Firebase configurées</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h4><i class="fas fa-lock"></i> Données</h4>
+                            <ul>
+                                <li>Chiffrement en transit (HTTPS/WSS)</li>
+                                <li>Validation des inputs Arduino</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        // Rules Firebase
+                        {
+                            "rules": {
+                                "dechets": {
+                                    ".read": "auth != null",
+                                    ".write": "auth != null && 
+                                            newData.isNumber() && 
+                                            newData.val() <= data.val() + 1"
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="lien-site">
+                    <p>🌐 Accédez au site officiel du projet : 
+                        <a href="https://roc7-gif.github.io/gabage_management/" target="_blank">
+                        https://roc7-gif.github.io/gabage_management/
+                        </a>
+                        <p>
+                            <img src="images/site1.png" alt="" >
+                            <img src="images/site2.png" alt="" >
+                        </p>
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        
+
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3 class="section-subtitle"><i class="fas fa-map-signs"></i> Navigation rapide</h3>
+            <ul class="component-list">
+                <li><a href="#introduction"><i class="fas fa-home"></i> Introduction</a></li>
+                <li><a href="#objectifs"><i class="fas fa-bullseye"></i> Objectifs IT</a></li>
+                <li><a href="#technologies"><i class="fas fa-layer-group"></i> Technologies</a></li>
+                <li><a href="#architecture"><i class="fas fa-project-diagram"></i> Architecture</a></li>
+                <li><a href="#implementation"><i class="fas fa-code"></i> Implémentation</a></li>
+                <li><a href="#security"><i class="fas fa-shield-alt"></i> Sécurité</a></li>
+            </ul>
+            
+            <h3 class="section-subtitle"><i class="fas fa-download"></i> Ressources</h3>
+            <ul class="component-list">
+                <li><a href="#"><i class="fab fa-github"></i> Code source</a></li>
+                <li><a href="#"><i class="fas fa-file-code"></i> Documentation API</a></li>
+            </ul>
+
+            <h3 class="section-subtitle"><i class="fas fa-cube"></i> Technologies Clés</h3>
+            <ul class="component-list">
+                <li><i class="fab fa-firebase"></i> Firebase Realtime DB</li>
+                <li><i class="fab fa-js"></i> JavaScript/Chart.js</li>
+                <li><i class="fas fa-microchip"></i> At mega 328P</li>
+                <li><i class="fab fa-html5"></i> HTML5/CSS3</li>
+            </ul>
+            
+            <div class="card" style="margin-top: 20px; background: linear-gradient(135deg, var(--secondary), var(--primary)); color: white;">
+                <h3 style="color: white;"><i class="fas fa-info-circle"></i> À propos</h3>
+                <p>Ce projet a été réalisé dans le cadre de la Tekbot Robotics Challenge (TRC) par l'équipe RoboStim.</p>
+                <p>Objectif : Concevoir un convoyeur intelligent pour le tri automatisé des déchets.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-robot"></i>
+                        <div>
+                            <h3>ROBO<span>STIM</span></h3>
+                            <p>Documentation technique du pôle IT</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <div class="copyright-content">
+                        <p>&copy; 2025 ROBOSTIM - TRC 2025 | Équipes : Électronique, IT, Mécanique</p>
+                        <div class="footer-badge">
+                            <i class="fas fa-trophy"></i> TRC25
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

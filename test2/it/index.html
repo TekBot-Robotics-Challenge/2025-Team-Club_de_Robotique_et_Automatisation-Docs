@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentation technique complète : sensor_data_evaluation</title>
+</head>
+
+<!-- pre -->
+    <style>
+      
+a{
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  display: block;
+}
+:root {
+  --primary: #2c3e50,
+  --secondary: #3498db,
+  --accent: #e74c3c,
+  --light: #ecf0f1,
+  --dark: #2c3e50,
+  --success: #27ae60,
+  --warning: #f39c12,
+  --danger: #e74c3c,
+  --code-bg: #f8f9fa,
+  --border: #dee2e6,
+  --text: #333333,
+  --text-light: #666666,
+}
+img{
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  max-height: 400px;
+  display: inline-block;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: #f9f9f9;
+}
+
+section {
+  background: white;
+  margin: 2rem auto;
+  margin: 20px;
+  padding: 2.5rem;
+  max-width: 1200px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  border-left: 4px solid var(--secondary);
+  page-break-after: always;
+}
+
+h1 {
+  color: var(--primary);
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+
+h2 {
+  color: var(--primary);
+  font-size: 1.8rem;
+  margin: 1.8rem 0 1rem;
+}
+
+h3 {
+  color: var(--secondary);
+  font-size: 1.4rem;
+  margin: 1.5rem 0 0.8rem;
+}
+
+h4 {
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin: 1.2rem 0 0.6rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+pre {
+  border: 4px solid rgb(55, 55, 235);
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
+  border-right: 4px solid transparent;
+  background-color: var(--code-bg);
+  padding: 1.2rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.2rem 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+code {
+  
+  font-family: 'Courier New', monospace;
+  background-color: var(--code-bg);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+  margin: 1.8rem 0;
+}
+
+strong {
+  color: var(--primary);
+}
+
+/* Classes utilitaires */
+.note {
+  background-color: #e7f5ff;
+  border-left: 4px solid var(--secondary);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.warning {
+  background-color: #fff4e6;
+  border-left: 4px solid var(--warning);
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.success {
+  background-color: #ebfbee;
+  border-left: 4px solid var(--success);
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  section {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  pre {
+    padding: 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Effets interactifs */
+a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Mise en forme spécifique pour les exemples JSON */
+.json-key {
+  color: #d63384;
+}
+
+.json-value {
+  color: #20c997;
+}
+
+.json-string {
+  color: #20c997;
+}
+
+.json-number {
+  color: #fd7e14;
+}
+
+        h1{
+            color: rgb(103, 103, 222);
+        }
+         h2{
+            color: rgb(103, 103, 222);
+        }
+        h4 {
+            color: rgba(205, 163, 9, 0.817);
+        }
+    </style>
+
+
+<style>
+  
+/* Animation pour le header */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+#page1 {
+padding: 0px;
+margin: 0px;
+  animation: fadeIn 1s ease-out forwards;
+  perspective: 1000px;
+}
+
+#page1 h1 {
+  animation: scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+#page1 h1:hover {
+  animation: pulse 1.5s infinite;
+  text-shadow: 0 2px 15px rgba(0,0,0,0.2);
+}
+
+#page1 hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  animation: fadeIn 1.2s ease-out 0.5s both;
+}
+
+#page1 img {
+  animation: scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s both;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+#page1 img:hover {
+  transform: scale(1.02) rotate(0.5deg);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+
+
+  #particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  
+  #page1 {
+    position: relative;
+    overflow: hidden;
+  }
+</style>
+
+
+<header id="page1" style="background-color: rgb(2, 14, 47);">
+  <center>
+    <h2 style="font-family: cursive; color: #ebfbee;">REAL-TIME SENSOR DATA VALIDATION</h2>
+
+    <a href="img18.jpg" style="max-width: 320px;"><img src="img18.jpg" alt="" width="300px" height="300px" ></a>
+   <br>
+    <h5 style="color: #e7f5ff;">
+    Documentation technique complète :sensor_data_evaluation
+    </h5>
+    <br>
+  </center>
+  <div id="particles-js"></div>
+  <!-- Bouton Retour -->
+    <button id="backButton" class="back-button">
+        <i class="fas fa-arrow-left"></i> Retour à la page précédente
+    </button>
+</header>
+<body>
+
+    <section><h2>Objectif du projet</h2>
+
+      <p>Le projet consiste à développer un package ROS 2 intitulé sensor_data_evaluation, dont le but principal est de simuler l'acquisition, la transmission et la vérification de données issues de capteurs environnementaux. Ce système met en œuvre un flux <strong>publisher/subscriber</strong> et permet une évaluation en temps réel de la validité des données selon des critères définis.</p>
+      <hr>
+  
+      <h2>Structure du package</h2>
+      <a href="img28.jpg"><img src="img28.jpg" alt=""></a></section>
+
+<section id="page2">
+    <h3>sensor_publisher.py</h3>
+
+    <h4>1. sensor_publisher.py — Générateur de données de capteurs</h4>
+
+    <p>Ce fichier définit un <strong>node ROS 2</strong> chargé de générer des données aléatoires simulant les lectures de trois capteurs : température, humidité et pression. Ces valeurs sont générées toutes les <strong>0,5 secondes</strong>.<br>
+    Fonctionnement général :<br>
+    Les données sont encapsulées dans un dictionnaire Python puis converties en <strong>format JSON</strong>.<br>
+    Elles sont ensuite publiées sur un <strong>topic ROS 2</strong> nommé /sensor_data.<br>
+    L'affichage dans le terminal utilise une <strong>coloration personnalisée</strong> (par exemple, vert foncé pour indiquer la publication).<br>
+    Fonctions clés :<br>
+    __init__() : initialise le node, crée le publisher, et un timer pour déclencher la génération de données.<br>
+    publish_data() : génère les valeurs aléatoires, les encode en JSON et les publie.</p>
+</section>
+
+<section id="page3">
+  <a href="img31.jpg"><img src="img31.jpg" alt=""></a>
+
+<section id="page4">
+    <a href="img34.jpg"><img src="img34.jpg" alt=""></a>
+
+    <h4>2. sensor_subscriber.py — Vérificateur de validité des données</h4>
+
+    <p>Ce fichier contient le node ROS 2 subscriber qui écoute le topic /sensor_data. À chaque message reçu, il décodera les données JSON, extraira les valeurs des capteurs, et vérifiera leur validité selon les plages définies :<br>
+    Température : 15°C à 30°C<br>
+    Humidité : 30% à 70%<br>
+    Pression : 950 hPa à 1050 hPa<br>
+    Fonctionnement :<br>
+    Si les trois valeurs sont dans les plages attendues, un statut "VALID" est affiché.<br>
+    Sinon, le statut "INVALID" est indiqué.<br>
+    Un code couleur est appliqué à chaque valeur ainsi qu'au statut final pour une meilleure lisibilité :<br>
+    Donnée reçue : bleu nuit<br>
+    Statut : vert ou rouge<br>
+    Fonctions clés :<br>
+    __init__() : initialise le node et crée la souscription au topic.<br>
+    listener_callback() : déclenchée à chaque message reçu, elle analyse et affiche les données.</p>
+</section>
+
+<section id="page5">
+<a href="img37.jpg"><img src="img37.jpg" alt=""></a>
+<a href="img38.jpg"><img src="img38.jpg" alt=""></a>
+</section>
+
+<section id="page6">
+    <h4>3. sensor_launch.py — Lancement automatisé des deux nodes</h4>
+
+    <p>Ce fichier est un <strong>fichier de lancement ROS 2</strong> écrit en Python. Il permet de <strong>démarrer simultanément</strong> les deux nodes (sensor_publisher et sensor_subscriber) en une seule commande.</p>
+
+    <p>Fonctionnement :<br>
+    Il crée une <strong>description de lancement</strong> contenant deux instances de Node :<br>
+    L'un pour le publisher.<br>
+    L'autre pour le subscriber.<br>
+    Chaque node est configuré pour afficher ses logs directement dans le terminal.</p>
+
+    <p>Objectif :<br>
+    Simplifier l'exécution et permettre de tester <strong>l'ensemble du système</strong> sans lancer les nodes séparément.</p>
+
+    <a href="img41.jpg"><img src="img41.jpg" alt=""></a>
+
+
+    <h4>4. package.xml — Déclaration du package ROS 2</h4>
+
+    <p>Ce fichier est un <strong>fichier de configuration XML obligatoire</strong> pour tout package ROS 2. Il décrit les <strong>informations de base</strong> et les <strong>dépendances</strong> nécessaires à la compilation et à l'exécution du projet.<br>
+    Contenu principal :<br>
+    <strong>Nom du package</strong> (sensor_data_evaluation)<br>
+    <strong>Version</strong> du package<br>
+    <strong>Description</strong> et <strong>auteur</strong> du projet<br>
+    Dépendances :<br>
+    relpy : pour les nœuds ROS 2 en Python<br>
+    std_msss : pour utiliser les messages de type String</p>
+</section>
+
+<section id="page7">
+    <p>Role :<br>
+    Il permet à ROS 2 de savoir comment gérer ce package, notamment lors des commandes :<br>
+   <b>Bash : </b>
+    <pre>
+    <code>
+colcon build
+ros2 launch ...
+</code>
+   </pre>
+   </p>
+
+   <a href="img44.jpg"><img src="img44.jpg" alt=""></a>
+
+    <h4>5. setup.py — Script d'installation Python</h4>
+
+    <p>Ce fichier permet à ROS 2 d'installer le package comme un module Python ROS. Il est utilisé par colcon lors de la compilation.<br>
+    Éléments clés :<br>
+    Déclare le package Python et les modules à inclure.<br>
+    Indique les scripts exécutables à installer (comme sensor_publisher.py et sensor_subscriber.py).<br>
+    Permet au système de les retrouver comme des nodes exécutables via ROS 2.<br>
+    Exemple de rôle :<br>
+    Après compilation, ROS 2 pourra reconnaître les commandes comme :<br>
+    <code>ros2 run sensor_data_evaluation sensor_publisher</code></p>
+</section>
+
+<section id="page8">
+  <a href="img49.png"><img src="img49.png" alt=""></a>
+
+    <h4>6. setup.cfg — Configuration complémentaire à setup.py</h4>
+
+    <p>Ce petit fichier complète setup.py avec des instructions de compilation et de distribution.<br>
+    Il est souvent requis par ROS 2 pour que le système sache que le package suit les conventions de setuptools.<br>
+    Contenu typique :<br>
+    La directive develop = true pour indiquer que le package peut être utilisé en mode développement.</p>
+<a href="img48.jpg"><img src="img48.jpg" alt=""></a>
+    <h4>7. resource/ + sensor_data_evaluation — Dossier de ressource obligatoire</h4>
+
+    <p>Le dossier resource/ contient un fichier sensor_data_evaluation vide, nécessaire à ROS 2 pour marquer le package comme un package Python ROS 2 valide.<br>
+    Utilité :</p>
+</section>
+
+<section id="page9">
+    <p>Sans ce fichier, ROS 2 ne reconnaîtra pas correctement le package Python, même si le code
+    est bon.</p>
+
+    <h4>8. sensor_data_evaluation/__init__.py</h4>
+
+    <p>Ce fichier rend le répertoire sensor_data_evaluation/ traitable comme un vrai module
+    <strong>Python. Même s'il est vide, il est nécessaire pour que Python reconnaisse le package</strong>
+    comme un package importable.</p>
+
+    <h3>Difficultés rencontrées et solutions apportées</h3>
+
+    <h4>1. Double affichage dans le terminal</h4>
+
+    <p><strong>Problème :</strong> Lors de l'utilisation de self.get_logger().info(...) dans le subscriber, les
+    messages semblaient s'afficher deux fois, notamment avec et sans couleur.<br>
+    <strong>Cause :</strong> En réalité, ce n'était pas un bug mais une confusion liée à la manière dont ROS 2
+    <strong>affiche les logs. ROS ajoute automatiquement un affichage du message brut, en plus de</strong>
+    celui colorisé par les codes ANSI ajoutés dans le code.<br>
+    <strong>Solution :</strong> Le problème a été réglé en désactivant les logs bruts ou en structurant les logs
+    <strong>pour n'avoir que la sortie stylisée. On a veillé à n'afficher que la version colorée des</strong>
+    données.</p>
+
+    <h4>2. Affichage noir ou inexistant lors de l'enregistrement vidéo</h4>
+
+    <p><strong>Problème :</strong> Lors de la capture vidéo de l'interface terminal ou de l'exécution des nodes,
+    certaines applications d'enregistrement vidéo affichaient un écran noir.<br>
+    <strong>Cause :</strong> La plupart des enregistreurs utilisent X11 ou Wayland, et certains réglages de
+    sécurité ou configurations de bureau empêchent la capture du terminal (notamment en
+    session Wayland).<br>
+    <strong>Solution :</strong> Plusieurs outils ont été testés (OBS Studio, Kazam, SimpleScreenRecorder), et
+    finalement SimpleScreenRecorder en mode X11 a donné de meilleurs résultats. Il a aussi
+    fallu lancer l'enregistreur avec des droits élevés ou dans le même environnement
+    graphique que le terminal.</p>
+
+    <h4>3. Fichier de lancement introuvable (sensor_launch.py)</h4>
+
+    <p><strong>Problème :</strong> L'erreur file 'sensor_launch.py' was not found in the share directory of package
+    s'est produite après une reconstruction du workspace.<br>
+    <strong>Cause :</strong> Ce problème survient si :<br>
+    Le fichier de lancement n'est pas dans le bon répertoire (launch/)<br>
+    Le fichier n'est pas référencé correctement dans setup.py<br>
+    Le workspace n'a pas été nettoyé avant colcon build<br>
+    <strong>Solution :</strong><br>
+    On a placé le fichier sensor_launch.py dans le dossier launch/<br>
+    On a vérifié que ce fichier était bien mentionné dans setup.py sous data_files</p>
+</section>
+
+<section id="page10">
+    <p>On a exécuté :<br>
+<b>Bash : </b>
+      <pre>
+  <code>
+colcon build --packages-select sensor_data_evaluation
+source install/setup.bash
+    </code>
+</pre>
+    </p>
+
+
+    <h4>4. Affichage incorrect ou absence de couleur dans les logs</h4>
+
+    <p><strong>Problème :</strong> Certaines couleurs ANSI ne s'affichaient pas correctement dans le terminal
+    ROS 2.<br>
+    <strong>Cause :</strong> Tous les terminaux ne supportent pas de la même façon les codes ANSI, et certains
+    contextes ROS (notamment ros2 launch) peuvent filtrer les caractères d'échappement.<br>
+    <strong>Solution :</strong> Utilisation de couleurs sobres et contrastées (bleu nuit, vert, rouge) avec des
+    tests manuels dans le terminal pour s'assurer que l'affichage est lisible. Utilisation de
+    self.get_logger().info(...) uniquement avec du texte pré-formaté.</p>
+
+    <h4>5. Confusion dans les fichiers nécessaires à la reconnaissance du package ROS 2</h4>
+
+    <p><strong>Problème :</strong> Après compilation, ROS ne reconnaissait pas le package Python, ou les scripts
+    ne se lançaient pas.<br>
+    <strong>Cause :</strong> Il manquait des fichiers obligatoires comme :<br>
+    resource/sensor_data_evaluation<br>
+    __init__.py<br>
+    <strong>Solution :</strong> Ajout des fichiers obligatoires, respect de la structure imposée par setuptools, et
+    inclusion des scripts dans setup.py → entry_points.</p>
+
+    <h4>6. Chemins relatifs incorrects lors du changement de session utilisateur</h4>
+
+    <p><strong>Problème :</strong> Lorsqu'un autre utilisateur/séance a été utilisée, ROS ne retrouvait pas les
+    chemins d'installation du package.<br>
+    <strong>Cause :</strong> L'environnement n'avait pas été sourcé, ou bien la compilation du workspace
+    n'avait pas été refaite pour l'utilisateur courant.<br>
+    <strong>Solution :</strong><br>
+  <b>Bash : </b>
+    <pre>
+    <code>
+source ~/ros2_ws/install/setup.bash
+colcon build
+</code>
+    
+  </pre></p>
+</section>
+
+<section id="page11">
+<h3> Connexion réseau dans ROS 2 (communication inter-PC) </h3>
+<p>
+  Dans un projet ROS 2 distribué, où plusieurs machines (par exemple un PC publisher et un autre PC subscriber) doivent échanger des messages, il est impératif de configurer correctement la connexion réseau :
+  <ul>
+  <li>
+    
+  
+  1. Même réseau local (LAN) :
+  Tous les ordinateurs doivent être connectés au même réseau (via Wi-Fi ou câble Ethernet), car ROS 2 utilise le middleware DDS qui s’appuie sur la découverte automatique par multicast.
+  
+ <li>
+   
+  2. Variable d’environnement ROS_DOMAIN_ID :
+  Pour s’assurer que les nodes ROS 2 communiquent dans le même domaine, il faut définir cette variable avec la même valeur sur chaque machine :
+  
+<pre>
+  <code>
+export ROS_DOMAIN_ID=0
+  </code>
+</pre>
+  
+  Cela permet d’éviter les interférences avec d’autres projets ROS sur le réseau. <br>
+
+  </li>
+  <li>
+    
+  3. Pas besoin de ROS_MASTER_URI :
+  Contrairement à ROS 1, ROS 2 n’a pas besoin de maître centralisé, donc aucune configuration ROS_MASTER_URI n’est requise.
+  </li>
+  
+  <li>
+    4. Pare-feu et sécurité :
+  Les pare-feux doivent autoriser les ports UDP et TCP utilisés par DDS. Sinon, les messages ne seront pas visibles entre les machines.  
+  <br>
+  <br>
+  <b>💡 Remarque :</b> Si tout est bien configuré, un node publisher sur une machine A peut publier, et un node subscriber sur la machine B peut lire ces messages sans modifier le code.
+
+  </li>
+</ul>
+</p>
+<a href="img50.jpg">
+  <img src="img50.jpg" alt="">
+</a>
+<br>
+<p>
+  <a href="https://vimeo.com/1094983036/0cf89e6ea7?share=copy"><strong>Vidéo de démonstration</strong></a>
+</p>
+
+</section>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    particlesJS('particles-js', {
+      "particles": {
+        "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#333333" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5, "random": true },
+        "size": { "value": 3, "random": true },
+        "line_linked": { "enable": true, "distance": 150, "color": "#cccccc", "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        }
+      }
+    });
+  });
+</script>
+
+</html>

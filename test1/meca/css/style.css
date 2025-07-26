@@ -1,0 +1,414 @@
+/* Import de polices (facultatif, ex: Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* --- Variables CSS --- */
+:root {
+    --primary-color: #0056b3; /* Bleu foncé pour les accents */
+    --secondary-color: #007bff; /* Bleu clair */
+    --text-color: #333;
+    --background-color: #f8f9fa; /* Gris très clair */
+    --header-bg: #212529; /* Noir/gris foncé pour l'entête */
+    --sidebar-bg: #343a40; /* Gris foncé pour la barre latérale */
+    --sidebar-text: #f8f9fa;
+    --sidebar-link-hover: #007bff;
+    --border-color: #dee2e6; /* Couleur de bordure */
+    --code-bg: #e9ecef; /* Arrière-plan pour le code */
+    --max-content-width: 900px;
+}
+
+/* --- Réinitialisation et styles de base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- En-tête --- */
+header {
+    background-color: var(--header-bg);
+    color: white;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    position: sticky; /* Reste en haut lors du défilement */
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Aligne les éléments aux extrémités */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Aligne les éléments aux extrémités */
+    flex-grow: 1; /* Permet au contenu de prendre toute la largeur disponible */
+    width: 100%; /* Assure que le conteneur remplit l'espace */
+    gap: 1rem; /* Espace entre les éléments */
+}
+
+header h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+    margin: 0 auto; /* Centre le titre */
+    text-align: center;
+    flex-grow: 1; /* Permet au titre de prendre de la place restante */
+}
+
+/* Bouton toggle navigation (menu burger) */
+.nav-toggle {
+    display: none; /* Caché par défaut sur les grands écrans */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+    position: absolute; /* Position absolue pour ne pas interférer avec le centrage du titre */
+    left: 1.5rem; /* Aligné à gauche de l'en-tête */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* --- Barre latérale de navigation --- */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    width: 250px;
+    padding: 1.5rem 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0; /* Aligné en haut */
+    left: 0;
+    height: 100%; /* Prend toute la hauteur */
+    overflow-y: auto;
+    padding-top: 5rem; /* Espace pour l'entête */
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar ul li a {
+    display: block;
+    color: var(--sidebar-text);
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-left-color: var(--secondary-color);
+}
+
+.sidebar ul li .nav-category {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: default;
+    margin-top: 1rem;
+}
+
+.sidebar ul ul {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar ul ul li a {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* --- Contenu principal --- */
+.content {
+    margin-left: 250px; /* Laisse de la place pour la sidebar */
+    flex-grow: 1;
+    padding: 2rem;
+    max-width: calc(100% - 250px);
+    width: 100%;
+    /* Ajout pour éviter que le contenu ne passe sous le header fixe sur mobile si la sidebar est ouverte */
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* Sections du contenu */
+section {
+    background-color: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
+h2 { font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
+h3 { font-size: 1.5rem; color: var(--secondary-color); }
+h4 { font-size: 1.2rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+ul, ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+ul li, ol li {
+    margin-bottom: 0.5rem;
+}
+
+strong {
+    color: var(--primary-color);
+}
+
+main img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.image-item {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.image-item img {
+    margin: 0 auto 0.8rem auto;
+    max-height: 250px;
+    width: auto;
+}
+
+.image-item p {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+table th, table td {
+    border: 1px solid var(--border-color);
+    padding: 0.8rem;
+    text-align: left;
+}
+
+table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.telechargement_container {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+
+}
+.download-list li {
+    margin-bottom: 1rem;
+    list-style: none ;
+}
+.download-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+/* --- Téléchargements : disposition moderne et responsive --- */
+.telechargement_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.pieces_container,
+.assemblage_container {
+    background: #f7f7f7;
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pieces_container h3,
+.assemblage_container h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.download-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.download-list li {
+    margin: 0.7em 0;
+    text-align: center;
+}
+.download-list li a {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+
+
+@media (max-width: 600px) {
+    .telechargement_container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.download-list li a:hover {
+    background-color: var(--secondary-color);
+    text-decoration: none;
+}
+
+/* --- Pied de page --- */
+footer {
+    background-color: var(--header-bg);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+    width: 100%;
+}
+
+/* --- Responsive Design (Media Queries) --- */
+
+/* Pour les petits écrans (smartphones) */
+@media (max-width: 768px) {
+    header {
+        justify-content: center; /* Centre le contenu de l'entête */
+        padding: 1rem 0; /* Ajuste le padding */
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .nav-toggle {
+        display: block; /* Affiche le bouton burger */
+        left: 1rem; /* Ajuste la position pour un meilleur espacement */
+    }
+
+    .sidebar {
+        transform: translateX(-100%); /* Cache la barre latérale hors de l'écran */
+        width: 80%; /* Prend une bonne partie de la largeur sur mobile */
+        max-width: 300px; /* Limite la largeur max de la sidebar sur mobile */
+        padding-top: calc(1rem + 5rem); /* Ajuste le padding pour l'entête, 1rem est le padding top du header */
+        top: 0; /* S'assure qu'elle commence en haut de l'écran */
+    }
+
+    .sidebar.open {
+        transform: translateX(0); /* Affiche la barre latérale */
+    }
+
+    .content {
+        margin-left: 0; /* Pas de marge sur les petits écrans */
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.3rem; }
+
+    .image-grid {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+    }
+}
+
+/* Pour les écrans intermédiaires (tablettes, petits laptops) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar {
+        width: 200px; /* Réduire légèrement la sidebar */
+    }
+    .content {
+        margin-left: 200px;
+        max-width: calc(100% - 200px);
+    }
+    header h1 {
+        font-size: 1.6rem;
+    }
+}

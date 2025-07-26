@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Technique - Convoyeur Mécanique | TEKBOT 2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>ROBO<span>STIM</span></h1>
+            </div>
+
+            <button id="backButton" class="back-button" style="background: linear-gradient(135deg, #8e44ad, #3498db);">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+
+            <button class="menu-toggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#introduction" class="active"><i class="fas fa-info-circle"></i> Introduction</a></li>
+                    <li><a href="#conception"><i class="fas fa-drafting-compass"></i> Conception</a></li>
+                    <li><a href="#realisation"><i class="fas fa-cogs"></i> Réalisation</a></li>
+                    <li><a href="#problemes"><i class="fas fa-tools"></i> Problèmes rencontrés</a></li>
+                    <li><a href="#conclusion"><i class="fas fa-flag-checkered"></i> Conclusion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>Documentation Technique du Test Final en Mécanique</h2>
+            <p class="centre-titre"><strong>Test final :</strong> Convoyeur intelligent de tri des déchets</p>
+            <div class="btn-container" style="margin-top: 30px;">
+                <a href="#introduction" class="btn">Commencer la lecture</a>
+                <a href="#video" class="btn btn-outline">
+                    <i class="fas fa-video"></i> Voir la simulation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div class="content">
+            <div class="hackathon-badge">
+                <i class="fas fa-trophy"></i> TRC 25
+            </div>
+            
+            <!-- Introduction Section -->
+            <section id="introduction">
+                <h2 class="section-title"><i class="fas fa-info-circle"></i> Introduction</h2>
+                
+                <div class="text-card">
+                    <h3>INTRODUCTION</h3>
+                    <p>Dans le cadre du TEKBOT Robotique Challenge 2025, notre équipe a conçu et réalisé un convoyeur à tapis roulant destiné au transport de déchets. Ce projet constitue la phase finale des tests de pré-sélection du concours, une étape clé pour évaluer les compétences techniques et la compréhension des systèmes mécatroniques avant d'accéder aux phases avancées.</p>
+                    <p>L'objectif global du concours est de développer un robot intelligent capable de collecter des déchets, de les déposer sur un tapis roulant, puis de procéder à un tri automatisé selon plusieurs critères (forme, couleur, matière, etc.). Notre mission actuelle se concentre sur la maîtrise des bases mécaniques et fonctionnelles du système de convoyage, un élément central pour le robot.</p>
+                    <p>La réalisation de ce convoyeur est donc une étape préparatoire stratégique, permettant à notre équipe d'acquérir les compétences nécessaires pour relever les défis technologiques à venir.</p>
+                </div>
+
+                <div class="text-card">
+                    <h3>CONTEXTE ET JUSTIFICATION</h3>
+                    <p>Le TEKBOT Robotique Challenge 2025 vise à stimuler l'innovation chez les étudiants, en les engageant dans la conception de systèmes robotiques intelligents pour la gestion des déchets. Dans un contexte mondial marqué par l'urgence écologique et la nécessité d'automatiser les tâches environnementales, ce concours met l'accent sur des solutions robotisées capables de collecter, trier et transporter les déchets de manière autonome.</p>
+                    <p>Notre projet s'inscrit dans la phase de pré-sélection, qui teste nos compétences techniques avant l'intégration complète du robot. Nous avons donc conçu un convoyeur à tapis roulant motorisé, élément clé du système global, assurant le défilement régulier des déchets pour leur reconnaissance et tri par la partie intelligente du robot.</p>
+                    <p>L'équipe est divisée en trois pôles : mécanique, électronique et intelligence artificielle. Pour ce prototype, nous avons combiné composants classiques et pièces imprimées en 3D, afin de répondre aux exigences de légèreté, précision et adaptabilité.</p>
+                    <p>Ce projet nous a permis de nous familiariser avec les principes fondamentaux de transmission mécanique, d'entraînement motorisé et d'assemblage modulaire, compétences indispensables pour les étapes ultérieures.</p>
+                </div>
+
+                <div class="text-card">
+                    <h3>PROBLÉMATIQUE</h3>
+                    <p>Concevoir un convoyeur à tapis roulant pour le tri des déchets soulève plusieurs défis : assurer un déplacement fluide, une transmission fiable du mouvement moteur, une structure stable, tout en intégrant des pièces imprimées 3D robustes. Le système doit aussi rester évolutif pour une future intégration à un robot intelligent.</p>
+                </div>
+
+                <div class="text-card">
+                    <h3>OBJECTIFS</h3>
+                    <p><strong>Objectif général :</strong> Concevoir un convoyeur motorisé fiable et stable pour le transport des déchets.</p>
+                    <p><strong>Objectifs spécifiques :</strong></p>
+                    <ul class="objectives-list">
+                        <li>Maîtriser la transmission du mouvement par moteur et engrenages.</li>
+                        <li>Assurer la stabilité mécanique du tapis roulant.</li>
+                        <li>Intégrer des pièces imprimées en 3D adaptées.</li>
+                        <li>Préparer le convoyeur à une future intégration avec un système intelligent.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Réalisation Section -->
+            <section id="realisation">
+                <h2 class="section-title"><i class="fas fa-cogs"></i> Réalisation</h2>
+                
+                <div class="text-card">
+                    <h3>RÉALISATION</h3>
+                    <h4>Cahier des charges</h4>
+                    <h5>1. Fonctionnalités attendues</h5>
+                    <p>Le convoyeur doit transporter les déchets de l'entrée à la sortie. Il fonctionne de manière conditionnelle :</p>
+                    <ul>
+                        <li>Marche uniquement lorsqu'un déchet est détecté.</li>
+                        <li>Arrêt en l'absence d'objet.</li>
+                    </ul>
+                    <p>Cette logique vise à économiser l'énergie et limiter l'usure mécanique.</p>
+
+                    <h5>2. Contraintes règlementaires</h5>
+                    <ul>
+                        <li><strong>Dimensions maximales :</strong>
+                            <ul>
+                                <li>Longueur : 650 mm</li>
+                                <li>Hauteur du tapis : 100 mm</li>
+                            </ul>
+                        </li>
+                        <li><strong>Charge maximale :</strong> 99 g par objet.</li>
+                        <li>Aucun critère imposé sur la vitesse, le type de motorisation, matériaux, transmission, ou alimentation électrique.</li>
+                    </ul>
+
+                    <h5>3. Contraintes internes</h5>
+                    <ul>
+                        <li>Structure compacte et optimisation des volumes pour limiter la matière (impression 3D).</li>
+                        <li>Robustesse pour supporter plusieurs cycles d'utilisation.</li>
+                        <li>Facilité d'assemblage et maintenance rapide.</li>
+                    </ul>
+                </div>
+
+                <div class="text-card">
+                    <h3>Choix techniques et justifications</h3>
+                    
+                    <h4>1.1 Moteur</h4>
+                    <p>Le moteur XD37GB-555 (12 V, réducteur 1:17) a été retenu pour sa disponibilité, son compromis couple/vitesse adapté à la charge, sa robustesse, et sa tension standard facilitant l'intégration. Le réducteur permet une vitesse modérée (~17,65 tr/min), adaptée au convoyeur.</p>
+                    
+                    
+                    <h4>1.2 Tapis roulant</h4>
+                    <p>Nous avons choisi un tissu dur en remplacement du caoutchouc ou pneus recyclés, peu accessibles. Malgré un poids légèrement supérieur, ce matériau offre une adhérence suffisante pour le déplacement fiable des déchets, répondant aux contraintes d'approvisionnement.</p>
+                    
+                    <h4>1.3 Transmission</h4>
+                    <p>La transmission par engrenages métalliques est privilégiée pour minimiser les pertes d’énergie et garantir précision, fiabilité et durabilité. Les courroies, sources de glissements et difficiles à adapter, ont été écartées.</p>
+                    
+                    <h4>1.4 Structure</h4>
+                    <p>Les pièces sont imprimées en 3D avec des filaments PLA ou PETG, offrant rigidité, légèreté et précision, tout en limitant coûts et délais. Les pièces soumises à fortes contraintes pourront être renforcées ou métalliques, mais la simplicité et le poids léger restent prioritaires.</p>
+
+                    <h4>1.5 Impression 3D</h4>
+                    <p>Choisie pour :
+                      <ul>
+                        <li>La grande précision dans la fabrication.</li>
+                        <li>La liberté de conception (formes complexes).</li>
+                        <li>La promotion des technologies modernes du concours.</li>
+                        <li>La réduction des coûts et délais.</li>
+                        <p>Le PLA (Acide Polylactique)a été choisi pour sa facilité d’impression, sa bonne précision, son faible coût et son aspect écologique.</p>
+                      </ul>
+                    </p>
+
+                    <h4>1.6 Roulements</h4>
+                    <p>Des roulements à billes à contact radial équipent les roulettes tendeuses pour :
+                      <ul>
+                        <li>Réduire les frottements.</li>
+                        <li>Améliorer la durée de vie et stabilité.</li>
+                        <li>Assurer précision et bon alignement du tapis.</li>
+                      </ul>
+                      <p>
+                        Leur intégration s’est révélée efficace dès les premiers tests.
+                      </p>
+                    </p>
+
+                    <h4>1.7 Système de tension du tapis</h4>
+                    <p>Un système vis-écrou longitudinal associé à une roue folle mobile sur glissière assure la tension :
+                      <ul>
+                        <li>Réglage précis millimétrique évitant relâchement ou surtension.</li>
+                        <li>Fiabilité mécanique, robuste et peu sensible aux vibrations.</li>
+                        <li>Facilité d’assemblage avec composants standards (vis M8, écrou H M8).</li>
+                        <li>Adaptation au design longitudinal, optimisant la stabilité et le guidage.</li>
+                        <li>Optimisation de l’espace grâce à la mobilité de la roulette dans le bâti.</li>
+                        <p>Le mécanisme assure la tension constante et la longévité du tapis.</p>
+                      </ul>
+                    </p>
+
+                    <h4>1.8 Déchets en carton</h4>
+                    <p>Le carton est choisi pour sa légèreté, sécurité, facilité de manipulation, et sa disponibilité à faible coût. Il limite la charge motrice et assure la stabilité du transport.</p>
+
+                    <h4>4. Conception et modélisation</h4>
+                    <h5>Assemblage du bâti</h5>
+                    <p>Le bâti est divisé en six pièces distinctes, regroupées en deux ensembles (A1 et A2) pour tenir dans le volume d'impression 3D (256 mm³). Chaque assemblage respecte contraintes d'encombrement, solidité et assemblage mécanique.</p>
+                    
+                    <div >
+                        <img src="images/1.png" alt="" width="500">
+                        <img src="images/2.png" alt="" width="500">
+                        <img src="images/3.png" alt="" width="500">
+                        <img src="images/4.png" alt="" width="500">
+                        <img src="images/impression.jpg" alt="" width="500">
+                    </div>
+
+                    <h5>Roulettes tendeuses</h5>
+                    <p>Deux modèles :</p>
+                    <ul>
+                        <li>Une roulette fixée au moteur, avec cannelure pour accouplement direct sans courroie, réduisant les pertes d'énergie.
+                          <div >
+                            <img src="images/5.png" alt="" width="500">
+                          </div>
+                        </li>
+                        <li>Une roulette mobile sur glissière pour tension réglable via système vis-écrou.
+                          <div >
+                            <img src="images/6.png" alt="" width="500">
+                          </div>
+                        </li>
+                    </ul>
+
+                    <h5>Système de tension</h5>
+                    <p>Deux pièces principales :</p>
+                    <ul>
+                      <li>Pièce mobile glissant dans le bâti, avec vides pour réduire matière et faciliter déplacement.</li>
+                      <li>Pièce extérieure solidaire de la vis M8 qui agit sur la roulette pour tension longitudinale.</li>
+                      <div >
+                        <img src="images/7.png" alt="" width="500">
+                        <img src="images/8.png" alt="" width="500">
+                        <img src="images/11.png" alt="" width="500">
+                      </div>
+                    </ul>
+                    
+                    <h5>Déchets</h5>
+                    <p>Une pièce cube modélisée et dupliquée pour simuler plusieurs déchets.</p>
+                    <img src="images/9.png" alt="" width="500">
+
+                    <h5>Assemblage final</h5>
+                    <p>L’assemblage complet a été réalisé dans SolidWorks, la fonction « courroie » pour modéliser le tapis roulant et synchroniser les roulettes. Pour valider le fonctionnement de notre convoyeur, nous avons utilisé les fonctions Gravité, Moteur et Contact dans SolidWorks.</p>
+                    <ul>
+                      <li>La gravité simule le poids des déchets.</li>
+                      <li>Le moteur entraîne la roulette motrice, ce qui met le tapis en mouvement.</li>
+                      <li>Le contact assure l’interaction entre les déchets et le tapis.</li>
+
+                      <p>Afin d’obtenir une animation réaliste, nous avons temporairement ajouté des roulettes intermédiaires sous le tapis. Celles-ci permettaient aux déchets de rester en contact avec une surface durant l’animation.</p>
+                      <p>Elles ont ensuite été masquées, car elles ne font pas partie du système réel.</p>
+                      <img src="images/10.png" alt="" width="500">
+                    </ul>
+                    <p>La vidéo ci dessous montre une simulation du système.</p>
+
+                    
+                </div>
+            </section>
+
+            <!-- Problèmes rencontrés Section -->
+            <section id="problemes">
+                <h2 class="section-title"><i class="fas fa-tools"></i> Problèmes rencontrés</h2>
+                
+                <div class="text-card">
+                    <h3>5. Problèmes rencontrés</h3>
+                    <p>Plusieurs difficultés ont été rencontrées lors de la phase de montage et d'ajustement mécanique :</p>
+                    
+                    <h4>Fixation du moteur</h4>
+                    <p>Le moteur étant relativement lourd et de forme cylindrique, il était difficile à stabiliser dans le support prévu. Lors de la mise en marche, à cause de son couple élevé, il avait tendance à tourner sur lui-même, rendant le transfert du mouvement instable. Un renforcement du support a été nécessaire pour le fixer solidement.</p>
+                    
+                    <h4>Problèmes avec les roulettes</h4>
+                    <p>Les tiges des roulettes n'étaient pas parfaitement droites, ce qui empêchait leur rotation libre dans le bâti. Cela a nécessité plusieurs ajustements avec du papier vert pour permettre un mouvement fluide.</p>
+                    
+                    <h4>Montage difficile des roulements : </h4>
+                    <p>Les roulements à billes n'ont pas pu être insérés facilement dans leur logement ni dans les roulettes. Un ajustement serré étant recherché, il a fallu les monter en force, ce qui a nécessité prudence et précision pour éviter d’endommager les pièces.</p>
+                    
+                    <h4>Système de tension : </h4>
+                    <p>Il a été difficile de trouver les vis adaptées (vis M8 avec filetage et longueur correcte) pour mettre en place le système de tension du tapis.</p>
+
+                    <h4>Stabilité au sol : </h4>
+                    <p>Le bâti du convoyeur n’était pas parfaitement plate, ce qui compliquait sa pose stable au sol. Des cales ou retouches ont été envisagées pour améliorer l’assise.</p>
+
+                    <h4>Découpe du tapis : </h4>
+                    <p>Le tissu utilisé pour le tapis n’a pas été facile à couper de manière droite et régulière, ce qui a affecté temporairement sa tension et son positionnement. Des ajustements manuels ont été nécessaires pour obtenir une découpe correcte.</p>
+
+                </div>
+            </section>
+
+            <!-- Conclusion Section -->
+            <section id="conclusion">
+                <h2 class="section-title"><i class="fas fa-flag-checkered"></i> Conclusion</h2>
+                
+                <div class="text-card">
+                    <p>La réalisation de ce convoyeur a permis de développer un prototype fiable et conforme aux exigences du TEKBOT Robotique Challenge 2025. Les choix techniques, l’impression 3D et l’optimisation de la transmission ont assuré un fonctionnement efficace. Ce projet constitue une étape clé pour préparer l’intégration future du système intelligent et renforcer les compétences de notre équipe.</p>
+                </div>
+            </section>
+            
+            <!-- Video Section -->
+            <section id="video">
+                <h2 class="section-title"><i class="fas fa-video"></i> Simulation après impression et sur SolidWorks</h2>
+                
+                <div class="card">
+                    <div class="video-container">
+                        <div style="padding:52.81% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1104726557?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Démonstration sur SolidWorks du convoyeur"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+                    </div>
+                    <p class="video-caption">
+                        Animation de la simulation du convoyeur sous SolidWorks montrant le mouvement du tapis et le transport des déchets.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <div style="padding:57.5% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1104715188?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Démonstration du tapis en  mouvement"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+                    </div>
+                    <p class="video-caption">
+                        Simulation réelle du convoyeur sous SolidWorks montrant le mouvement du tapis et le transport des déchets.
+                    </p>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3 class="section-subtitle"><i class="fas fa-map-signs"></i> Navigation rapide</h3>
+            <ul class="component-list">
+                <li><a href="#introduction"><i class="fas fa-info-circle"></i> Introduction</a></li>
+                <li><a href="#conception"><i class="fas fa-drafting-compass"></i> Conception</a></li>
+                <li><a href="#realisation"><i class="fas fa-cogs"></i> Réalisation</a></li>
+                <li><a href="#problemes"><i class="fas fa-tools"></i> Problèmes</a></li>
+                <li><a href="#conclusion"><i class="fas fa-flag-checkered"></i> Conclusion</a></li>
+                <li><a href="#video"><i class="fas fa-video"></i> Simulation</a></li>
+            </ul>
+            
+            <h3 class="section-subtitle"><i class="fas fa-download"></i> Ressources techniques</h3>
+            <ul class="component-list">
+                <li><a href="docs/cahier-des-charges.pdf"><i class="fas fa-file-pdf"></i> Cahier des charges</a></li>
+                <li><a href="files/Convoyeur.zip"><i class="fas fa-cube"></i>Les fichiers de conception Solidworks</a></li>
+                <li><a href="docs/plan-fabrication.pdf"><i class="fas fa-file-alt"></i> Plan de fabrication</a></li>
+            </ul>
+
+            <h3 class="section-subtitle"><i class="fas fa-cogs"></i> Composants clés</h3>
+            <ul class="component-list">
+                <li><i class="fas fa-motor"></i> Moteur XD37GB-555</li>
+                <li><i class="fas fa-cog"></i> Engrenages métalliques</li>
+                <li><i class="fas fa-print"></i> Pièces imprimées </li>
+                <li><i class="fas fa-bolt"></i> Système vis-écrou M8</li>
+                <li><i class="fas fa-belt"></i> Tapis en tissu dur</li>
+            </ul>
+            
+            <div class="card" style="margin-top: 20px; background: linear-gradient(135deg, #8e44ad, #3498db); color: white;">
+                <h3 style="color: white;"><i class="fas fa-info-circle"></i> À propos du projet</h3>
+                <p>Ce projet a été réalisé dans le cadre de la Tekbot Robotics Challenge (TRC) par l'équipe RoboStim.</p>
+                <p>Objectif : Concevoir un convoyeur intelligent pour le tri automatisé des déchets.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-robot footer-icon"></i>
+                        <div>
+                            <h3>ROBO<span>STIM</span></h3>
+                            <p>Documentation technique du convoyeur mécanique</p>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h3>Références techniques</h3>
+                        <ul class="component-list">
+                            <li><a href="https://www.solidworks.com/" target="_blank"><i class="fas fa-link"></i> SolidWorks</a></li>
+                            <li><a href="https://ultimaker.com/learn/pla-3d-printing-filament" target="_blank"><i class="fas fa-link"></i> Guide PLA</a></li>
+                            <li><a href="https://www.iso.org/standard/37748.html" target="_blank"><i class="fas fa-link"></i> Norme ISO 6336</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <div class="copyright-content">
+                        <p>&copy; 2025 Documentation technique du convoyeur - TEKBOT Robotique Challenge.</p>
+                        <div class="footer-badge">
+                            <i class="fas fa-trophy"></i> TRC 25
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

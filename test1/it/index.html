@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Projet Robots - Tekbot Challenge 2024</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Styles ROBOSTIM */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --gray: #95a5a6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .back-button {
+            background: linear-gradient(to right, #0f4c81, #007acc);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover {
+            background: linear-gradient(to right, #007acc, #0f4c81);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        }
+        
+
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 5px solid var(--secondary);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            margin: 5px;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 3rem;
+        }
+
+        .content {
+            flex: 3;
+            min-width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--secondary);
+        }
+
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            align-self: flex-start;
+            position: sticky;
+            top: 100px;
+        }
+
+        .section-title {
+            color: var(--primary);
+            padding-left: 15px;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.5rem;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            background: rgba(52, 152, 219, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .section-subtitle {
+            color: var(--secondary);
+            margin: 1.2rem 0 0.8rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(to right, rgba(52, 152, 219, 0.1), rgba(52, 152, 219, 0.05));
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 3px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .card h3 i {
+            color: var(--accent);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 1.2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            font-size: 0.9rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            min-width: 600px;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 12px 14px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.2rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 1.2rem 0;
+            overflow-x: auto;
+            line-height: 1.5;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-size: 0.85rem;
+        }
+
+        .code-comment {
+            color: #3498db;
+        }
+
+        .code-keyword {
+            color: #e74c3c;
+        }
+
+        .component-list {
+            list-style: none;
+        }
+
+        .component-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .component-list li:hover {
+            background: rgba(52, 152, 219, 0.05);
+            transform: translateX(5px);
+        }
+
+        .component-list li:last-child {
+            border-bottom: none;
+        }
+
+        .component-list i {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            min-width: 22px;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            margin-left: 20px;
+            font-size: 0.95rem;
+        }
+
+        .letter-list {
+            list-style-type: lower-alpha;
+            margin-left: 25px;
+            font-size: 0.95rem;
+        }
+
+        .letter-list li {
+            margin-bottom: 8px;
+        }
+
+        .step-list li {
+            position: relative;
+            margin-bottom: 15px;
+            padding-left: 35px;
+            list-style: none;
+        }
+
+        .step-list li::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 26px;
+            height: 26px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .hackathon-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            z-index: 2;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1a252f, #2c3e50);
+            color: white;
+            padding: 1.5rem 0 1rem;
+            border-top: 3px solid var(--accent);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+
+        .footer-brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            max-width: 100%;
+        }
+
+        .footer-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+
+        .footer-brand h3 {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .footer-brand h3 span {
+            color: var(--accent);
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        .footer-links h3 {
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            padding-bottom: 6px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .copyright-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            text-decoration: none;
+            color: var(--secondary);
+        }
+
+        /* Carousel Styles */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .carousel-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-img.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 30px; /* espace entre logo, bouton retour, menu */
+        }
+
+        .back-button {
+            background: linear-gradient(to right, #0f4c81, #007acc);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-left: 15px; /* espace avec le logo */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 600px) {
+        .back-button {
+            padding: 8px 14px;
+            font-size: 0.95rem;
+            margin-left: 8px;
+        }
+        .header-content {
+            gap: 12px;
+        }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                position: static;
+                width: 100%;
+            }
+            
+            nav ul {
+                gap: 8px;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .back-button {
+                order: 3;
+                margin-top: 15px;
+                margin-left: 0;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                gap: 15px;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                margin-top: 15px;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav a {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 5px;
+            }
+            
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 250px;
+            }
+            
+            .content {
+                padding: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+                margin: 1.2rem 0 0.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            .footer-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .footer-brand {
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .footer-links {
+                width: 100%;
+            }
+            
+            .carousel {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .section-title i {
+                width: 35px;
+                height: 35px;
+                font-size: 0.8rem;
+            }
+            
+            .code-block {
+                padding: 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .component-list li {
+                font-size: 0.9rem;
+            }
+            
+            .hackathon-badge {
+                font-size: 0.8rem;
+                padding: 4px 10px;
+            }
+            
+            .carousel {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-microchip"></i>
+                <h1>ROBO<span>STIM</span></h1>
+            </div>
+
+            <button class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <button class="menu-toggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#intro" class="active"><i class="fas fa-book"></i> Introduction</a></li>
+                    <li><a href="#objectif"><i class="fas fa-bullseye"></i> Objectifs</a></li>
+                    <li><a href="#structure"><i class="fas fa-sitemap"></i> Structure</a></li>
+                    <li><a href="#code"><i class="fas fa-code"></i> Code</a></li>
+                    <li><a href="#conclusion"><i class="fas fa-flag-checkered"></i> Conclusion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>Documentation technique des tests en IT </h2>
+            <p><strong>Test 1 : </strong>Création d’une classe pour un Robot </p>
+            <div class="btn-container" style="margin-top: 30px;">
+                <a href="#intro" class="btn">Commencer la lecture</a>
+                <a href="https://vimeo.com/1093499371" target="_blank" class="btn btn-outline">
+                    <i class="fas fa-video"></i> Voir la démo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div class="content">
+            <div class="hackathon-badge">
+                <i class="fas fa-trophy"></i> TRC 25
+            </div>
+            
+            <!-- Introduction -->
+            <section id="intro" class="card">
+                <h2 class="section-title"><i class="fas fa-book"></i> 1. Introduction</h2>
+                <p>Dans un contexte mondial où la robotique devient un pilier fondamental de l'innovation technologique, les compétences en programmation orientée objet (POO) et en conception de systèmes modulaires sont devenues essentielles. Le Tekbot Robotics Challenge 2024, organisé au sein d'un cadre académique dynamique, offre aux étudiants une opportunité concrète de mobiliser ces compétences dans un projet cohérent, pratique et professionnalisant.</p>
+                <p>Ce projet consiste à concevoir une application Python qui permet de simuler la création et la gestion de différents types de robots, chacun ayant des caractéristiques propres, tout en partageant une base commune. L'approche choisie repose sur une architecture modulaire, orientée objet, facilitant l'extensibilité, la réutilisabilité et la maintenabilité du code. Chaque type de robot est défini dans un fichier spécifique, héritant d'une classe mère abstraite, et mettant en œuvre ses propres attributs et comportements.</p>
+                <p>La présente documentation vise à fournir une vue d'ensemble complète et structurée du projet : depuis les objectifs pédagogiques jusqu'à l'implémentation technique détaillée de chaque composant. Elle s'adresse aussi bien aux étudiants débutants en programmation qu'aux développeurs expérimentés désireux d'examiner une architecture propre, segmentée et respectant les bonnes pratiques de développement logiciel. Les explications sont accompagnées de codes commentés pour favoriser l'apprentissage et la compréhension progressive.</p>
+            </section>
+            
+            <!-- Objectif du projet -->
+            <section id="objectif" class="card">
+                <h2 class="section-title"><i class="fas fa-bullseye"></i> 2. Objectif du test</h2>
+                <p>L'objectif est de construire une application Python capable de gérer dynamiquement des objets représentant des robots spécialisés. Chaque robot possède des attributs généraux (nom, fabricant, etc.) et spécifiques selon son type (médical, industriel, etc.). Le programme doit :</p>
+                <ul class="component-list">
+                    <li><i class="fas fa-check"></i> Permettre à l'utilisateur de créer différents types de robots via un menu interactif</li>
+                    <li><i class="fas fa-check"></i> Assurer la validation des données entrées par l'utilisateur</li>
+                    <li><i class="fas fa-check"></i> Stocker les robots créés en mémoire et les sauvegarder dans un fichier texte</li>
+                    <li><i class="fas fa-check"></i> Implémenter le principe d'héritage, d'abstraction, d'encapsulation et de polymorphisme</li>
+                </ul>
+            </section>
+            
+            <!-- Prérequis et outils -->
+            <section id="outils" class="card">
+                <h2 class="section-title"><i class="fas fa-tools"></i> 3. Prérequis et outils nécessaires</h2>
+                <ul class="component-list">
+                    <li><i class="fas fa-laptop-code"></i> <strong>Langage :</strong> Python 3.8 ou supérieur</li>
+                    <li><i class="fas fa-box"></i> <strong>Bibliothèques standards :</strong> abc, uuid</li>
+                    <li><i class="fas fa-edit"></i> <strong>Éditeur conseillé :</strong> VS Code, PyCharm ou Thonny</li>
+                    <li><i class="fas fa-desktop"></i> <strong>OS compatible :</strong> Windows, Linux, macOS</li>
+                    <li><i class="fas fa-graduation-cap"></i> <strong>Connaissances requises :</strong> notions de POO, structures conditionnelles, boucles, saisies utilisateur</li>
+                </ul>
+            </section>
+            
+            <!-- Structure du projet -->
+            <section id="structure" class="card">
+                <h2 class="section-title"><i class="fas fa-sitemap"></i> 4. Structure du projet</h2>
+                <p>Le projet est organisé autour de fichiers spécialisés :</p>
+                <ul class="component-list">
+                    <li><i class="fas fa-file-code"></i> <code>main.py</code> – Point d'entrée de l'application</li>
+                    <li><i class="fas fa-file-code"></i> <code>ClassRobot.py</code> – Classe de base abstraite</li>
+                    <li><i class="fas fa-file-code"></i> <code>Robot.py</code> – Démonstration simplifiée</li>
+                    <li><i class="fas fa-file-code"></i> <code>Gestion.py</code> – Fonctions de menu, sauvegarde, saisie</li>
+                    <li><i class="fas fa-file-code"></i> <code>Menager.py</code>, <code>Indistruel.py</code>, etc. – Définissent chaque type de robot</li>
+                </ul>
+            </section>
+            
+            <!-- Détail des fichiers -->
+            
+            
+            <section id="classrobot" class="card">
+                <h2 class="section-title"><i class="fas fa-file-code"></i> 5. Fichier : ClassRobot.py</h2>
+                <p>Ce fichier définit la classe abstraite <code>Robot</code> qui sert de base à toutes les autres. Il introduit des attributs généraux comme le nom, modèle,
+                    fabricant, année de fabrication, batterie, capacité, vitesse, poids et statut. Il utilise <code>uuid</code> pour générer un identifiant unique et impose
+                    des méthodes abstraites à implémenter dans les sous-classes.</p>
+                <p><strong>Particularité :</strong> Ce fichier est central, car tous les robots héritent de cette structure.</p>
+                <div class="code-block">
+                    <span class="code-keyword">from</span> abc <span class="code-keyword">import</span> ABC, abstractmethod<br>
+                    <br>
+                    <span class="code-keyword">class</span> <span class="code-function">Robot</span>(ABC):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, name, model):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.name = name<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.model = model<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_name</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-keyword">self</span>.name<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">set_name</span>(<span class="code-keyword">self</span>, name):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.name = name<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_model</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-keyword">self</span>.model<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">set_model</span>(<span class="code-keyword">self</span>, model):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.model = model<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">@abstractmethod</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">move</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">pass</span><br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__str__</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> f"Robot {<span class="code-keyword">self</span>.name}, modèle {<span class="code-keyword">self</span>.model}"<br>
+                </div>
+            </section>
+
+            <section id="classrobot" class="card">
+                <h2 class="section-title"><i class="fas fa-file-code"></i> 6. Fichier : Robot.py</h2>
+                    <p>Ce fichier sert d'introduction à la programmation orientée objet (POO). Il contient une classe abstraite
+                        <code>Robot</code>, ainsi que deux classes concrètes : <code>FlyingRobot</code> et <code>WheeledRobot</code>,
+                        qui illustrent le concept de polymorphisme. De plus, il inclut la classe <code>ClientGestion</code>, 
+                        permettant de créer plusieurs robots dynamiquement.</p>
+                    <p><strong>Différence :</strong> Ce fichier est conçu pour être plus
+                        pédagogique et simplifié par rapport à <code>ClassRobot.py</code>.</p>
+                <p><strong>Particularité :</strong> Ce fichier est central, car tous les robots héritent de cette structure.</p>
+                <div class="code-block">
+                    <span class="code-keyword">class</span> <span class="code-function">FlyingRobot</span>(Robot):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">move</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> f"{<span class="code-keyword">self</span>.name} vole dans les airs avec agilité."<br>
+                    <br>
+                    <span class="code-keyword">class</span> <span class="code-function">WheeledRobot</span>(Robot):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">move</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> f"{<span class="code-keyword">self</span>.name} roule rapidement sur le sol."<br>
+                </div>
+            </section>
+
+            <section id="classrobot" class="card">
+                <h2 class="section-title"><i class="fas fa-cogs"></i> 7. Fichier : Gestion.py</h2>
+                <p>Ce fichier regroupe les fonctions utiles pour l'interaction utilisateur, la validation des entrées et la sauvegarde des données robots. 
+                    Il constitue le module principal pour la gestion des interactions avec l'utilisateur et la persistance des données.
+                    Il combine la validation des entrées utilisateur avec un système de sauvegarde dans des fichiers texte.</p>
+
+                <h3>Fonction : demander_attributs()</h3>
+                <p>Demande à l'utilisateur les attributs généraux et spécifiques d'un robot avec des validations intégrées.</p>
+                <div class="code-block">
+                    <span class="code-keyword">def</span> <span class="code-function">demander_attributs</span>(generaux, specifiques):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;reponses = []<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">for</span> attr <span class="code-keyword">in</span> generaux:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> attr == <span class="code-string">"id_robot"</span>:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">continue</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Validation pour certaines valeurs spécifiques</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">for</span> attr <span class="code-keyword">in</span> specifiques:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> attr <span class="code-keyword">in</span> [<span class="code-string">"interaction_voix"</span>, <span class="code-string">"detergent"</span>, ...]:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;val = input(<span class="code-string">f"{attr} (oui/non): "</span>).lower() == <span class="code-string">"oui"</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">else</span>:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;val = input(<span class="code-string">f"{attr} : "</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reponses.append(val)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> reponses
+                </div>
+
+                <h3>Fonction : sauvegarder_robots()</h3>
+                <p>Enregistre les informations de tous les robots créés dans un fichier texte.</p>
+                <div class="code-block">
+                    <span class="code-keyword">def</span> <span class="code-function">sauvegarder_robots</span>(robots):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">with</span> open(<span class="code-string">"robots_crees.txt"</span>, <span class="code-string">"w"</span>, encoding=<span class="code-string">"utf-8"</span>) <span class="code-keyword">as</span> f:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">for</span> robot <span class="code-keyword">in</span> robots:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(<span class="code-string">f"=== {robot.get_type()} ===\n"</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">for</span> cle, val <span class="code-keyword">in</span> robot.get_attributs_generaux().items():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(<span class="code-string">f"{cle} : {val}\n"</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">for</span> cle, val <span class="code-keyword">in</span> robot.get_attributs_specifiques().items():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(<span class="code-string">f"{cle} : {val}\n"</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(<span class="code-string">"\n"</span>)
+                </div>
+
+                <h3>Fonction : afficher_menu()</h3>
+                <p>Affiche les différents types de robots disponibles à la création.</p>
+                <div class="code-block">
+                    <span class="code-keyword">def</span> <span class="code-function">afficher_menu</span>():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"\n=== Types de robots disponibles ==="</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"1. Robot Ménager - Pour les tâches domestiques"</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"2. Robot Industriel - Pour les usines"</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;...<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"6. Quitter le programme"</span>)
+                </div>
+            </section>
+            
+            <section id="classrobot" class="card">
+                <h2 class="section-title"><i class="fas fa-cog"></i> 8. Fichier : main.py</h2>
+                <p>Ce fichier est le cœur du programme. Il orchestre le menu, appelle les fonctions de gestion, et crée dynamiquement les objets robots.</p>
+                <p><strong>Rôle central :</strong> Point d'entrée principal qui coordonne toutes les opérations : interface utilisateur, création d'objets et sauvegarde des données.</p>
+                <p><strong>Particularité :</strong> Utilise un dictionnaire de classes pour une instanciation dynamique des différents types de robots.</p>
+
+                <h3>Initialisation</h3>
+                <p>Définit les attributs généraux des robots et un dictionnaire des classes avec leurs attributs spécifiques :</p>
+                <div class="code-block">
+                    generaux = [<span class="code-string">"nom"</span>, <span class="code-string">"fabricant"</span>, <span class="code-string">"modele"</span>, <span class="code-string">"annee_fabrication"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"batterie"</span>, <span class="code-string">"capacite_charge"</span>, <span class="code-string">"vitesse_max"</span>, <span class="code-string">"poids"</span>, <span class="code-string">"statut"</span>]<br><br>
+                    
+                    robot_classes = {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"1"</span>: (<span class="code-string">"RobotMenager"</span>, RobotMenager, [<span class="code-string">"type_tache"</span>, ...]),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"2"</span>: (<span class="code-string">"RobotIndustriel"</span>, RobotIndustriel, [<span class="code-string">"type_usine"</span>, ...]),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;...<br>
+                    }
+                    </div>
+
+                <h3>Boucle principale</h3>
+                <p>Affiche le menu, récupère le choix utilisateur, valide les données et crée l'objet correspondant :</p>
+                <div class="code-block">
+                    <span class="code-keyword">while</span> <span class="code-constant">True</span>:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;afficher_menu()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;choix = input(<span class="code-string">"Choisissez un type de robot : "</span>).strip()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> choix == <span class="code-string">"6"</span>:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sauvegarder_robots(robots_crees)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">break</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> choix <span class="code-keyword">in</span> robot_classes:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nom, classe, specifiques = robot_classes[choix]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributs = demander_attributs(generaux, specifiques)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;robot = classe(*attributs[:<span class="code-number">9</span>], **dict(zip(specifiques, attributs[<span class="code-number">9</span>:])))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;robots_crees.append(robot)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;robot.move()
+                </div>
+
+                <p><strong>Conclusion :</strong> C’est le cœur fonctionnel du projet où convergent toutes les opérations : saisie utilisateur, traitement des données, instanciation dynamique des objets, et sauvegarde persistante.</p>
+            </section>
+
+            <section id="classrobot" class="card">
+                <h2 class="section-title"><i class="fas fa-graduation-cap"></i> 9. Robot.py – Exemple simplifié de POO</h2>
+                <p>Le fichier <code>Robot.py</code> est une version d’introduction aux principes de la programmation orientée 
+                    objet. Il ne fait pas directement partie du cœur du projet principal, mais sert de base de démonstration 
+                    avant d’aborder les classes avancées du fichier <code>ClassRobot.py</code>.</p>
+                <h3>Contenu du fichier</h3>
+                <p>Il contient :</p>
+                <ul>
+                    <li>Une classe abstraite <code>Robot</code> avec les attributs <code>name</code> et <code>model</code></li>
+                    <li>Deux classes filles : <code>FlyingRobot</code> et <code>WheeledRobot</code></li>
+                    <li>Une classe <code>ClientGestion</code> pour gérer la création et l’affichage des robots</li>
+                </ul>
+
+                <div class="code-block">
+                    <span class="code-keyword">from</span> abc <span class="code-keyword">import</span> ABC, abstractmethod<br><br>
+                    
+                    <span class="code-keyword">class</span> <span class="code-function">Robot</span>(ABC):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, name, model):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>._name = name<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>._model = model<br><br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Accesseurs et mutateurs</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_name</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-keyword">self</span>._name<br><br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">set_name</span>(<span class="code-keyword">self</span>, name):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>._name = name<br><br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Méthode abstraite</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;@abstractmethod<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">move</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">pass</span><br><br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__str__</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">f"Robot {self._name}, modèle {self._model}"</span><br><br>
+                    
+                    <span class="code-keyword">class</span> <span class="code-function">FlyingRobot</span>(Robot):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">move</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">f"{self._name} vole dans les airs avec agilité."</span><br><br>
+                    
+                    <span class="code-keyword">class</span> <span class="code-function">WheeledRobot</span>(Robot):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">move</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">f"{self._name} roule rapidement sur le sol."</span><br><br>
+                    
+                    <span class="code-keyword">class</span> <span class="code-function">ClientGestion</span>:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.robot_list = []<br><br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">creation_robot</span>(<span class="code-keyword">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"....... Création du Robot ......."</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">try</span>:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response = int(input(<span class="code-string">'Entrer 1 pour FlyingBot ou 2 pour WheeledRobot : '</span>))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> response <span class="code-keyword">in</span> [<span class="code-number">1</span>, <span class="code-number">2</span>]:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nom = input(<span class="code-string">"Entrer le nom : "</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model = input(<span class="code-string">"Entrer le modèle : "</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;robot = FlyingRobot(nom, model) <span class="code-keyword">if</span> response == <span class="code-number">1</span> <span class="code-keyword">else</span> WheeledRobot(nom, model)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.robot_list.append(robot)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">else</span>:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"------ Entrée invalide -----"</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">except</span> ValueError:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"------ Entrée invalide -----"</span>)<br><br>
+                    
+                    <span class="code-comment"># Code d'exécution principal</span><br>
+                    client_gestion = ClientGestion()<br>
+                    number_of_robots = client_gestion.count_robot()<br>
+                    <span class="code-keyword">for</span> _ <span class="code-keyword">in</span> range(number_of_robots):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;client_gestion.creation_robot()<br><br>
+                    
+                    <span class="code-keyword">if</span> client_gestion.robot_list:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"\nListe des robots créés :"</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">for</span> i, robot <span class="code-keyword">in</span> enumerate(client_gestion.robot_list, <span class="code-number">1</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">f'Robot N° {i}'</span>)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(robot)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(robot.move())<br>
+                    <span class="code-keyword">else</span>:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"\nAucun robot valide n'a été créé."</span>)
+                </div>
+
+                <h3>Objectif</h3>
+                <p>Ce fichier est utile pour :</p>
+                <ul>
+                    <li>Comprendre l’usage d’une classe abstraite et l’obligation d’implémenter <code>move()</code></li>
+                    <li>Expliquer le principe du polymorphisme (même méthode <code>move()</code>, comportements différents)</li>
+                    <li>Initier à la gestion dynamique d’objets via la classe <code>ClientGestion</code></li>
+                </ul>
+                <p>Bien que simplifié, il prépare à la logique complète du projet principal basé sur <code>ClassRobot.py</code>.</p>
+            </section>
+
+            <!-- Détail des fichiers robots -->
+            <section id="robot" class="card">
+                <h2 class="section-title"><i class="fas fa-robot"></i> 10. Fichiers de types de robots</h2>
+                
+                
+                    <h3><i class="fas fa-home"></i> 10.1 Menager.py</h3>
+                    <p>Ce fichier contient la définition de la classe <code>RobotMenager</code>, qui hérite de la classe <code>Robot</code>.
+                        Cette classe est destinée à simuler des robots domestiques : aspirateurs intelligents,
+                        laveurs de sol, robots de repassage, etc.</p>
+                    <div class="code-block">
+                        <span class="code-keyword">class</span> <span class="code-function">RobotMenager</span>(Robot):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, *args, type_tache, reservoir, detergent, autonomie, niveau_bruit):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">super</span>().<span class="code-function">__init__</span>(*args)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.type_tache = type_tache<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.reservoir = reservoir<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.detergent = detergent<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.autonomie = autonomie<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.niveau_bruit = niveau_bruit<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">move</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">print</span>(f"{<span class="code-keyword">self</span>.get_nom()} commence à nettoyer la maison.")<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_type</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> "RobotMénager"<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_attributs_specifiques</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type_tache": <span class="code-keyword">self</span>.type_tache,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"reservoir": <span class="code-keyword">self</span>.reservoir,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"detergent": <span class="code-keyword">self</span>.detergent,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"autonomie": <span class="code-keyword">self</span>.autonomie,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"niveau_bruit": <span class="code-keyword">self</span>.niveau_bruit<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        
+                    </div>
+                    <p><strong>Explications :</strong></p>
+                        <ul>
+                            <li><code>type_tache</code> : détermine la spécialisation du robot (ex : nettoyage, repassage...)</li>
+                            <li><code>reservoir</code> : capacité du réservoir d’eau ou de déchets</li>
+                            <li><code>detergent</code> : booléen indiquant si le robot peut utiliser des produits nettoyants</li>
+                            <li><code>autonomie</code> : durée de fonctionnement en heures</li>
+                            <li><code>niveau_bruit</code> : bruit émis en décibels (dB)</li>
+                        </ul>
+                    <p>Cette classe montre comment enrichir un modèle de base en ajoutant des attributs spécifiques à un contexte d’usage concret, ici l’entretien domestique.</p>
+                
+                
+            
+                    <h3><i class="fas fa-industry"></i> 10.2 Industriel.py</h3>
+                    <p>Le fichier <code>Industruel.py</code> contient la classe <code>RobotIndustriel</code>, conçue pour exécuter des tâches spécifiques dans des environnements industriels.
+                    Ces robots sont souvent utilisés sur des chaînes de production, pour du soudage, de l’assemblage ou de la manipulation 
+                    d’objets lourds. Cette classe hérite de <code>Robot</code> et ajoute des attributs propres à l’usage industriel.</p>
+                    <div class="code-block">
+                        <span class="code-keyword">class</span> <span class="code-function">RobotIndustriel</span>(Robot):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, *args, type_usine, outil_utilise, resistance_chaleur,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;capacite_production, precision):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">super</span>().<span class="code-function">__init__</span>(*args)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.type_usine = type_usine<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.outil_utilise = outil_utilise<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.resistance_chaleur = resistance_chaleur<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.capacite_production = capacite_production<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.precision = precision<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">move</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">print</span>(f"{<span class="code-keyword">self</span>.get_nom()} se déplace sur la chaîne de production.")<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_type</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> "RobotIndustriel"<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_attributs_specifiques</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type_usine": <span class="code-keyword">self</span>.type_usine,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"outil_utilise": <span class="code-keyword">self</span>.outil_utilise,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"resistance_chaleur": <span class="code-keyword">self</span>.resistance_chaleur,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"capacite_production": <span class="code-keyword">self</span>.capacite_production,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"precision": <span class="code-keyword">self</span>.precision<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    <p>Chaque attribut correspond à une exigence du domaine industriel. Par exemple, <code>precision</code> définit la tolérance en millimètres, 
+                        tandis que <code>capacite_production</code> indique le nombre d’unités traitées par heure.</p>
+                </div>
+                
+                    <h3><i class="fas fa-briefcase-medical"></i> 10.3 Medical.py</h3>
+                    <p>Ce fichier définit la classe <code>RobotMedical</code>, conçue pour exécuter des tâches en environnement hospitalier. Il implémente des attributs spécifiques à la précision et à la sécurité des interventions chirurgicales.</p>
+                    <div class="code-block">
+                        <span class="code-keyword">class</span> <span class="code-function">RobotMedical</span>(Robot):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, *args, type_operation, sterilisable, telecommande,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compatibilite_scan, precision_chirurgicale):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">super</span>().<span class="code-function">__init__</span>(*args)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.type_operation = type_operation<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.sterilisable = sterilisable<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.telecommande = telecommande<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.compatibilite_scan = compatibilite_scan<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.precision_chirurgicale = precision_chirurgicale<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">move</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">print</span>(f"{<span class="code-keyword">self</span>.get_nom()} se positionne pour une intervention chirurgicale.")<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_type</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> "RobotMedical"<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_attributs_specifiques</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type_operation": <span class="code-keyword">self</span>.type_operation,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sterilisable": <span class="code-keyword">self</span>.sterilisable,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"telecommande": <span class="code-keyword">self</span>.telecommande,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"compatibilite_scan": <span class="code-keyword">self</span>.compatibilite_scan,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"precision_chirurgicale": <span class="code-keyword">self</span>.precision_chirurgicale<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    </div>
+
+                    
+                    <h3><i class="fas fa-briefcase-medical"></i> 10.4 Explorateur.py</h3>
+                    <p>La classe <code>RobotExplorateur</code> est destinée à modéliser un robot capable d’opérer dans des environnements extrêmes (océan, espace, déserts, etc.).</p>
+                    <div class="code-block">
+                        <span class="code-keyword">class</span> <span class="code-function">RobotExplorateur</span>(Robot):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, *args, type_exploration, profondeur_max, communication,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resistance, capacite_analyse):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">super</span>().<span class="code-function">__init__</span>(*args)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.type_exploration = type_exploration<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.profondeur_max = profondeur_max<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.communication = communication<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.resistance = resistance<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.capacite_analyse = capacite_analyse<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">move</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">print</span>(f"{<span class="code-keyword">self</span>.get_nom()} avance dans une zone inhospitalière.")<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_type</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> "RobotExplorateur"<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_attributs_specifiques</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type_exploration": <span class="code-keyword">self</span>.type_exploration,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"profondeur_max": <span class="code-keyword">self</span>.profondeur_max,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"communication": <span class="code-keyword">self</span>.communication,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"resistance": <span class="code-keyword">self</span>.resistance,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"capacite_analyse": <span class="code-keyword">self</span>.capacite_analyse<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    </div>
+                
+                    <h3><i class="fas fa-briefcase-medical"></i> 10.5 Compagnon.py</h3>
+                    <p>Le fichier <code>Compagnon.py</code> définit un robot d’assistance ou de compagnie. Ce type de robot est utilisé dans l’accompagnement des personnes âgées, 
+                        l’éducation, ou même comme assistants personnels intelligents. Cette classe est axée sur l’interaction humaine et intègre des fonctions liées à la 
+                        communication et à l’adaptation comportementale.</p>
+                    <div class="code-block">
+                        <span class="code-keyword">class</span> <span class="code-function">RobotCompagnon</span>(Robot):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, *args, intelligence_sociale, interaction_voix,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apprentissage, reconnaissance_visage, divertissement):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">super</span>().<span class="code-function">__init__</span>(*args)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.intelligence_sociale = intelligence_sociale<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.interaction_voix = interaction_voix<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.apprentissage = apprentissage<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.reconnaissance_visage = reconnaissance_visage<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.divertissement = divertissement<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">move</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">print</span>(f"{<span class="code-keyword">self</span>.get_nom()} suit son utilisateur pour l'assister.")<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_type</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> "RobotCompagnon"<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_attributs_specifiques</span>(<span class="code-keyword">self</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"intelligence_sociale": <span class="code-keyword">self</span>.intelligence_sociale,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"interaction_voix": <span class="code-keyword">self</span>.interaction_voix,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"apprentissage": <span class="code-keyword">self</span>.apprentissage,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"reconnaissance_visage": <span class="code-keyword">self</span>.reconnaissance_visage,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"divertissement": <span class="code-keyword">self</span>.divertissement<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    </div>
+
+                    <p>Cette classe est idéale pour illustrer la programmation orientée vers les interactions intelligentes. Elle pose aussi les bases pour des extensions futures 
+                        intégrant des modules de traitement du langage naturel ou de reconnaissance faciale avancée.</p>
+
+            </section>
+            
+            <!-- Diagramme UML -->
+            <section id="uml" class="card">
+                <h2 class="section-title"><i class="fas fa-project-diagram"></i> 10. Diagramme UML</h2>
+                <p>Le diagramme UML ci-dessous montre la hiérarchie des classes, avec <code>Robot</code> comme base et les différents types de robots comme sous-classes :</p>
+                <p align="center">
+                    <img src="images/image6.jpg" alt="Diagramme UML" width="800">
+                </p>
+            </section>
+            
+            <!-- Conclusion -->
+            <section id="conclusion" class="card">
+                <h2 class="section-title"><i class="fas fa-flag-checkered"></i> Conclusion</h2>
+                
+                <p>La qualité du code repose sur une architecture modulaire bien pensée : chaque fichier a une responsabilité claire (single responsibility), les interactions 
+                    sont maîtrisées et les dépendances limitées. Les validations de données, la séparation entre logique métier et interface utilisateur (console), ainsi que 
+                    l’usage de méthodes abstraites favorisent un haut niveau de maintenabilité.</p>
+                <p>Cette documentation a été pensée comme un guide pratique, technique et pédagogique. Elle peut servir de support d’apprentissage à ceux qui découvrent la POO, 
+                    mais aussi de point de départ pour des évolutions plus ambitieuses : ajout d’interface graphique (Tkinter, PyQt), base de données SQLite, déploiement d’API 
+                    REST avec Flask ou FastAPI, ou encore intégration avec des capteurs et microcontrôleurs dans un contexte réel de robotique embarquée.</p>
+                <p>En somme, ce test est bien plus qu’un exercice scolaire. Il constitue une base solide pour tout développeur ou ingénieur souhaitant explorer les 
+                    fondements d’une architecture orientée objet propre, testable et évolutive dans le domaine de la robotique logicielle et des systèmes intelligents.</p>
+            </section>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            
+            <h3 class="section-subtitle"><i class="fas fa-map-signs"></i> Navigation rapide</h3>
+            <ul class="component-list">
+                <li><a href="#intro"><i class="fas fa-book"></i> Introduction</a></li>
+                <li><a href="#objectif"><i class="fas fa-bullseye"></i> Objectifs</a></li>
+                <li><a href="#outils"><i class="fas fa-tools"></i> Prérequis</a></li>
+                <li><a href="#structure"><i class="fas fa-sitemap"></i> Structure</a></li>
+                <li><a href="#classrobot"><i class="fas fa-file-code"></i> ClassRobot.py</a></li>
+                <li><a href="#robot"><i class="fas fa-robot"></i> Types de robots</a></li>
+                <li><a href="#uml"><i class="fas fa-project-diagram"></i> Diagramme UML</a></li>
+                <li><a href="#conclusion"><i class="fas fa-flag-checkered"></i> Conclusion</a></li>
+            </ul>
+            
+            <h3 class="section-subtitle"><i class="fas fa-download"></i> Ressources</h3>
+            <ul class="component-list">
+                <li><a href="#"><i class="fas fa-file-pdf"></i> Documentation complète</a></li>
+                <li><a href="#"><i class="fas fa-file-code"></i> Code source complet</a></li>
+                <li><a href="#"><i class="fas fa-video"></i> Vidéo de démonstration</a></li>
+                <li><a href="#"><i class="fas fa-drafting-compass"></i> Schémas du projet</a></li>
+            </ul>
+            
+            <h3 class="section-subtitle"><i class="fas fa-microchip"></i> Technologies</h3>
+            <ul class="component-list">
+                <li><i class="fab fa-python"></i> Python 3.10</li>
+                <li><i class="fas fa-object-group"></i> Programmation orientée objet</li>
+                <li><i class="fas fa-code-branch"></i> Héritage & Polymorphisme</li>
+                <li><i class="fas fa-file-alt"></i> Gestion de fichiers</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-microchip footer-icon"></i>
+                        <div>
+                            <h3>ROBO<span>STIM</span></h3>
+                            <p>Documentation technique du test "Création de classe Robot"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h3>Liens utiles</h3>
+                        <ul class="component-list">
+                            <li><a href="https://www.python.org/" target="_blank"><i class="fab fa-python"></i> Python Documentation</a></li>
+                            <li><a href="https://docs.python.org/3/tutorial/classes.html" target="_blank"><i class="fas fa-book"></i> POO en Python</a></li>
+                            <li><a href="https://realpython.com/" target="_blank"><i class="fas fa-laptop-code"></i> Real Python</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <div class="copyright-content">
+                        <p>&copy; 2025 Documentation technique des tests en IT de la team ROBOSTIM. </p>
+                        <div class="footer-badge">
+                            <i class="fas fa-trophy"></i> TRC 25
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gestion du bouton Retour
+        document.getElementById('backButton').addEventListener('click', function() {
+            // Si l'historique contient au moins une page précédente
+            if (history.length > 1) {
+                history.back();
+            } else {
+                // Redirection vers une page d'accueil par défaut
+                window.location.href = "../index.html";
+            }
+        });
+
+        // Observer pour animer les sections
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Close mobile menu after click
+                    if (window.innerWidth <= 900) {
+                        document.querySelector('nav ul').classList.remove('show');
+                    }
+                }
+            });
+        });
+
+        // Animation for cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.08)';
+            });
+        });
+
+        // Highlight current section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navList = document.querySelector('nav ul');
+            navList.classList.toggle('show');
+            
+            if (navList.classList.contains('show')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Fermer le menu en cliquant en dehors
+        document.addEventListener('click', function(e) {
+            const navList = document.querySelector('nav ul');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (window.innerWidth <= 900 && 
+                navList.classList.contains('show') && 
+                !navList.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                navList.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
+
+    </script>
+</body>
+</html>
